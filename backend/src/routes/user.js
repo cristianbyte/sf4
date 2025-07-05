@@ -1,7 +1,10 @@
-import { express } from 'express'
+import express from 'express'
+import { validateSchema } from '../middlewares/validateSchema.js'
+import { userSchema } from '../schemas/user.js'
+import { createUser } from '../controllers/user.js'
 
 const router = express.Router()
 
-router.get('/', (req, res) => {
-  res.send('Hello World!')
-})
+router.post('/user', validateSchema(userSchema), createUser)
+
+export default router;
