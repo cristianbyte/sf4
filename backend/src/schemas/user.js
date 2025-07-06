@@ -1,10 +1,14 @@
 import { z } from 'zod';
+import { containsBadWords } from '../utils/badWords.js';
 
 export const userSchema = z.object({
   name: z
     .string()
     .min(3, 'Name must be at least 3 characters')
-    .max(100, 'Name is too long'),
+    .max(15, 'Name is too long, max: 15 characters')
+    .refine((val) => !containsBadWords(val), {
+      message: 'Name contains inappropriate language'
+    }),
   email: z.string().email('Email is invalid'),
   password: z
     .string()

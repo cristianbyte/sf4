@@ -1,5 +1,5 @@
 import User from '../models/User.js'
-import { HttpError } from '../../utils/HttpError.js'
+import { HttpError } from '../error/HttpError.js'
 
 export const create = async (userData) => {
   try {

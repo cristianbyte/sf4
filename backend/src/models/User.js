@@ -1,6 +1,6 @@
 import pool from '../../config/database.js';
 import bcrypt from 'bcryptjs';
-import { sanitizeRes } from '../../utils/sanitazeRes.js';
+import { sanitizeRes } from '../utils/sanitazeRes.js';
 
 class User {
   static async create(userData) {
