@@ -10,12 +10,9 @@ CREATE TABLE users (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-INSERT INTO users (email, name, password)
+INSERT INTO users (id, email, name, password)
 VALUES 
-  ('alice@example.com', 'Alice', 'hashedpass1'),
-  ('bob@example.com', 'Bob', 'hashedpass2'),
-  ('carol@example.com', 'Carol', 'hashedpass3'),
-  ('dave@example.com', 'Dave', 'hashedpass4'),
-  ('eve@example.com', 'Eve', 'hashedpass5');
+  ('cfbd4926-facf-46a0-aa7b-dacfaaefb3ea','alice@example.com', 'Alice', 'hashedpass1'),
+  ('aabd4926-facf-46b0-aa7b-dacfaaefb3ff','bob@example.com', 'Bob', 'hashedpass2');
 
 -- CREATE INDEX idx_users_email ON users(email);

@@ -1,5 +1,6 @@
 import pool from '../../config/database.js';
 import bcrypt from 'bcryptjs';
+import { sanitizeRes } from '../../utils/sanitazeRes.js';
 
 class User {
   static async create(userData) {
@@ -7,9 +8,9 @@ class User {
 
     const data = { ...userData };
     const keys = Object.keys(data);
-    const values = Object.values(data);
-    
     data.password = await bcrypt.hash(data.password, saltRounds);
+    const values = Object.values(data);
+
     const placeholders = keys.map((_, i) => `$${i + 1}`);
     const query = `
       INSERT INTO users (${keys.join(', ')})
@@ -18,8 +19,20 @@ class User {
     `;
     try {
       const result = await pool.query(query, values);
-      return result.rows[0];
+      const user = result.rows[0];
+      return sanitizeRes(user);
     } catch (error) {
+      throw error;
+    }
+  }
+
+  static async destroy(id) {
+    const query = `DELETE FROM users WHERE id = $1 RETURNING id`;
+    try {
+      const result = await pool.query(query, [id]);
+      return result.rows[0] || null;
+    }
+    catch (error) {
       throw error;
     }
   }

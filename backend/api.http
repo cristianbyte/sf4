@@ -5,6 +5,10 @@ POST http://localhost:3000/api/user
 Content-Type: application/json
 
 {
-    "name": "John Doe",
-    "email": "john.doe@exmple"
+    "name": "Joe",
+    "email": "john.doe@exmple.com",
+    "password": "Pass123s"
 }
+
+### Delete User
+DELETE http://localhost:3000/api/user/cfbd4926-facf-46a0-aa7b-dacfaaefb3ea

@@ -1,7 +1,7 @@
 import express from 'express'
 import initDatabase, { PORT } from './config/config.js'
 import user from './src/routes/user.js'
-import { jsonSyntaxErrorHandler } from './src/middlewares/errorHandler.js'
+import { jsonSyntaxErrorHandler, errorHandler } from './src/middlewares/errorHandler.js'
 
 const app = express()
 app.disable('x-powered-by')
@@ -11,6 +11,7 @@ app.use(express.json())
 app.use('/api', user)
 
 app.use(jsonSyntaxErrorHandler)
+app.use(errorHandler)
 
 await initDatabase();
 app.listen(PORT, () => {

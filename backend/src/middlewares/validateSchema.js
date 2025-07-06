@@ -1,20 +1,16 @@
-import { ZodError } from 'zod'
-
-export const validateSchema = (schema) => (req, res, next) => {
-  const result = schema.safeParse(req.body)
-
-  if (!result.success) {
-    const formattedErrors = result.error.errors.map(err => ({
-      field: err.path.join('.'),
-      message: err.message
-    }))
-
+export const validateSchema = (schemas) => (req, res, next) => {
+  try {
+    if (schemas.body) schemas.body.parse(req.body);
+    if (schemas.params) schemas.params.parse(req.params);
+    if (schemas.query) schemas.query.parse(req.query);
+    next();
+  } catch (err) {
     return res.status(400).json({
       error: 'Validation failed',
-      details: formattedErrors
-    })
+      details: err.errors?.map(e => ({
+        field: e.path.join('.'),
+        message: e.message,
+      })) || [],
+    });
   }
-
-  req.body = result.data // ← datos ya validados y transformados
-  next()
-}
+};

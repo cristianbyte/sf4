@@ -1,10 +1,19 @@
-import { create } from '../services/user.js'
+import * as userService from '../services/user.js'
 
-export const createUser = async (req, res) => {
+export const createUser = async (req, res, next) => {
   try {
-    const user = await create(req.body)
-    res.status(201).json(user)
-  } catch (error) {
-    res.status(500).json({ error: error.message })
+    const newUser = await userService.create(req.body);
+    res.status(201).json(newUser);
+  } catch (err) {
+    next(err)
+  }
+}
+
+export const destroyUser = async (req, res, next) => {
+  try {
+    await userService.destroy(req.params.id);
+    res.status(204).send()
+  }catch{
+    next(err)
   }
 }
