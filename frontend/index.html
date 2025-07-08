@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Simple HTTP Client</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            max-width: 700px;
+            margin: 2rem auto;
+        }
+
+        label {
+            display: block;
+            margin-top: 1rem;
+            font-weight: bold;
+        }
+
+        textarea,
+        input,
+        select {
+            width: 100%;
+            margin-top: 0.5rem;
+            padding: 0.5rem;
+            font-family: monospace;
+        }
+
+        button {
+            margin-top: 1.5rem;
+            padding: 0.5rem 1rem;
+            font-weight: bold;
+        }
+
+        pre {
+            background: #f4f4f4;
+            padding: 1rem;
+            margin-top: 1rem;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+
+        .section-title {
+            margin-top: 2rem;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>🧪 Simple HTTP Client</h2>
+
+    <label>Method:</label>
+    <select id="method">
+        <option>GET</option>
+        <option>POST</option>
+        <option>PUT</option>
+        <option>DELETE</option>
+        <option>PATCH</option>
+    </select>
+
+    <label>URL:</label>
+    <input type="text" id="url" placeholder="http://localhost:3000/api/user">
+
+    <label>Headers (JSON):</label>
+    <textarea id="headers" rows="4">{ "Content-Type": "application/json" }</textarea>
+
+    <label>Include Authorization header?</label>
+    <input type="checkbox" id="useAuth" checked />
+    <input type="text" id="authToken" placeholder="Bearer token..." value="Bearer tu_token_aqui" />
+
+    <label>Body format:</label>
+    <select id="bodyType">
+        <option value="json" selected>JSON</option>
+        <option value="html">HTML (text/plain)</option>
+    </select>
+
+    <label>Body:</label>
+    <textarea id="body" rows="6">
+{
+  "name": "Joeperra",
+  "email": "john.doe@example.com",
+  "password": "Pass123s"
+}
+  </textarea>
+
+    <button onclick="sendRequest()">Send</button>
+
+    <div class="section-title">📨 Request</div>
+    <pre id="requestLog">Waiting to send...</pre>
+
+    <div class="section-title">📬 Response</div>
+    <pre id="responseLog">Waiting for response...</pre>
+
+
+    <script>
+        async function sendRequest() {
+            const method = document.getElementById('method').value;
+            const url = document.getElementById('url').value || "http://localhost:3000/api/user";
+            const headersInput = document.getElementById('headers').value;
+            const useAuth = document.getElementById('useAuth').checked;
+            const authToken = document.getElementById('authToken').value;
+            const body = document.getElementById('body').value;
+            const bodyType = document.getElementById('bodyType').value;
+
+            const reqLog = document.getElementById('requestLog');
+            const resLog = document.getElementById('responseLog');
+
+            let headers;
+            try {
+                headers = JSON.parse(headersInput);
+            } catch (e) {
+                resLog.textContent = '❌ Invalid headers JSON';
+                return;
+            }
+
+            if (useAuth && authToken.trim()) {
+                headers['Authorization'] = authToken.trim();
+            }
+
+            const options = {
+                method,
+                headers,
+            };
+
+            if (method !== 'GET' && method !== 'HEAD') {
+                options.body = bodyType === 'json' ? body : body.toString();
+            }
+
+            // Mostrar log de solicitud
+            reqLog.textContent =
+                `${method} ${url}
+
+            Headers:
+            ${JSON.stringify(headers, null, 2)}
+
+            Body:
+            ${options.body || '[no body]'}`;
+
+            try {
+                const res = await fetch(url, options);
+                const contentType = res.headers.get('Content-Type') || '';
+                const statusLine = `HTTP/1.1 ${res.status} ${res.statusText}`;
+                const headersList = [...res.headers.entries()]
+                    .map(([k, v]) => `${k}: ${v}`)
+                    .join('\n');
+
+                let body;
+                try {
+                    body = contentType.includes('application/json')
+                        ? JSON.stringify(await res.json(), null, 2)
+                        : await res.text();
+                } catch (err) {
+                    body = '[Error parsing response body]';
+                }
+
+                resLog.textContent =
+                    `${statusLine}
+${headersList}
+
+${body}`;
+            } catch (err) {
+                resLog.textContent = `❌ Network error:\n${err.message}`;
+            }
+        }
+    </script>
+</body>
+
+</html>

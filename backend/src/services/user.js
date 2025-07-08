@@ -1,5 +1,6 @@
 import User from '../models/User.js'
 import { HttpError } from '../error/HttpError.js'
+import { sanitizeLogin } from '../utils/sanitazeRes.js'
 
 export const create = async (userData) => {
   try {
@@ -11,6 +12,17 @@ export const create = async (userData) => {
     }
   }
 }
+
+export const login = async (userData) => {
+  const filter = sanitizeLogin(userData);
+
+  const user = await User.login(filter);
+  if (!user) {
+    throw new HttpError('Invalid credentials', 400);
+  }
+
+  return user;
+};
 
 export const destroy = async (id) => {
   try {

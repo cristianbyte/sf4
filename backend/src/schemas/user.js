@@ -22,3 +22,16 @@ export const userSchema = z.object({
 export const uuidParam = z.object({
   id: z.string().uuid('Invalid UUID')
 })
+
+// LogIn
+export const mailSchema = userSchema.pick({ email: true });
+export const passSchema = z.object({
+  password: z
+  .string()
+  .min(8, 'Wrong Password')
+  .regex(
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/,
+    'Wrong Password'
+  )
+})
+export const loginSchema = mailSchema.merge(passSchema);
