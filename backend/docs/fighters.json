@@ -1,0 +1,48 @@
+{
+    "fighters": [
+        "TheNino",
+        "Byking",
+        "Milica",
+        "May",
+        "Shelao",
+        "Belosmaki",
+        "Karina",
+        "Karely",
+        "JHdelaCruz",
+        "Cristorata",
+        "Yina",
+        "LaValdiri"
+    ],
+    "fights": [
+        {
+            "fighters": [
+                "TheNino",
+                "Byking"
+            ]
+        },
+        {
+            "fighters": [
+                "Milica",
+                "May"
+            ]
+        },
+        {
+            "fighters": [
+                "Shelao",
+                "Belosmaki"
+            ]
+        },
+        {
+            "fighters": [
+                "JHdelaCruz",
+                "Cristorata"
+            ]
+        },
+        {
+            "fighters": [
+                "Yina",
+                "LaValdiri"
+            ]
+        }
+    ]
+}
