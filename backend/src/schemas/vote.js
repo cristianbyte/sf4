@@ -1,9 +1,19 @@
 import { z } from 'zod';
 import fs from 'fs/promises';
 
-const data = JSON.parse(await fs.readFile('../../docs/fighters.json', 'utf8'));
-const fighterList = data.fighters;
+const file = await fs.readFile(new URL('../docs/fighters.json', import.meta.url), 'utf8');
+const fighterList = JSON.parse(file);
 
 export const fighterSchema = z.object({
-  name: z.enum([...fighterList])
+  name: z
+    .string()
+    .refine((val) => fighterList.includes(val), {
+      message: 'Fighter not recognized',
+    })
 });
+
+export const uuidSchema = z.object({
+  id: z.string().uuid('Invalid UUID')
+});
+
+export const voteSchema = uuidSchema.merge(fighterSchema);

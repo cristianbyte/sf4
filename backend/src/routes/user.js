@@ -6,7 +6,7 @@ import { createUser, destroyUser, logIn } from '../controllers/user.js'
 const user = express.Router()
 
 user.post('/', validateSchema({body: userSchema}), createUser)
-user.get('/login', validateSchema({body: loginSchema}), logIn)
+user.post('/login', validateSchema({body: loginSchema}), logIn)
 user.delete('/:id', validateSchema({params: uuidParam}), destroyUser)
 
 export default user;

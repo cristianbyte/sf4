@@ -2,7 +2,17 @@ import pool from '../../config/database.js';
 import { findOpponent } from '../utils/fights.js';
 
 class Vote {
-  static async vote({ userId, fighterName }) {
+
+  static async getVotes(userId){
+    const query = `SELECT votes.fighter as voted_for
+        FROM users
+        JOIN votes ON users.id = votes.user_id
+        WHERE users.id = $1;`;
+    const result = await pool.query(query, [userId]);
+    return result.rows;
+  }
+
+  static async createVote({ userId, fighterName }) {
     // Get all votes by the user
     const query = `
       SELECT fighter

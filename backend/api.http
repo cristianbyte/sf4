@@ -5,18 +5,18 @@ POST http://localhost:3000/api/user
 Content-Type: application/json
 
 {
+    "email": "jon.ddo@exmle.com",
     "name": "Joeperri",
-    "email": "john.doe@exmle.com",
     "password": "Pass123s"
 }
 
 ### log in
-GET http://localhost:3000/api/user/login
+POST http://localhost:3000/api/user/login
 Content-Type: application/json
 
 {
 
-    "email": "john.doe@exmle.com",
+    "email": "jon.ddo@exmle.com",
     "password": "Pass123s"
 }
 

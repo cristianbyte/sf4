@@ -19,3 +19,4 @@ const initDatabase = async () => {
 
 export default initDatabase;
 export const { PORT = 3000 } = process.env
+export const { SECRET_JWT_KEY } = process.env

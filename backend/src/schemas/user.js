@@ -17,7 +17,7 @@ export const userSchema = z.object({
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/,
       'Password must include at least one uppercase letter, one lowercase letter, and one number'
     )
-});
+}).strict();
 
 export const uuidParam = z.object({
   id: z.string().uuid('Invalid UUID')

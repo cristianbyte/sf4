@@ -1,4 +1,5 @@
 import * as userService from '../services/user.js'
+import cookieParser from 'cookie-parser';
 
 export const createUser = async (req, res, next) => {
   try {
@@ -10,13 +11,38 @@ export const createUser = async (req, res, next) => {
 }
 
 export const logIn = async (req, res, next) => {
-  try{
-    const acces = await userService.login(req.body);
-    res.status(200).json(acces);
-  }catch (err){
-    next(err)
+  try {
+    const { user, token } = await userService.login(req.body);
+    
+    const cookieOptions = {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: process.env.NODE_ENV === 'production' ? 'strict' : 'lax',
+      maxAge: 1000 * 60 * 60 * 12, // 12 horas
+      path: '/'
+    };
+    
+    res.cookie('access_token', token, cookieOptions);
+    
+    res.status(200).json(user);
+  } catch (err) {
+    next(err);
   }
-}
+};
+
+export const logOut = (req, res) => {
+  res.clearCookie('access_token', {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
+    sameSite: process.env.NODE_ENV === 'production' ? 'strict' : 'lax',
+    path: '/'
+  });
+  
+  res.status(200).json({
+    success: true,
+    message: 'Logout exitoso'
+  });
+};
 
 export const destroyUser = async (req, res, next) => {
   try {
