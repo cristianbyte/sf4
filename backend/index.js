@@ -1,4 +1,5 @@
 import express from 'express'
+import { authenticateToken } from './src/middlewares/authenticateToken.js'
 import { corsMiddleware } from './config/cors.js'
 import initDatabase, { PORT } from './config/config.js'
 import user from './src/routes/user.js'
@@ -12,10 +13,11 @@ app.disable('x-powered-by')
 
 app.use(logOrigin);
 app.use(corsMiddleware);
-app.use(express.json())
 app.use(cookieParser())
+app.use(express.json())
 
 app.use('/api/user', user)
+app.use(authenticateToken)
 app.use('/api/vote', vote)
 
 app.use(jsonSyntaxErrorHandler)

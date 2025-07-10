@@ -16,4 +16,8 @@ export const uuidSchema = z.object({
   id: z.string().uuid('Invalid UUID')
 });
 
+export const locationSchema = z.object({
+  codeLocation: z.string()
+});
+
 export const voteSchema = uuidSchema.merge(fighterSchema);

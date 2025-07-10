@@ -5,6 +5,6 @@ import { uuidSchema } from '../schemas/vote.js';
 
 const vote = express.Router()
 
-vote.get('/', validateSchema({body: uuidSchema }), getVotes)
+vote.post('/', validateSchema({body: uuidSchema }), getVotes)
 
 export default vote;

@@ -37,11 +37,8 @@ export const logOut = (req, res) => {
     sameSite: process.env.NODE_ENV === 'production' ? 'strict' : 'lax',
     path: '/'
   });
-  
-  res.status(200).json({
-    success: true,
-    message: 'Logout exitoso'
-  });
+
+  res.redirect('/login');
 };
 
 export const destroyUser = async (req, res, next) => {
