@@ -1,5 +1,5 @@
 import * as userService from '../services/user.js'
-import cookieParser from 'cookie-parser';
+import jwt from 'jsonwebtoken'
 
 export const createUser = async (req, res, next) => {
   try {
@@ -43,9 +43,26 @@ export const logOut = (req, res) => {
 
 export const destroyUser = async (req, res, next) => {
   try {
-    await userService.destroy(req.params.id);
-    res.status(204).send()
-  }catch{
-    next(err)
+    const token = req.cookies['access_token'];
+    const targetId = req.params.id;
+    
+    if (!token) {
+      return res.status(401).json({ message: 'No token provided' });
+    }
+    
+    const decoded = jwt.decode(token);
+    
+    if (!decoded) {
+      return res.status(401).json({ message: 'Invalid token' });
+    }
+    
+    if (decoded.id === targetId) {
+      await userService.destroy(targetId);
+      res.status(204).send();
+    } else {
+      res.status(401).json({ message: 'Unauthorized' });
+    }
+  } catch (err) {
+    next(err);
   }
-}
+};

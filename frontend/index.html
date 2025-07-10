@@ -1,113 +1,249 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Simple HTTP Client</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🧪 HTTP Client Tester</title>
     <style>
         body {
-            font-family: sans-serif;
-            max-width: 700px;
-            margin: 2rem auto;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
         }
-
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: #333;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
         label {
             display: block;
-            margin-top: 1rem;
-            font-weight: bold;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #555;
         }
-
-        textarea,
-        input,
-        select {
+        input, select, textarea {
             width: 100%;
-            margin-top: 0.5rem;
-            padding: 0.5rem;
-            font-family: monospace;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: border-color 0.3s;
         }
-
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #4CAF50;
+        }
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .checkbox-group input[type="checkbox"] {
+            width: auto;
+            margin: 0;
+        }
         button {
-            margin-top: 1.5rem;
-            padding: 0.5rem 1rem;
-            font-weight: bold;
+            background: #4CAF50;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+            width: 100%;
+            margin-top: 20px;
         }
-
+        button:hover {
+            background: #45a049;
+        }
+        .section-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin: 30px 0 15px 0;
+            color: #333;
+            border-bottom: 2px solid #4CAF50;
+            padding-bottom: 5px;
+        }
         pre {
-            background: #f4f4f4;
-            padding: 1rem;
-            margin-top: 1rem;
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 6px;
+            padding: 20px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
             overflow-x: auto;
             white-space: pre-wrap;
-            word-break: break-word;
+            word-wrap: break-word;
+            max-height: 400px;
+            overflow-y: auto;
         }
-
-        .section-title {
-            margin-top: 2rem;
-            font-size: 1.2rem;
-            font-weight: bold;
+        .preset-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        .preset-btn {
+            background: #007bff;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .preset-btn:hover {
+            background: #0056b3;
+        }
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        @media (max-width: 768px) {
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+            .preset-buttons {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
-
 <body>
-    <h2>🧪 Simple HTTP Client</h2>
+    <div class="container">
+        <h2>🧪 HTTP Client Tester</h2>
+        
+        <!-- Preset Buttons -->
+        <div class="preset-buttons">
+            <button class="preset-btn" onclick="setPreset('login')">📝 Login</button>
+            <button class="preset-btn" onclick="setPreset('register')">👤 Register</button>
+            <button class="preset-btn" onclick="setPreset('getUser')">👁️ Get User</button>
+            <button class="preset-btn" onclick="setPreset('deleteUser')">🗑️ Delete User</button>
+        </div>
 
-    <label>Method:</label>
-    <select id="method">
-        <option>GET</option>
-        <option>POST</option>
-        <option>PUT</option>
-        <option>DELETE</option>
-        <option>PATCH</option>
-    </select>
+        <div class="form-group">
+            <label>Method:</label>
+            <select id="method">
+                <option>GET</option>
+                <option>POST</option>
+                <option>PUT</option>
+                <option>DELETE</option>
+                <option>PATCH</option>
+            </select>
+        </div>
 
-    <label>URL:</label>
-    <input type="text" id="url" placeholder="http://localhost:3000/api/user">
+        <div class="form-group">
+            <label>URL:</label>
+            <input type="text" id="url" placeholder="http://localhost:3000/api/user">
+        </div>
 
-    <label>Headers (JSON):</label>
-    <textarea id="headers" rows="4">{ "Content-Type": "application/json" }</textarea>
+        <div class="form-group">
+            <label>Headers (JSON):</label>
+            <textarea id="headers" rows="4">{"Content-Type": "application/json"}</textarea>
+        </div>
 
-    <label>Include Authorization header?</label>
-    <input type="checkbox" id="useAuth" checked />
-    <input type="text" id="authToken" placeholder="Bearer token..." value="Bearer tu_token_aqui" />
+        <div class="form-group">
+            <div class="checkbox-group">
+                <input type="checkbox" id="useAuth">
+                <label for="useAuth">Include Authorization header?</label>
+            </div>
+            <input type="text" id="authToken" placeholder="Bearer token..." style="margin-top: 10px;">
+        </div>
 
-    <label>Body format:</label>
-    <select id="bodyType">
-        <option value="json" selected>JSON</option>
-        <option value="html">HTML (text/plain)</option>
-    </select>
-
-    <label>Body:</label>
-    <textarea id="body" rows="6">
-{
+        <div class="form-group">
+            <label>Body:</label>
+            <textarea id="body" rows="6">{
   "name": "Joeperra",
-  "email": "john.doe@example.com",
+  "email": "john.doe@example.com", 
   "password": "Pass123s"
-}
-  </textarea>
+}</textarea>
+        </div>
 
-    <button onclick="sendRequest()">Send</button>
+        <button onclick="sendRequest()">🚀 Send Request</button>
 
-    <div class="section-title">📨 Request</div>
-    <pre id="requestLog">Waiting to send...</pre>
-
-    <div class="section-title">📬 Response</div>
-    <pre id="responseLog">Waiting for response...</pre>
-
+        <div class="two-column">
+            <div>
+                <div class="section-title">📨 Request</div>
+                <pre id="requestLog">Waiting to send...</pre>
+            </div>
+            <div>
+                <div class="section-title">📬 Response</div>
+                <pre id="responseLog">Waiting for response...</pre>
+            </div>
+        </div>
+    </div>
 
     <script>
+        // Presets para testing rápido
+        const presets = {
+            login: {
+                method: 'POST',
+                url: 'http://localhost:3000/api/user/login',
+                body: {
+                    "email": "john.doe@example.com",
+                    "password": "Pass123s"
+                }
+            },
+            register: {
+                method: 'POST', 
+                url: 'http://localhost:3000/api/user',
+                body: {
+                    "name": "Joeperra",
+                    "email": "john.doe@example.com",
+                    "password": "Pass123s"
+                }
+            },
+            getUser: {
+                method: 'GET',
+                url: 'http://localhost:3000/api/user/YOUR_USER_ID_HERE',
+                body: null
+            },
+            deleteUser: {
+                method: 'DELETE',
+                url: 'http://localhost:3000/api/user/YOUR_USER_ID_HERE',
+                body: null
+            }
+        };
+
+        function setPreset(type) {
+            const preset = presets[type];
+            document.getElementById('method').value = preset.method;
+            document.getElementById('url').value = preset.url;
+            document.getElementById('body').value = preset.body ? JSON.stringify(preset.body, null, 2) : '';
+            
+            // Para GET y DELETE, limpiar body
+            if (preset.method === 'GET' || preset.method === 'DELETE') {
+                document.getElementById('body').value = '';
+            }
+        }
+
         async function sendRequest() {
             const method = document.getElementById('method').value;
             const url = document.getElementById('url').value || "http://localhost:3000/api/user";
             const headersInput = document.getElementById('headers').value;
             const useAuth = document.getElementById('useAuth').checked;
             const authToken = document.getElementById('authToken').value;
-            const body = document.getElementById('body').value;
-            const bodyType = document.getElementById('bodyType').value;
-
+            const bodyText = document.getElementById('body').value.trim();
+            
             const reqLog = document.getElementById('requestLog');
             const resLog = document.getElementById('responseLog');
-
+            
+            // Parse headers
             let headers;
             try {
                 headers = JSON.parse(headersInput);
@@ -115,57 +251,113 @@
                 resLog.textContent = '❌ Invalid headers JSON';
                 return;
             }
-
+            
+            // Add auth header if needed
             if (useAuth && authToken.trim()) {
                 headers['Authorization'] = authToken.trim();
             }
-
+            
+            // Prepare request options
             const options = {
                 method,
-                headers,
+                credentials: 'include', // ✅ CRÍTICO: Incluye cookies
+                headers
             };
-
-            if (method !== 'GET' && method !== 'HEAD') {
-                options.body = bodyType === 'json' ? body : body.toString();
+            
+            // Add body for non-GET requests
+            if (method !== 'GET' && method !== 'HEAD' && bodyText) {
+                try {
+                    // Validate JSON if not empty
+                    JSON.parse(bodyText);
+                    options.body = bodyText;
+                } catch (e) {
+                    resLog.textContent = '❌ Invalid JSON in body';
+                    return;
+                }
             }
-
-            // Mostrar log de solicitud
-            reqLog.textContent =
-                `${method} ${url}
-
-            Headers:
-            ${JSON.stringify(headers, null, 2)}
-
-            Body:
-            ${options.body || '[no body]'}`;
-
+            
+            // Show request log
+            reqLog.textContent = `${method} ${url}
+            
+🔧 Options:
+credentials: 'include'
+            
+📋 Headers:
+${JSON.stringify(headers, null, 2)}
+            
+📦 Body:
+${options.body || '[no body]'}`;
+            
             try {
+                const startTime = Date.now();
                 const res = await fetch(url, options);
+                const endTime = Date.now();
+                
                 const contentType = res.headers.get('Content-Type') || '';
                 const statusLine = `HTTP/1.1 ${res.status} ${res.statusText}`;
                 const headersList = [...res.headers.entries()]
                     .map(([k, v]) => `${k}: ${v}`)
                     .join('\n');
-
+                
                 let body;
                 try {
-                    body = contentType.includes('application/json')
-                        ? JSON.stringify(await res.json(), null, 2)
-                        : await res.text();
+                    const text = await res.text();
+                    if (contentType.includes('application/json') && text) {
+                        body = JSON.stringify(JSON.parse(text), null, 2);
+                    } else {
+                        body = text || '[empty response]';
+                    }
                 } catch (err) {
                     body = '[Error parsing response body]';
                 }
+                
+                resLog.textContent = `${statusLine}
+Time: ${endTime - startTime}ms
 
-                resLog.textContent =
-                    `${statusLine}
+📋 Response Headers:
 ${headersList}
 
+📦 Response Body:
 ${body}`;
+                
+                // Si es login exitoso, extraer info útil
+                if (res.status === 200 && contentType.includes('application/json')) {
+                    try {
+                        const jsonData = JSON.parse(body);
+                        if (jsonData.id) {
+                            console.log('🎯 User ID for testing:', jsonData.id);
+                            // Actualizar presets con el ID real
+                            presets.getUser.url = `http://localhost:3000/api/user/${jsonData.id}`;
+                            presets.deleteUser.url = `http://localhost:3000/api/user/${jsonData.id}`;
+                        }
+                    } catch (e) {
+                        // Ignore parsing errors for ID extraction
+                    }
+                }
+                
             } catch (err) {
-                resLog.textContent = `❌ Network error:\n${err.message}`;
+                resLog.textContent = `❌ Network error:
+${err.message}
+
+🔍 Common issues:
+- Server not running?
+- CORS configuration?
+- Wrong URL?`;
             }
         }
+        
+        // Show current cookies for debugging
+        function showCookies() {
+            console.log('🍪 Current cookies:', document.cookie);
+            alert('Check console for cookies');
+        }
+        
+        // Add keyboard shortcut
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && e.key === 'Enter') {
+                sendRequest();
+            }
+        });
     </script>
 </body>
-
 </html>
