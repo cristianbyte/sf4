@@ -23,8 +23,7 @@ CREATE TABLE  votes (
 
 INSERT INTO users (id, email, name, password)
 VALUES 
-  ('cfbd4926-facf-46a0-aa7b-dacfaaefb3ea','alice@example.com', 'Alice', 'hashedpass1'),
-  ('aabd4926-facf-46b0-aa7b-dacfaaefb3ff','bob@example.com', 'Bob', 'hashedpass2');
+  ('aabd4926-facf-46b0-aa7b-dacfaaefb3ff','john.doe@example.com', 'Jhon Doe', '$2b$12$4Fbx9Bu8JA3a6gGUTs/nDudGtKETH3ktM24I.5lpa80UYacUCa3E2');
 
 INSERT INTO votes (user_id, fighter, location) 
 VALUES
