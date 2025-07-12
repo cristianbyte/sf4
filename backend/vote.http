@@ -1,6 +1,2 @@
 GET http://localhost:3000/api/vote
 Content-Type: application/json
-
-{
-    "id": "aabd4926-facf-46b0-aa7b-dacfaaefb3ff"
-}

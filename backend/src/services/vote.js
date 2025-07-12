@@ -3,10 +3,11 @@ import { HttpError } from '../error/HttpError.js'
 
 export const getVotes = async (data) => {
     try {
-        const result = await Vote.getVotes(data);
+        const voted_for = await Vote.getVotes(data);
 
-        if (!result || result.length === 0) {
-            throw new HttpError('No votes found.', 404);
+        if (!voted_for || voted_for.length === 0) {
+            voted_for = [];
+            return voted_for;
         }
 
         const convert = result.map(v => v.voted_for)

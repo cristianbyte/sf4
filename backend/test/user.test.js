@@ -10,12 +10,12 @@ let userTest = {
   email: 'camile@example.com',
   password: 'passStrong67',
 }
-
 let fakeUserName = {
   name: '<br>alert("x")</br>',
   email: 'fake@email.com',
   password: 'passStrong67',
 }
+
 describe('User login and deletion tests', () => {
 
   test('CREATE a user (201)', async () => {

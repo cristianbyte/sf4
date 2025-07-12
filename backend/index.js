@@ -10,8 +10,6 @@ import { methodNotAllowedHandler, notFoundHandler } from './src/middlewares/badR
 const app = express()
 app.disable('x-powered-by')
 
-//app.use(logOrigin);
-
 // Routes
 app.use(corsMiddleware);
 app.use(express.json())
@@ -24,7 +22,6 @@ app.use('/api/vote', vote)
 app.use(methodNotAllowedHandler);
 // Handle 404 Not Found
 app.use(notFoundHandler)
-
 
 // Error handling middlewares
 app.use(jsonSyntaxErrorHandler)

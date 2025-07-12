@@ -10,9 +10,10 @@ export const jsonSyntaxErrorHandler = (err, req, res, next) => {
 }
 
 export const errorHandler = (err, req, res, next) => {
-  const statusCode = err.status || 500;
-
+  const statusCode = err.status || err.statusCode || 500;
+  const message = err.message || 'Internal Server Error';
+  
   res.status(statusCode).json({
-    error: 'Internal Server Error'
+    error: message
   });
 };
