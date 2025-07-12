@@ -3,16 +3,19 @@ import jwt from 'jsonwebtoken';
 export const authenticateToken = (req, res, next) => {
   const token = req.cookies.access_token;
   const targetId = req.params.id || req.body.id;
-  
-    if (!token) {
-      return res.status(401).json({ message: 'No token provided' });
-    }
-  
+
+  if (!token) {
+    return res.status(401).json({ message: 'No token provided' });
+  }
+  if (!targetId) {
+    throw new HttpError('User ID is required', 400);
+  }
+
   try {
     const decoded = jwt.verify(token, process.env.SECRET_JWT_KEY);
     req.user = decoded;
     if (decoded.id !== targetId) {
-      return res.status(403).json({ message: 'You are not authorized.'})
+      return res.status(403).json({ message: 'You are not authorized.' })
     }
     next();
   } catch (error) {

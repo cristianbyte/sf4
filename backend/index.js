@@ -4,13 +4,15 @@ import initDatabase, { PORT } from './config/config.js'
 import user from './src/routes/user.js'
 import vote from './src/routes/vote.js'
 import { jsonSyntaxErrorHandler, errorHandler } from './src/middlewares/errorHandler.js'
-import { logOrigin } from './src/middlewares/logOrigins.js'
 import cookieParser from 'cookie-parser'
+import { methodNotAllowedHandler, notFoundHandler } from './src/middlewares/badRequest.js'
 
 const app = express()
 app.disable('x-powered-by')
 
 //app.use(logOrigin);
+
+// Routes
 app.use(corsMiddleware);
 app.use(express.json())
 app.use(cookieParser())
@@ -18,6 +20,13 @@ app.use(cookieParser())
 app.use('/api/user', user)
 app.use('/api/vote', vote)
 
+// Handle 405 Method Not Allowed
+app.use(methodNotAllowedHandler);
+// Handle 404 Not Found
+app.use(notFoundHandler)
+
+
+// Error handling middlewares
 app.use(jsonSyntaxErrorHandler)
 app.use(errorHandler)
 
