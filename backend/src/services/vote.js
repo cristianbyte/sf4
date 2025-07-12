@@ -4,13 +4,12 @@ import { HttpError } from '../error/HttpError.js'
 export const getVotes = async (data) => {
     try {
         const voted_for = await Vote.getVotes(data);
-
+        
         if (!voted_for || voted_for.length === 0) {
-            voted_for = [];
-            return voted_for;
+            return [];
         }
-
-        const convert = result.map(v => v.voted_for)
+        
+        const convert = voted_for.map(v => v.voted_for);
         return convert;
     } catch (err) {
         throw new HttpError(err.message || 'Unexpected error', 400);

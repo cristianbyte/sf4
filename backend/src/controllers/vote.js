@@ -11,7 +11,7 @@ export const registryVote = async (req, res, next) =>{
 
 export const getVotes = async (req, res, next) => {
     try{
-        const {id} = req.body;
+        const {id} = req.params;
         const result = await voteService.getVotes(id);
         res.status(200).json(result)
     }catch(err){

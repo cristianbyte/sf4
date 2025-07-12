@@ -2,7 +2,7 @@ const validPaths = [
   '/api/user',
   '/api/user/login',
   '/api/user/:id',
-  '/api/vote',
+  '/api/vote/:id',
 ];
 
 const isValidPath = (reqPath) => {
