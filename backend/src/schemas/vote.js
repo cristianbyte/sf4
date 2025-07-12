@@ -10,7 +10,7 @@ export const fighterSchema = z.object({
     .refine((val) => fighterList.includes(val), {
       message: 'Fighter not recognized',
     })
-});
+}).strict();
 
 export const uuidSchema = z.object({
   id: z.string().uuid('Invalid UUID')
@@ -18,6 +18,6 @@ export const uuidSchema = z.object({
 
 export const locationSchema = z.object({
   codeLocation: z.string()
-});
+}).strict();
 
-export const voteSchema = uuidSchema.merge(fighterSchema);
+export const voteSchema = uuidSchema.merge(fighterSchema).strict();

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,32 +8,40 @@
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            max-width: 1200px;
+            max-width: 800px;
             margin: 0 auto;
             padding: 20px;
-            background: #f5f5f5;
+            background-color: #080A33;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='721' height='721' viewBox='0 0 800 800'%3E%3Cg fill='none' stroke='%23100C44' stroke-width='15.8'%3E%3Cpath d='M769 229L1037 260.9M927 880L731 737 520 660 309 538 40 599 295 764 126.5 879.5 40 599-197 493 102 382-31 229 126.5 79.5-69-63'/%3E%3Cpath d='M-31 229L237 261 390 382 603 493 308.5 537.5 101.5 381.5M370 905L295 764'/%3E%3Cpath d='M520 660L578 842 731 737 840 599 603 493 520 660 295 764 309 538 390 382 539 269 769 229 577.5 41.5 370 105 295 -36 126.5 79.5 237 261 102 382 40 599 -69 737 127 880'/%3E%3Cpath d='M520-140L578.5 42.5 731-63M603 493L539 269 237 261 370 105M902 382L539 269M390 382L102 382'/%3E%3Cpath d='M-222 42L126.5 79.5 370 105 539 269 577.5 41.5 927 80 769 229 902 382 603 493 731 737M295-36L577.5 41.5M578 842L295 764M40-201L127 80M102 382L-261 269'/%3E%3C/g%3E%3Cg fill='%23041355'%3E%3Ccircle cx='769' cy='229' r='18'/%3E%3Ccircle cx='539' cy='269' r='18'/%3E%3Ccircle cx='603' cy='493' r='18'/%3E%3Ccircle cx='731' cy='737' r='18'/%3E%3Ccircle cx='520' cy='660' r='18'/%3E%3Ccircle cx='309' cy='538' r='18'/%3E%3Ccircle cx='295' cy='764' r='18'/%3E%3Ccircle cx='40' cy='599' r='18'/%3E%3Ccircle cx='102' cy='382' r='18'/%3E%3Ccircle cx='127' cy='80' r='18'/%3E%3Ccircle cx='370' cy='105' r='18'/%3E%3Ccircle cx='578' cy='42' r='18'/%3E%3Ccircle cx='237' cy='261' r='18'/%3E%3Ccircle cx='390' cy='382' r='18'/%3E%3C/g%3E%3C/svg%3E");
         }
+
         .container {
             background: white;
             padding: 30px;
             border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
+
         h2 {
             color: #333;
             margin-bottom: 30px;
             text-align: center;
         }
+
         .form-group {
             margin-bottom: 20px;
         }
+
         label {
             display: block;
             margin-bottom: 8px;
             font-weight: 600;
             color: #555;
         }
-        input, select, textarea {
+
+        input,
+        select,
+        textarea {
             width: 100%;
             padding: 12px;
             border: 2px solid #ddd;
@@ -40,19 +49,25 @@
             font-size: 14px;
             transition: border-color 0.3s;
         }
-        input:focus, select:focus, textarea:focus {
+
+        input:focus,
+        select:focus,
+        textarea:focus {
             outline: none;
             border-color: #4CAF50;
         }
+
         .checkbox-group {
             display: flex;
             align-items: center;
             gap: 10px;
         }
+
         .checkbox-group input[type="checkbox"] {
             width: auto;
             margin: 0;
         }
+
         button {
             background: #4CAF50;
             color: white;
@@ -66,9 +81,11 @@
             width: 100%;
             margin-top: 20px;
         }
+
         button:hover {
             background: #45a049;
         }
+
         .section-title {
             font-size: 18px;
             font-weight: 700;
@@ -77,6 +94,7 @@
             border-bottom: 2px solid #4CAF50;
             padding-bottom: 5px;
         }
+
         pre {
             background: #f8f9fa;
             border: 1px solid #e9ecef;
@@ -90,44 +108,52 @@
             max-height: 400px;
             overflow-y: auto;
         }
+
         .preset-buttons {
             display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
+            gap: 0;
+            margin-bottom: 10px;
             flex-wrap: wrap;
         }
+        
         .preset-btn {
-            background: #007bff;
+            margin: 5px;
+            background: #100C44;
             color: white;
-            padding: 8px 16px;
+            padding: 16px;
             border: none;
-            border-radius: 4px;
-            font-size: 14px;
+            border-radius: 5px;
+            font-size: 1rem;
             cursor: pointer;
             transition: background 0.3s;
         }
+
         .preset-btn:hover {
             background: #0056b3;
         }
+
         .two-column {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 20px;
         }
+
         @media (max-width: 768px) {
             .two-column {
                 grid-template-columns: 1fr;
             }
+
             .preset-buttons {
                 flex-direction: column;
             }
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <h2>🧪 HTTP Client Tester</h2>
-        
+
         <!-- Preset Buttons -->
         <div class="preset-buttons">
             <button class="preset-btn" onclick="setPreset('login')">📝 Login</button>
@@ -200,7 +226,7 @@
                 }
             },
             register: {
-                method: 'POST', 
+                method: 'POST',
                 url: 'http://localhost:3000/api/user',
                 body: {
                     "name": "Joe Doe",
@@ -225,7 +251,7 @@
             document.getElementById('method').value = preset.method;
             document.getElementById('url').value = preset.url;
             document.getElementById('body').value = preset.body ? JSON.stringify(preset.body, null, 2) : '';
-            
+
             // Para GET y DELETE, limpiar body
             if (preset.method === 'GET' || preset.method === 'DELETE') {
                 document.getElementById('body').value = '';
@@ -239,10 +265,10 @@
             const useAuth = document.getElementById('useAuth').checked;
             const authToken = document.getElementById('authToken').value;
             const bodyText = document.getElementById('body').value.trim();
-            
+
             const reqLog = document.getElementById('requestLog');
             const resLog = document.getElementById('responseLog');
-            
+
             // Parse headers
             let headers;
             try {
@@ -251,19 +277,19 @@
                 resLog.textContent = '❌ Invalid headers JSON';
                 return;
             }
-            
+
             // Add auth header if needed
             if (useAuth && authToken.trim()) {
                 headers['Authorization'] = authToken.trim();
             }
-            
+
             // Prepare request options
             const options = {
                 method,
                 credentials: 'include', // ✅ CRÍTICO: Incluye cookies
                 headers
             };
-            
+
             // Add body for non-GET requests
             if (method !== 'GET' && method !== 'HEAD' && bodyText) {
                 try {
@@ -275,7 +301,7 @@
                     return;
                 }
             }
-            
+
             // Show request log
             reqLog.textContent = `${method} ${url}
             
@@ -287,18 +313,18 @@ ${JSON.stringify(headers, null, 2)}
             
 📦 Body:
 ${options.body || '[no body]'}`;
-            
+
             try {
                 const startTime = Date.now();
                 const res = await fetch(url, options);
                 const endTime = Date.now();
-                
+
                 const contentType = res.headers.get('Content-Type') || '';
                 const statusLine = `HTTP/1.1 ${res.status} ${res.statusText}`;
                 const headersList = [...res.headers.entries()]
                     .map(([k, v]) => `${k}: ${v}`)
                     .join('\n');
-                
+
                 let body;
                 try {
                     const text = await res.text();
@@ -310,7 +336,7 @@ ${options.body || '[no body]'}`;
                 } catch (err) {
                     body = '[Error parsing response body]';
                 }
-                
+
                 resLog.textContent = `${statusLine}
 Time: ${endTime - startTime}ms
 
@@ -319,7 +345,7 @@ ${headersList}
 
 📦 Response Body:
 ${body}`;
-                
+
                 // Si es login exitoso, extraer info útil
                 if (res.status === 200 && contentType.includes('application/json')) {
                     try {
@@ -334,7 +360,7 @@ ${body}`;
                         // Ignore parsing errors for ID extraction
                     }
                 }
-                
+
             } catch (err) {
                 resLog.textContent = `❌ Network error:
 ${err.message}
@@ -345,19 +371,20 @@ ${err.message}
 - Wrong URL?`;
             }
         }
-        
+
         // Show current cookies for debugging
         function showCookies() {
             console.log('🍪 Current cookies:', document.cookie);
             alert('Check console for cookies');
         }
-        
+
         // Add keyboard shortcut
-        document.addEventListener('keydown', function(e) {
+        document.addEventListener('keydown', function (e) {
             if (e.ctrlKey && e.key === 'Enter') {
                 sendRequest();
             }
         });
     </script>
 </body>
+
 </html>

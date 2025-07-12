@@ -10,8 +10,15 @@ let userTest = {
   email: 'camile@example.com',
   password: 'passStrong67',
 }
+
+let fakeUserName = {
+  name: '<br>alert("x")</br>',
+  email: 'fake@email.com',
+  password: 'passStrong67',
+}
 describe('User login and deletion tests', () => {
-  test('should create a user (201)', async () => {
+
+  test('CREATE a user (201)', async () => {
     const response = await request(app)
       .post('/api/user')
       .send(userTest);
@@ -25,7 +32,16 @@ describe('User login and deletion tests', () => {
     userId = response.body.id;
   });
 
-  test('shuld return 409: Conflict: Email already exists', async () => {
+  test('CREATE a user with a fake name (400)', async () => {
+    const response = await request(app)
+      .post('/api/user')
+      .send(fakeUserName);
+    
+    assert.strictEqual(response.statusCode, 400);
+    assert.ok(response.body.hasOwnProperty('error'));
+  })
+
+  test('Return 409: Conflict: Email already exists', async () => {
     const response = await request(app)
       .post('/api/user')
       .send(userTest)
@@ -34,7 +50,7 @@ describe('User login and deletion tests', () => {
     assert.ok(response.body.hasOwnProperty('error'));
   })
 
-  test('should return 400 if credentials are invalid', async () => {
+  test('Return 400 if credentials are invalid', async () => {
     const response = await request(app)
       .post('/api/user/login')
       .send({
@@ -46,7 +62,7 @@ describe('User login and deletion tests', () => {
     assert.ok(response.body.hasOwnProperty('error'));
   });
 
-  test('should return 200 and a token if credentials are valid', async () => {
+  test('Return 200 and a token if credentials are valid', async () => {
     const response = await request(app)
       .post('/api/user/login')
       .send({
@@ -61,7 +77,7 @@ describe('User login and deletion tests', () => {
   });
 
 
-  test('should delete the user (204)', async () => {
+  test('DELETE the user (204)', async () => {
     const response = await request(app)
       .delete(`/api/user/${userId}`)
       .set('Cookie', cookie);

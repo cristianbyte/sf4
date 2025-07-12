@@ -6,6 +6,7 @@ export const userSchema = z.object({
     .string()
     .min(3, 'Name must be at least 3 characters')
     .max(15, 'Name is too long, max: 15 characters')
+    .regex(/^[\p{L}\d]+$/u, { message: 'Only letters and numbers are allowed' })
     .refine((val) => !containsBadWords(val), {
       message: 'Name contains inappropriate language'
     }),
@@ -21,17 +22,17 @@ export const userSchema = z.object({
 
 export const uuidParam = z.object({
   id: z.string().uuid('Invalid UUID')
-})
+}).strict();
 
 // LogIn
 export const mailSchema = userSchema.pick({ email: true });
 export const passSchema = z.object({
   password: z
-  .string()
-  .min(8, 'Wrong Password')
-  .regex(
-    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/,
-    'Wrong Password'
-  )
+    .string()
+    .min(8, 'Wrong Password')
+    .regex(
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/,
+      'Wrong Password'
+    )
 })
-export const loginSchema = mailSchema.merge(passSchema);
+export const loginSchema = mailSchema.merge(passSchema).strict();
