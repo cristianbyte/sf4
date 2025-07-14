@@ -28,11 +28,19 @@ CREATE TABLE  votes (
 
 INSERT INTO users (id, email, name, password)
 VALUES 
-  ('aabd4926-facf-46b0-aa7b-dacfaaefb3ff','john.doe@example.com', 'Jhon Doe', '$2b$12$4Fbx9Bu8JA3a6gGUTs/nDudGtKETH3ktM24I.5lpa80UYacUCa3E2');
+  ('aabd4926-facf-46b0-aa7b-dacfaaefb3ff','john.doe@example.com', 'JhonDoe', '$2b$12$4Fbx9Bu8JA3a6gGUTs/nDudGtKETH3ktM24I.5lpa80UYacUCa3E2'),
+  ('2b44261c-c689-4b0e-b335-27b0e08455af','camile@mail.com', 'Camile', '$2b$12$dzOAiuM02nhKfS.7vRW.e.y4ZY6B9JGsKPoD0wC8xZbQbB85f7IdS'),
+  ('9d0950c5-deae-40c5-8573-96937fd004d4','michael@mail.com', 'Michael', '$2b$12$vmYorYmod.kxNKydfxQzFu95HxhGKvinakqJmvjyoYhK0FyTM9VQ6');
 
 INSERT INTO votes (user_id, fighter, location, is_foreign)
 VALUES
   ('aabd4926-facf-46b0-aa7b-dacfaaefb3ff', 'JHdelaCruz', 'CO-ANT', false),
-  ('aabd4926-facf-46b0-aa7b-dacfaaefb3ff', 'May', 'CO-ANT', false)
+  ('2b44261c-c689-4b0e-b335-27b0e08455af', 'JHdelaCruz', 'CO-ANT', false),
+  ('9d0950c5-deae-40c5-8573-96937fd004d4', 'JHdelaCruz', 'CO-CES', false),
+  ('aabd4926-facf-46b0-aa7b-dacfaaefb3ff', 'May', 'CO-ANT', false),
+  ('2b44261c-c689-4b0e-b335-27b0e08455af', 'Karina', 'AR', true),
+  ('2b44261c-c689-4b0e-b335-27b0e08455af', 'Shelao', 'FR', true),
+  ('2b44261c-c689-4b0e-b335-27b0e08455af', 'LaValdiri', 'CO-CES', false);
+
 
 -- CREATE INDEX idx_users_email ON users(email);

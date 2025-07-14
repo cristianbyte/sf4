@@ -18,3 +18,12 @@ export const getVotes = async (req, res, next) => {
         next(err)
     }
 }
+
+export const getAllVotes = async (req, res, next) => {
+    try{
+        const result = await voteService.getAllVotes();
+        res.status(200).json(result);
+    }catch(err){
+        next(err)
+    }
+}

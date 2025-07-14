@@ -3,7 +3,6 @@ import { HttpError } from '../error/HttpError.js'
 import { sanitizeLogin } from '../utils/sanitazeRes.js'
 import { SECRET_JWT_KEY } from '../../config/config.js'
 import jwt from 'jsonwebtoken'
-import cookieParser from 'cookie-parser'
 
 export const create = async (userData) => {
   try {

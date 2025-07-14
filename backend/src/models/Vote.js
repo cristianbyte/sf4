@@ -1,7 +1,7 @@
 import pool from '../../config/database.js';
 
 class Vote {
-  static async getVotes(userId){
+  static async getVotesByUserId(userId) {
     const query = `SELECT votes.fighter as voted_for
         FROM users
         JOIN votes ON users.id = votes.user_id
@@ -18,6 +18,20 @@ class Vote {
     `;
     const result = await pool.query(query, [userId, fighterName, location, isForeign]);
     return result.rows[0];
+  }
+
+  static async getAllVotes() {
+    const query = `
+      SELECT 
+        fighter,
+        location,
+        COUNT(*) as vote_count
+      FROM votes 
+      GROUP BY fighter, location
+      ORDER BY fighter, location
+    `;
+    const result = await pool.query(query);
+    return result.rows;
   }
 }
 

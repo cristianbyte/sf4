@@ -2,9 +2,18 @@ import Vote from '../models/Vote.js';
 import { HttpError } from '../error/HttpError.js'
 import { findOpponent } from '../utils/fights.js';
 
-export const getVotes = async (data) => {
+export const getAllVotes = async () => {
     try {
-        const voted_for = await Vote.getVotes(data);
+        const votes = await Vote.getAllVotes();
+        return votes;
+    } catch (err) {
+        throw new HttpError('Unexpected error at: GetAllVotes', 400);
+    }
+}
+
+export const getVotes = async (userId) => {
+    try {
+        const voted_for = await Vote.getVotesByUserId(userId);
 
         if (!voted_for || voted_for.length === 0) {
             return [];
@@ -13,7 +22,7 @@ export const getVotes = async (data) => {
         const convert = voted_for.map(v => v.voted_for);
         return convert;
     } catch (err) {
-        throw new HttpError('Unexpected error: GetVotes', 400);
+        throw new HttpError('Unexpected error at: GetVotes', 400);
     }
 }
 
@@ -32,7 +41,7 @@ export const registryVote = async (data) => {
         const response = await Vote.createVote(data);
         return response;
     } catch (error) {
-        throw new HttpError(error.message, 400);
+        throw new HttpError('Unexpected error at: RegistryVote', 400);
     }
 }
 
