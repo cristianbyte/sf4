@@ -47,7 +47,7 @@ describe('User login and deletion tests', () => {
       .send(userTest)
 
     assert.strictEqual(response.statusCode, 409);
-    assert.ok(response.body.hasOwnProperty('error'));
+    assert.ok(response.body.hasOwnProperty('message'));
   })
 
   test('Return 400 if credentials are invalid', async () => {

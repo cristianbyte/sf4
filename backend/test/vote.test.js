@@ -2,7 +2,6 @@ import { test, describe } from 'node:test';
 import assert from 'node:assert';
 import request from 'supertest';
 import app from '../index.js';
-import user from '../src/routes/user.js';
 
 let userUUID;
 let cookie;
@@ -58,5 +57,32 @@ describe('User vote tests', () => {
         assert.strictEqual(response.body.fighterName, voteTest.fighterName);
         assert.strictEqual(response.body.location, voteTest.location);
         assert.strictEqual(response.body.isForeign, voteTest.isForeign);
+    });
+
+    test('POST the same vote again ERROR (409)', async () => {
+        const response = await request(app)
+            .post('/api/vote')
+            .set('Cookie', cookie)
+            .send({ userId: userUUID, ...voteTest });
+        assert.strictEqual(response.status, 409);
+        assert.strictEqual(response.body.message, 'You have already voted for this fighter');
+    });
+
+    test('POST vote for opponent ERROR (409)', async () => {
+        const response = await request(app)
+            .post('/api/vote')
+            .set('Cookie', cookie)
+            .send({ userId: userUUID, ...voteTest });
+        assert.strictEqual(response.status, 409);
+        assert.strictEqual(response.body.message, 'You have already voted for this fighter');
+    });
+
+    test('POST vote for opponent ERROR (409)', async () => {
+        const response = await request(app)
+            .post('/api/vote')
+            .set('Cookie', cookie)
+            .send({ userId: userUUID, fighterName: 'Karely', location: 'CO-ANT', isForeign: false });
+        assert.strictEqual(response.status, 409);
+        assert.strictEqual(response.body.message, 'You have already voted for this fight');
     });
 });

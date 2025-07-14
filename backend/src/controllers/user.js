@@ -37,7 +37,9 @@ export const logOut = (req, res) => {
     path: '/'
   });
 
-  res.redirect('/login');
+  res.status(200).json({ 
+    message: 'Successfully logged out' 
+  });
 };
 
 export const destroyUser = async (req, res, next) => {
