@@ -23,12 +23,13 @@ class Vote {
   static async getAllVotes() {
     const query = `
       SELECT 
-        fighter,
+        fighter as "fighterName",
         location,
-        COUNT(*) as vote_count
+        is_foreign as "isForeign",
+        COUNT(*) as "voteCount"
       FROM votes 
-      GROUP BY fighter, location
-      ORDER BY fighter, location
+      GROUP BY fighter, location, is_foreign
+      ORDER BY fighter, location, is_foreign
     `;
     const result = await pool.query(query);
     return result.rows;

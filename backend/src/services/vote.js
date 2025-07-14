@@ -5,7 +5,23 @@ import { findOpponent } from '../utils/fights.js';
 export const getAllVotes = async () => {
     try {
         const votes = await Vote.getAllVotes();
-        return votes;
+        if (!votes || votes.length === 0) {
+            return [];
+        }
+        const colVotes = votes
+            .filter(vote => vote.isForeign == false)
+            .map(({ isForeign, ...rest }) => rest);
+
+        const foreignVotes = votes
+            .filter(vote => vote.isForeign == true)
+            .map(({ isForeign, ...rest }) => rest);
+
+        const formattedVotes = {
+            col: colVotes,
+            foreign: foreignVotes
+        }
+
+        return formattedVotes;
     } catch (err) {
         throw new HttpError('Unexpected error at: GetAllVotes', 400);
     }
@@ -29,14 +45,14 @@ export const getVotes = async (userId) => {
 export const registryVote = async (data) => {
     const existingVotes = await getVotes(data.userId);
     const opponent = await findOpponent(data.fighterName);
-    
+
     if (existingVotes.some(vote => vote === data.fighterName)) {
         throw new HttpError('You have already voted for this fighter', 409);
     }
     if (existingVotes.some(vote => vote === opponent)) {
         throw new HttpError('You have already voted for this fight', 409);
     }
-    
+
     try {
         const response = await Vote.createVote(data);
         return response;

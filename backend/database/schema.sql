@@ -36,7 +36,7 @@ INSERT INTO votes (user_id, fighter, location, is_foreign)
 VALUES
   ('aabd4926-facf-46b0-aa7b-dacfaaefb3ff', 'JHdelaCruz', 'CO-ANT', false),
   ('2b44261c-c689-4b0e-b335-27b0e08455af', 'JHdelaCruz', 'CO-ANT', false),
-  ('9d0950c5-deae-40c5-8573-96937fd004d4', 'JHdelaCruz', 'CO-CES', false),
+  ('9d0950c5-deae-40c5-8573-96937fd004d4', 'JHdelaCruz', 'VE', true),
   ('aabd4926-facf-46b0-aa7b-dacfaaefb3ff', 'May', 'CO-ANT', false),
   ('2b44261c-c689-4b0e-b335-27b0e08455af', 'Karina', 'AR', true),
   ('2b44261c-c689-4b0e-b335-27b0e08455af', 'Shelao', 'FR', true),
