@@ -3,7 +3,7 @@ import { HttpError } from '../error/HttpError.js';
 
 export const authenticateToken = (req, res, next) => {
   const token = req.cookies.access_token;
-  const targetId = req.params.id || (req.body && req.body.id);
+  const targetId = req.params.id || req.body.userId;
 
   if (!token) {
     return next(new HttpError('No token provided', 400));

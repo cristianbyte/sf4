@@ -18,16 +18,21 @@ CREATE TABLE  votes (
     user_id UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
     fighter VARCHAR(15) NOT NULL,
     location VARCHAR(6) NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
+    is_foreign boolean NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+
+    CONSTRAINT unique_user_fighter_vote UNIQUE (user_id, fighter)
 );
+
+
 
 INSERT INTO users (id, email, name, password)
 VALUES 
   ('aabd4926-facf-46b0-aa7b-dacfaaefb3ff','john.doe@example.com', 'Jhon Doe', '$2b$12$4Fbx9Bu8JA3a6gGUTs/nDudGtKETH3ktM24I.5lpa80UYacUCa3E2');
 
-INSERT INTO votes (user_id, fighter, location) 
+INSERT INTO votes (user_id, fighter, location, is_foreign)
 VALUES
-  ('aabd4926-facf-46b0-aa7b-dacfaaefb3ff', 'JHdelaCruz', 'CO'),
-  ('aabd4926-facf-46b0-aa7b-dacfaaefb3ff', 'May', 'CO')
+  ('aabd4926-facf-46b0-aa7b-dacfaaefb3ff', 'JHdelaCruz', 'CO-ANT', false),
+  ('aabd4926-facf-46b0-aa7b-dacfaaefb3ff', 'May', 'CO-ANT', false)
 
 -- CREATE INDEX idx_users_email ON users(email);

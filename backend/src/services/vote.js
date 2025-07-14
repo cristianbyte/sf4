@@ -1,5 +1,6 @@
 import Vote from '../models/Vote.js'
 import { HttpError } from '../error/HttpError.js'
+import { findOpponent } from '../utils/fights.js';
 
 export const getVotes = async (data) => {
     try {
@@ -12,15 +13,26 @@ export const getVotes = async (data) => {
         const convert = voted_for.map(v => v.voted_for);
         return convert;
     } catch (err) {
-        throw new HttpError(err.message || 'Unexpected error', 400);
+        throw new HttpError('Unexpected error: GetVotes', 400);
     }
 }
 
 export const registryVote = async (data) => {
+    const existingVotes = await Vote.getVotes(data.userId);
+    const opponent = await findOpponent(data.fighterName);
+
+    if (existingVotes.some(vote => vote === data.fighterName)) {
+        throw new HttpError('You have already voted for this fighter', 200);
+    }
+    if (existingVotes.some(vote => vote === opponent)) {
+        throw new HttpError('You have already voted for this fight', 200);
+    }
+
     try {
-        return result = await Vote.vote(data);
+        const response = await Vote.createVote(data);
+        return response;
     } catch (error) {
-        throw new HttpError('Request denied', 400)
+        throw new HttpError(error.message, 400);
     }
 }
 
