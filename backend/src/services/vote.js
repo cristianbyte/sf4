@@ -43,21 +43,31 @@ export const getVotes = async (userId) => {
 }
 
 export const registryVote = async (data) => {
-    const existingVotes = await getVotes(data.userId);
+    const existingVotes = await Vote.getVotesByUserId(data.userId);
     const opponent = await findOpponent(data.fighterName);
 
-    if (existingVotes.some(vote => vote === data.fighterName)) {
+    if (existingVotes.some(vote => vote.voted_for === data.fighterName)) {
         throw new HttpError('You have already voted for this fighter', 409);
     }
-    if (existingVotes.some(vote => vote === opponent)) {
-        throw new HttpError('You have already voted for this fight', 409);
+
+    const actualVote = existingVotes.find(vote => vote.voted_for == opponent);
+    if (actualVote) {
+        try {
+            const response = await Vote.updateVote({
+                id: actualVote.id,
+                fighterName: data.fighterName
+            });
+            return { message: 'Vote updated', ...response };
+        } catch (error) {
+            throw new HttpError('Unexpected error updating vote', 400);
+        }
     }
 
     try {
         const response = await Vote.createVote(data);
-        return response;
+        return { message: 'Vote created', ...response };
     } catch (error) {
-        throw new HttpError('Unexpected error at: RegistryVote', 400);
+        throw new HttpError('Unexpected error creating vote', 400);
     }
-}
+};
 

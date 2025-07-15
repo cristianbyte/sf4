@@ -47,7 +47,7 @@ describe('User vote tests', () => {
         assert.strictEqual(response.status, 200);
     });
 
-    test('POST a vote with login (201)', async () => {
+    test('POST vote with login (201)', async () => {
         const response = await request(app)
             .post('/api/vote')
             .set('Cookie', cookie)
@@ -68,21 +68,12 @@ describe('User vote tests', () => {
         assert.strictEqual(response.body.message, 'You have already voted for this fighter');
     });
 
-    test('POST vote for opponent ERROR (409)', async () => {
-        const response = await request(app)
-            .post('/api/vote')
-            .set('Cookie', cookie)
-            .send({ userId: userUUID, ...voteTest });
-        assert.strictEqual(response.status, 409);
-        assert.strictEqual(response.body.message, 'You have already voted for this fighter');
-    });
-
-    test('POST vote for opponent ERROR (409)', async () => {
+    test('POST vote for opponent UPDATE (200)', async () => {
         const response = await request(app)
             .post('/api/vote')
             .set('Cookie', cookie)
             .send({ userId: userUUID, fighterName: 'Karely', location: 'CO-ANT', isForeign: false });
-        assert.strictEqual(response.status, 409);
-        assert.strictEqual(response.body.message, 'You have already voted for this fight');
+        assert.strictEqual(response.status, 200);
+        assert.strictEqual(response.body.message, 'Vote updated');
     });
 });

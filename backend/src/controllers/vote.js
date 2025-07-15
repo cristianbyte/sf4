@@ -3,6 +3,10 @@ import * as voteService from '../services/vote.js'
 export const registryVote = async (req, res, next) =>{
     try{
         const voting = await voteService.registryVote(req.body);
+        if(voting.message === 'Vote updated'){
+            res.status(200).json(voting);
+            return;
+        }
         res.status(201).json(voting);
     }catch(err){
         next(err)
