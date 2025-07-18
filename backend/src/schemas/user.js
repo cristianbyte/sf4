@@ -1,5 +1,6 @@
 import { z } from 'zod';
 import { containsBadWords } from '../utils/badWords.js';
+import { voteSchema } from './vote.js'; 
 
 export const userSchema = z.object({
   name: z
@@ -20,12 +21,15 @@ export const userSchema = z.object({
     )
 }).strict();
 
-export const uuidParam = z.object({
-  id: z.string().uuid('Invalid UUID')
+export const uuidSchema = z.object({
+  userId: z.string().uuid('Invalid UUID')
 }).strict();
 
 // LogIn
 export const mailSchema = userSchema.pick({ email: true });
+export const locationSchema = voteSchema.pick({ location: true });
+export const locationWithUuidSchema = locationSchema.merge(uuidSchema).strict();
+
 export const passSchema = z.object({
   password: z
     .string()

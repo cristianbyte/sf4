@@ -20,6 +20,18 @@ class User {
     return sanitizeRes(result.rows[0]);
   }
 
+  static async getById(userId) {
+    const query = `SELECT id, name, email, created_at FROM users WHERE id = $1`;
+    const result = await pool.query(query, [userId]);
+    return sanitizeRes(result.rows[0]);
+  }
+
+  static async updateLocation(userId, location) {
+    const query = `UPDATE users SET location = $1 WHERE id = $2 RETURNING id, name, email, location`;
+    const result = await pool.query(query, [location, userId]);
+    return sanitizeRes(result.rows[0]);
+  }
+
   static async login({ email, password }) {
     const query = `SELECT id, name, email, password FROM users WHERE email = $1`;
     const result = await pool.query(query, [email]);

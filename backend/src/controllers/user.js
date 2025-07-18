@@ -1,5 +1,14 @@
 import * as userService from '../services/user.js'
 
+export const getUserById = async (req, res, next) => {
+  try {
+    const user = await userService.getById(req.params.userId);
+    res.status(200).json(user);
+  } catch (err) {
+    next(err);
+  }
+}
+
 export const createUser = async (req, res, next) => {
   try {
     const newUser = await userService.create(req.body);
@@ -44,7 +53,7 @@ export const logOut = (req, res) => {
 
 export const destroyUser = async (req, res, next) => {
   try {
-    await userService.destroy(req.params.id);
+    await userService.destroy(req.params.userId);
     res.status(204).send();
   } catch (err) {
     next(err);

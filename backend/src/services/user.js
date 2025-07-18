@@ -4,6 +4,14 @@ import { sanitizeLogin } from '../utils/sanitazeRes.js'
 import { SECRET_JWT_KEY } from '../../config/config.js'
 import jwt from 'jsonwebtoken'
 
+export const getById = async (id) => {
+  const user = await User.getById(id);
+  if (!user) {
+    throw new HttpError('User not found', 404);
+  }
+  return user;
+}
+
 export const create = async (userData) => {
   try {
     const newUser = await User.create(userData)
@@ -14,6 +22,14 @@ export const create = async (userData) => {
       throw new HttpError('Email already exists', 409);
     }
   }
+}
+
+export const setLocation = async (userId, location) => {
+  const user = await User.updateLocation(userId, location);
+  if (!user) {
+    throw new HttpError('User not found', 404);
+  }
+  return user;
 }
 
 export const login = async (userData) => {
