@@ -14,26 +14,26 @@ class User {
     const query = `
       INSERT INTO users (${keys.join(', ')})
       VALUES (${placeholders.join(', ')})
-      RETURNING id, ${keys.join(', ')}, created_at`;
+      RETURNING id as "userId", ${keys.join(', ')}, created_at`;
 
     const result = await pool.query(query, values);
     return sanitizeRes(result.rows[0]);
   }
 
   static async getById(userId) {
-    const query = `SELECT id, name, email, created_at FROM users WHERE id = $1`;
+    const query = `SELECT id as "userId", name, email, created_at FROM users WHERE id = $1`;
     const result = await pool.query(query, [userId]);
     return sanitizeRes(result.rows[0]);
   }
 
   static async updateLocation(userId, location) {
-    const query = `UPDATE users SET location = $1 WHERE id = $2 RETURNING id, name, email, location`;
+    const query = `UPDATE users SET location = $1 WHERE id = $2 RETURNING id as "userId", name, email, location`;
     const result = await pool.query(query, [location, userId]);
     return sanitizeRes(result.rows[0]);
   }
 
   static async login({ email, password }) {
-    const query = `SELECT id, name, email, password FROM users WHERE email = $1`;
+    const query = `SELECT id as "userId", name, email, password FROM users WHERE email = $1`;
     const result = await pool.query(query, [email]);
 
     const user = result.rows[0];
@@ -46,9 +46,9 @@ class User {
     return sanitizeRes(user);
   }
 
-  static async destroy(id) {
-    const query = `DELETE FROM users WHERE id = $1 RETURNING id`;
-    const result = await pool.query(query, [id]);
+  static async destroy(userId) {
+    const query = `DELETE FROM users WHERE id = $1 RETURNING id as "userId"`;
+    const result = await pool.query(query, [userId]);
     return result.rows[0] || null;
   }
 }

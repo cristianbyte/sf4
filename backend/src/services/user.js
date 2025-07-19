@@ -39,14 +39,14 @@ export const login = async (userData) => {
   if (!user) {
     throw new HttpError('Invalid credentials', 400);
   }
-  const token = jwt.sign({ id: user.id, name: user.name, email: user.email }, SECRET_JWT_KEY, { expiresIn: '12h' })
+  const token = jwt.sign({ userId: user.userId, name: user.name, email: user.email }, SECRET_JWT_KEY, { expiresIn: '12h' })
 
   return { user, token };
 };
 
-export const destroy = async (id) => {
+export const destroy = async (userId) => {
   try {
-    const order = await User.destroy(id);
+    const order = await User.destroy(userId);
     return order;
   } catch {
     throw new HttpError('User not found', 404)

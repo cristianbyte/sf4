@@ -2,6 +2,7 @@ import { z } from 'zod';
 import { readFileSync } from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
+import { baseLocationSchema, baseUuidSchema } from './base.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -31,25 +32,8 @@ export const voteSchema = z.object({
     invalid_type_error: 'Foreign status must be a boolean'
   }),
 
-  location: z
-    .string({
-      required_error: 'Location is required',
-      invalid_type_error: 'Location must be a string'
-    })
-    .min(2, 'Location code must be at least 2 characters')
-    .max(6, 'Location code cannot exceed 6 characters')
-    .refine((val) => {
-      return countryCodes.includes(val) || colDepartments.includes(val);
-    }, {
-      message: 'Invalid location code'
-    }),
-
-  userId: z
-    .string({
-      required_error: 'User ID is required',
-      invalid_type_error: 'User ID must be a string'
-    })
-    .uuid('Invalid UUID format')
+  location: baseLocationSchema,
+  userId: baseUuidSchema,
 })
 .strict()
 .refine((data) => {
@@ -64,7 +48,7 @@ export const voteSchema = z.object({
 });
 
 export const uuidSchema = z.object({
-  id: z
+  userId: z
     .string({
       required_error: 'ID is required',
       invalid_type_error: 'ID must be a string'

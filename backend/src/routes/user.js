@@ -1,7 +1,7 @@
 import express from 'express'
 import { validateSchema } from '../middlewares/validateSchema.js'
 import { userSchema, loginSchema, uuidSchema, locationWithUuidSchema } from '../schemas/user.js'
-import { createUser, destroyUser, logIn, logOut, getUserById } from '../controllers/user.js'
+import { createUser, destroyUser, logIn, logOut, getUserById, setLocation } from '../controllers/user.js'
 import { authenticateToken } from '../middlewares/authenticateToken.js'
 
 const user = express.Router()

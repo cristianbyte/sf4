@@ -18,6 +18,15 @@ export const createUser = async (req, res, next) => {
   }
 }
 
+export const setLocation = async (req, res, next) => {
+  try {
+    const updatedUser = await userService.setLocation(req.body.userId, req.body.location);
+    res.status(200).json(updatedUser);
+  } catch (err) {
+    next(err);
+  }
+}
+
 export const logIn = async (req, res, next) => {
   try {
     const { user, token } = await userService.login(req.body);

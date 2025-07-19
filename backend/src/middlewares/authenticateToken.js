@@ -3,7 +3,7 @@ import { HttpError } from '../error/HttpError.js';
 
 export const authenticateToken = (req, res, next) => {
   const token = req.cookies.access_token;
-  const targetId = req.params.id || req.body.userId;
+  const targetId = req.params.userId || req.body.userId;
 
   if (!token) {
     return next(new HttpError('No token provided', 400));
@@ -15,7 +15,7 @@ export const authenticateToken = (req, res, next) => {
   try {
     const decoded = jwt.verify(token, process.env.SECRET_JWT_KEY);
     req.user = decoded;
-    if (decoded.id !== targetId) {
+    if (decoded.userId !== targetId) {
       return next(new HttpError('You are not authorized', 403));
     }
     next();

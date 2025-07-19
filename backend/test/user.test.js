@@ -26,10 +26,12 @@ describe('User login and deletion tests', () => {
     assert.strictEqual(response.statusCode, 201);
     assert.deepStrictEqual(
       Object.keys(response.body).sort(),
-      ['id', 'name', 'email', 'created_at'].sort()
+      ['userId', 'name', 'email', 'created_at'].sort()
     );
+    console.log(`User created with ID: ${response.body.userId}`);
 
-    userId = response.body.id;
+    userId = response.body.userId;
+    assert.ok(userId, 'User ID should be defined');
   });
 
   test('CREATE a user with a fake name (400)', async () => {
@@ -81,6 +83,7 @@ describe('User login and deletion tests', () => {
     const response = await request(app)
       .delete(`/api/user/${userId}`)
       .set('Cookie', cookie);
+      console.log(response.body);
 
     assert.strictEqual(response.status, 204);
   });
