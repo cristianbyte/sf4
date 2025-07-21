@@ -6,7 +6,7 @@ import { authenticateToken } from '../middlewares/authenticateToken.js';
 
 const vote = express.Router()
 vote.get('/', getAllVotes)
-vote.get('/:id', authenticateToken, validateSchema({params: uuidSchema}), getVotes)
+vote.get('/:userId', authenticateToken, validateSchema({params: uuidSchema}), getVotes)
 vote.post('/', authenticateToken, validateSchema({body: voteSchema}), registryVote)
 
 export default vote;

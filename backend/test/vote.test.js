@@ -16,6 +16,13 @@ let voteTest = {
 };
 
 describe('User vote tests', () => {
+    test('Get all votes (200)', async () => {
+        const response = await request(app).get('/api/vote');
+        assert.strictEqual(response.status, 200);
+        assert.ok(Array.isArray(response.body.col));
+        assert.ok(Array.isArray(response.body.foreign));
+    });
+
     test('POST a vote without login (400)', async () => {
         const response = await request(app)
             .post('/api/vote')
@@ -35,7 +42,7 @@ describe('User vote tests', () => {
             .send(userTest);
 
         cookie = response.headers['set-cookie']?.[0];
-        userUUID = response.body.id;
+        userUUID = response.body.userId;
         assert.strictEqual(response.status, 200);
     });
 

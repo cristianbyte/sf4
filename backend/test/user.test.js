@@ -2,8 +2,9 @@ import { test, describe } from 'node:test';
 import assert from 'node:assert';
 import request from 'supertest';
 import app from '../index.js';
+import user from '../src/routes/user.js';
 
-let userId;
+let userIdTest;
 let cookie;
 let userTest = {
   name: 'Camile',
@@ -28,17 +29,16 @@ describe('User login and deletion tests', () => {
       Object.keys(response.body).sort(),
       ['userId', 'name', 'email', 'created_at'].sort()
     );
-    console.log(`User created with ID: ${response.body.userId}`);
 
-    userId = response.body.userId;
-    assert.ok(userId, 'User ID should be defined');
+    userIdTest = response.body.userId;
+    assert.ok(userIdTest, 'User ID should be defined');
   });
 
   test('CREATE a user with a fake name (400)', async () => {
     const response = await request(app)
       .post('/api/user')
       .send(fakeUserName);
-    
+
     assert.strictEqual(response.statusCode, 400);
     assert.ok(response.body.hasOwnProperty('error'));
   })
@@ -78,12 +78,35 @@ describe('User login and deletion tests', () => {
     assert.ok(cookie, 'Cookie should be returned');
   });
 
+  test('GET user by ID (200)', async () => {
+    const response = await request(app)
+      .get(`/api/user/${userIdTest}`)
+      .set('Cookie', cookie);
+
+    assert.strictEqual(response.statusCode, 200);
+    assert.strictEqual(response.body.userId, userIdTest);
+    assert.strictEqual(response.body.name, userTest.name);
+  });
+
+  test('POST update user location (200)', async () => {
+    let updateLocationUser = {
+      userId: userIdTest,
+      location: 'CO-ANT'
+    }
+    const response = await request(app)
+      .put('/api/user/setLocation')
+      .set('Cookie', cookie)
+      .send(updateLocationUser);
+
+    assert.strictEqual(response.statusCode, 200);
+    assert.strictEqual(response.body.location, updateLocationUser.location);
+  });
+
 
   test('DELETE the user (204)', async () => {
     const response = await request(app)
-      .delete(`/api/user/${userId}`)
+      .delete(`/api/user/${userIdTest}`)
       .set('Cookie', cookie);
-      console.log(response.body);
 
     assert.strictEqual(response.status, 204);
   });
