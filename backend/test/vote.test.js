@@ -83,4 +83,34 @@ describe('User vote tests', () => {
         assert.strictEqual(response.status, 200);
         assert.strictEqual(response.body.message, 'Vote updated');
     });
+
+    test('PORT vote with wrong location (400)', async () => {
+        const response = await request(app)
+            .post('/api/vote')
+            .set('Cookie', cookie)
+            .send({ userId: userUUID, fighterName: 'Karely', location: 'HH', isForeign: true });
+
+        assert.strictEqual(response.status, 400);
+        assert.ok(response.body.hasOwnProperty('error'));
+    });
+
+    test('POST vote with wrong fighterName (400)', async () => {
+        const response = await request(app)
+            .post('/api/vote')
+            .set('Cookie', cookie)
+            .send({ userId: userUUID, fighterName: 'InvalidFighter', location: 'CO-ANT', isForeign: false });
+
+        assert.strictEqual(response.status, 400);
+        assert.ok(response.body.hasOwnProperty('error'));
+    });
+
+    test('POST vote with wrong data (400)', async () => {
+        const response = await request(app)
+            .post('/api/vote')
+            .set('Cookie', cookie)
+            .send({ userId: userUUID, fighterName: 'Karina', location: 'CO-ANT', isForeign: true });
+
+        assert.strictEqual(response.status, 400);
+        assert.ok(response.body.hasOwnProperty('error'));
+    })
 });
