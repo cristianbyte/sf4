@@ -28,21 +28,26 @@ span{
 }
 
 .event-info-top{
-  line-height: calc(var(--sizeL) + 10px);
+  line-height: calc(var(--sizeL));
+  text-align: center;
   .event-date {
     font-size: var(--sizeXL);
     font-weight: bold;
     text-align: center;
   }
   .event-info {
-    font-size: var(--sizeM);
+    font-size: var(--sizeS);
   }
 }
 
 .logo {
-  width: min(70vw, 900px);
+  width: min(60vw, 600px);
   filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
   animation: glitch 4s .4s step-end infinite;
+}
+
+.event-streaming{
+  letter-spacing: 2px;
 }
 
 .event-info-bottom{
@@ -54,12 +59,16 @@ span{
   font-style: normal;
   font-weight: 600;
   img{
-    width: calc(4rem + var(--sizeM));
+    width: calc(2rem + var(--sizeM));
   }
   span{
-    font-size: 1rem;
+    font-size: var(--sizeS);
     font-style: normal;
   }
+}
+
+.event-info-left{
+  position: absolute;
 }
 
 @keyframes glitch {

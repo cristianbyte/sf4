@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Oswald:wght@200..700&display=swap');
 
 :root{
-  --sizeXL: calc((50vw + 100vh) / 30);
+  --sizeXL: calc((50vw + 100vh) / 40);
   --sizeL: calc((50vw + 100vh) / 50); 
   --sizeM: calc((50vw + 100vh) / 60);
   --sizeS: calc((50vw + 100vh) / 80);
@@ -16,9 +16,15 @@
   color: #fff;
   text-transform: uppercase;
   font-style: italic;
-  font-size: 1.5rem;
+  font-size: var(--sizeS);
 }
 
-.clickable {
+button, a, a > img {
   cursor: url('../src/assets/generic/pointer.cur'), pointer;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  font-size: var(--sizeS);
 }

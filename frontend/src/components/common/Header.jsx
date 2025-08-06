@@ -23,7 +23,8 @@ const Header = () => {
             18 OCTUBRE
           </div>
           <div className="event-info">
-            BOGOTÁ <span>|</span> COLISEO MEDPLUS
+            BOGOTÁ <span>|</span>
+            <a href="https://maps.app.goo.gl/z6PTXYKcfWGWX9y4A" target="_blank" rel="noopener">COLISEO MEDPLUS</a>
           </div>
         </div>
 
@@ -31,15 +32,27 @@ const Header = () => {
           <img src={SF4} alt="Event Logo" className="logo" />
         </div>
 
-        <div className="event-info-bottom">
-          <img src={Stake} alt="stake logo" /> 
-          <span>x</span>
-          <img src={Kick} alt="kick logo" />
+        <div className="event-streaming">
+          <a href="https://kick.com/westcol" target="_blank" rel="noopener">
+            kick.com/westcol
+          </a>
         </div>
 
-        {/* <div className="event-info-left"></div>
+        <div className="event-info-bottom">
+          <a href="https://stake.com.co/es/bienvenida?btag=westcol" target="_blank" rel="noopener">
+            <img src={Stake} alt="stake logo" />
+          </a>
+          <span>x</span>
+          <a href="https://kick.com/westcol" target="_blank" rel="noopener">
+            <img src={Kick} alt="kick logo" />
+          </a>
+        </div>
 
-        <div className="event-info-right"></div> */}
+        <div className="event-info-left">
+          
+        </div>
+
+        {/*<div className="event-info-right"></div> */}
 
       </div>
     </header>
