@@ -1,0 +1,150 @@
+.btn__container {
+  position: relative;
+}
+
+.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  font-weight: 500;
+  text-decoration: none;
+  background-color: transparent;
+  transition: all 0.2s ease;
+  outline: none;
+  font-family: inherit;
+  z-index: 12;
+}
+
+.btn__container:hover .corner-left,
+.btn__container:hover .corner-right {
+  animation: alternat 0.4s linear forwards;
+}
+
+.corner-left, .corner-right {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.2;
+    z-index: 11;
+}
+
+.corner-left::before, .corner-right::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 10px;
+    height: 10px;
+    background-color: red;
+    clip-path: polygon(0% 0%, 100% 0%, 100% 50%, 50% 50%, 50% 100%, 0% 100%);
+}
+
+.corner-right::before{
+    left: unset;
+    right: 0;
+    transform: rotate(90deg);
+}
+
+.corner-left::after, .corner-right::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 10px;
+    height: 10px;
+    background-color: red;
+    clip-path: polygon(0% 0%, 50% 0%, 50% 50%, 100% 50%, 100% 100%, 0% 100%);
+}
+
+.corner-left::after{
+    left: unset;
+    right: 0;
+    transform: rotate(-90deg);
+}
+
+/* Variants */
+.btn--primary {
+  color: white;
+}
+
+.btn--primary:hover:not(:disabled) {
+  background: transparent;
+}
+
+.btn--secondary {
+  color: white;
+}
+
+.btn--secondary:hover:not(:disabled) {
+  background: transparent;
+}
+
+.btn--outline {
+  background: transparent;
+  color: #3b82f6;
+  border: 2px solid #3b82f6;
+}
+
+.btn--outline:hover:not(:disabled) {
+  background: #3b82f6;
+  color: white;
+}
+
+.btn--ghost {
+  background: transparent;
+  color: #374151;
+}
+
+.btn--ghost:hover:not(:disabled) {
+  background: #f3f4f6;
+}
+
+.btn--danger {
+  background: #ef4444;
+  color: white;
+}
+
+.btn--danger:hover:not(:disabled) {
+  background: #dc2626;
+}
+
+/* Sizes */
+.btn--sizeS {
+  padding: 5px 10px; 
+  font-size: var(--sizeS);
+}
+
+.btn--sizeM {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  min-height: 2.75rem;
+}
+
+.btn--sizeL {
+  padding: 1rem 2rem;
+  font-size: 1.125rem;
+  min-height: 3.25rem;
+}
+
+/* States */
+.btn--disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+@keyframes alternat {
+  0%,40% {
+    opacity: 1;
+  }
+  20%,60% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
