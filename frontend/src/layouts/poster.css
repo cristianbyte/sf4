@@ -1,0 +1,36 @@
+.poster__container {
+  position: absolute;
+  width: 100dvw;
+  height: 100dvh;
+  padding: 10dvh 15vw;
+  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.poster__container img{
+    width: 19dvh;
+    filter: blur(0.5px) saturate(0.7) contrast(1.4) brightness(1.1);
+    mask-image: linear-gradient(to bottom, #000000 85%, transparent 100%);
+}
+
+.poster__left{
+  position: relative;
+  width: 50%;
+  height: 100%;
+}
+
+.fighters{
+  width: min-content;
+  height: 100%;
+  display: flex;
+  flex-direction: column-reverse;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.poster__right{
+  display: none;
+  background-color: red;
+}

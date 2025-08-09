@@ -2,7 +2,7 @@ span{
   color: red;
 }
 
-.header-container, .content-overlay {
+.header__container, .content-overlay {
   position: relative;
   display: flex;
   justify-content: space-between;
