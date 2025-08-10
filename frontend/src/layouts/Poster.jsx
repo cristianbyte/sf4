@@ -12,27 +12,69 @@ import TheNino from '../assets/images/TheNino-min.png';
 import Byking from '../assets/images/Byking-min.png';
 import './poster.css';
 
+const leftFighters = [
+    { name: "JH de La Cruz", img: JHdeLaCruz },
+    { name: "Karina", img: Karina },
+    { name: "Shelao", img: Shelao },
+    { name: "Milica", img: Milica },
+    { name: "The Nino", img: TheNino },
+    { name: "Yina", img: Yina }
+];
+
+const rightFighters = [
+    { name: "Cristorata", img: Cristorata },
+    { name: "Karely", img: Karely },
+    { name: "Belosmaki", img: Belosmaki },
+    { name: "May", img: May },
+    { name: "Byking", img: Byking },
+    { name: "La Valdiri", img: LaValdiri }
+];
+
+
 const Poster = () => {
+    const handleFighterHover = (index, isEntering) => {
+        const leftFighter = document.querySelector(`.fighters-left .fighter-pic:nth-child(${index + 1})`);
+        const rightFighter = document.querySelector(`.fighters-right .fighter-pic:nth-child(${index + 1})`);
+
+        if (isEntering) {
+            leftFighter?.classList.add('hovered');
+            rightFighter?.classList.add('hovered');
+        } else {
+            leftFighter?.classList.remove('hovered');
+            rightFighter?.classList.remove('hovered');
+        }
+    };
     return (
         <div className="poster__container">
             <div className="poster__left">
                 <div className="fighters-left">
-                    <img className='fighter-pic' src={JHdeLaCruz} alt="" />
-                    <img className='fighter-pic' src={Karina} alt="" />
-                    <img className='fighter-pic' src={Shelao} alt="" />
-                    <img className='fighter-pic' src={Milica} alt="" />
-                    <img className='fighter-pic' src={TheNino} alt="" />
-                    <img className='fighter-pic' src={Yina} alt="" /> 
+                    {leftFighters.map((fighter, index) => (
+                        <div
+                            key={index}
+                            className="fighter-pic"
+                            onMouseEnter={() => handleFighterHover(index, true)}
+                            onMouseLeave={() => handleFighterHover(index, false)}
+                        >
+                            <p className='fighter-name'>{fighter.name}</p>
+                            <img src={fighter.img} alt={fighter.name} />
+                        </div>
+                    ))}
                 </div>
             </div>
+
             <div className="poster__right">
                 <div className="fighters-right">
-                    <img className='fighter-pic' src={Cristorata} alt="" /> 
-                    <img className='fighter-pic' src={Karely} alt="" />
-                    <img className='fighter-pic' src={Belosmaki} alt="" />
-                    <img className='fighter-pic' src={May} alt="" />
-                    <img className='fighter-pic' src={Byking} alt="" />
-                    <img className='fighter-pic' src={LaValdiri} alt="" />
+                    {rightFighters.map((fighter, index) => (
+                        <div
+                            key={index}
+                            className="fighter-pic"
+                            onMouseEnter={() => handleFighterHover(index, true)}
+                            onMouseLeave={() => handleFighterHover(index, false)}
+                        >
+                            <p className='fighter-name'>{fighter.name}</p>
+                            <img src={fighter.img} alt={fighter.name} />
+                        </div>
+                    ))}
                 </div>
             </div>
         </div>

@@ -65,7 +65,6 @@
         .image-container {
             position: relative;
             border: 1px solid #ddd;
-            border-radius: 8px;
             overflow: hidden;
         }
 
@@ -244,22 +243,22 @@
                     Click on the image to add points
                 </div>
 
-                <div class="points-list">
-                    <h3>Points (<span id="pointCount">0</span>):</h3>
-                    <div id="pointsList"></div>
-                </div>
-
+                
                 <div class="css-output">
                     <h3>Generated CSS:</h3>
                     <div class="css-code" id="cssOutput">
                         Click on the image to start creating points...
                     </div>
                 </div>
-
+                
                 <button class="btn-primary" onclick="copyCSS()">Copy CSS</button>
                 <button class="btn-secondary" onclick="simplifyPoints()">Simplify (Round)</button>
                 <button class="btn-secondary" onclick="removeLastPoint()">Remove Last Point</button>
                 <button class="btn-danger" onclick="resetPoints()">Reset All Points</button>
+                <div class="points-list">
+                    <h3>Points (<span id="pointCount">0</span>):</h3>
+                    <div id="pointsList"></div>
+                </div>
             </div>
         </div>
     </div>
