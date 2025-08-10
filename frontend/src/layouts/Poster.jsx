@@ -16,7 +16,7 @@ const Poster = () => {
     return (
         <div className="poster__container">
             <div className="poster__left">
-                <div className="fighters">
+                <div className="fighters-left">
                     <img src={TheNino} alt="" />
                     <img src={Milica} alt="" />
                     <img src={Shelao} alt="" />
@@ -26,13 +26,13 @@ const Poster = () => {
                 </div>
             </div>
             <div className="poster__right">
-                <div className="fighters">
-                    <img src={LaValdiri} alt="" />
-                    <img src={Cristorata} alt="" />
-                    <img src={Karely} alt="" />
-                    <img src={Belosmaki} alt="" />
-                    <img src={May} alt="" />
+                <div className="fighters-right">
                     <img src={Byking} alt="" />
+                    <img src={May} alt="" />
+                    <img src={Belosmaki} alt="" />
+                    <img src={Karely} alt="" />
+                    <img src={Cristorata} alt="" />
+                    <img src={LaValdiri} alt="" />
                 </div>
             </div>
         </div>
