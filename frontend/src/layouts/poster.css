@@ -2,77 +2,122 @@
   position: absolute;
   width: 100dvw;
   height: 100dvh;
-  padding: 10dvh 15vw;
+  padding: 5dvh 5dvh 0dvh;
   overflow: hidden;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
 }
 
-.poster__container img{
-    width: 19dvh;
-    filter: blur(0.5px) saturate(0.7) contrast(1.4) brightness(1.1);
-    mask-image: linear-gradient(to bottom, #000000 85%, transparent 100%);
+.fighter-pic{
+  z-index: 6;
+  width: min(95%, 400px);
+  filter: blur(0.5px) saturate(0.7) contrast(1.4) brightness(1.1);
+  mask-image: linear-gradient(to bottom, #000000 85%, transparent 100%);
+}
+.fighter-pic:nth-child(5){
+  translate: 5% 10%;
+}
+.fighters-right .fighter-pic:nth-child(5){
+  translate: -5% 10%;
+}
+
+.fighter-pic:nth-child(1){
+  position: absolute;
+  right: 35%;
+  bottom: 4%;
+  width: min(80%, 350px);
+  z-index: 5;
+}
+.fighters-right .fighter-pic:nth-child(1){
+  left: 35%;
+}
+
+.fighter-pic:nth-child(2){
+  position: absolute;
+  right: 70%;
+  bottom: min(calc(8vw + 5vh), 120px);
+  width: min(75%, 325px);
+  z-index: 4;
+}
+.fighters-right .fighter-pic:nth-child(2){
+  left: 65%;
+}
+
+.fighter-pic:nth-child(3){
+  position: absolute;
+  right: 40%;
+  bottom: min(calc(14vw * 2), 260px);
+  width: min(70%, 300px);
+  z-index: 3;
+}
+.fighters-right .fighter-pic:nth-child(3){
+  left: 40%;
+}
+
+.fighter-pic:nth-child(4){
+  position: absolute;
+  right: 62%;
+  bottom: min(calc(20vw * 2), 350px);
+  width: min(65%, 275px);
+  z-index: 2;
+}
+
+.fighters-right .fighter-pic:nth-child(4){
+  left: 62%;
+}
+
+.fighter-pic:nth-child(5){
+  position: absolute;
+  right: 55%;
+  bottom: min(calc(27vw * 2), 500px);
+  width: min(60%, 250px);
+  z-index: 1;
+}
+.fighters-right .fighter-pic:nth-child(5){
+  left: 55%;
 }
 
 .poster__left, .poster__right{
   position: relative;
-  width: 50%;
+  width: min(50%, 500px);
   height: 100%;
+}
+
+.fighters-left, .fighters-right{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end;
+  gap: 10px;
 }
 
 .fighters-left{
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: flex-end;
-  align-content: flex-start;
-  flex-direction: column-reverse;
-  flex-wrap: wrap;
-  gap: 10px;
+  .fighter-pic:last-child{
+    clip-path: polygon(0% 100%, 5.5% 89.0%, 11.8% 70.6%, 20.1% 68.0%, 25.8% 64.2%, 31.0% 63.7%, 41.2% 59.2%, 39.0% 53.0%, 36.6% 52.4%, 36.9% 49.9%, 34.9% 41.6%, 35.0% 38.8%, 33.9% 36.4%, 35.6% 18.7%, 42.3% 12.4%, 45.3% 10.9%, 50.8% 10.5%, 60.6% 10.9%, 68.8% 14.9%, 73.7% 22.4%, 76.0% 30.8%, 77.5% 42.6%, 73.8% 60.4%, 79.2% 64.9%, 88.4% 71.2%, 90.2% 74.2%, 97.8% 77.8%, 95.9% 89.7%, 100% 100%);
+  }
+  .fighter-pic:nth-child(1){
+    clip-path: polygon(1% 100%, 0% 78%, 5% 72%, 12% 67%, 24% 62%, 34% 59%, 41% 58%, 40% 52%, 36% 50%, 34% 42%, 35% 37%, 37% 36%, 39% 25%, 44% 17%, 49% 14%, 57% 11%, 64% 13%, 68% 15%, 75% 21%, 77% 28%, 77% 36%, 78% 37%, 77% 49%, 72% 64%, 78% 68%, 85% 70%, 86% 72%, 95% 81%, 98% 86%, 100% 99%);
+  }
+  .fighter-pic:nth-child(2){
+    clip-path: polygon(28% 100%, 28% 79%, 7% 74%, 4% 70%, 5% 64%, 8% 61%, 10% 55%, 16% 52%, 25% 50%, 36% 50%, 46% 53%, 49% 45%, 45% 33%, 45% 22%, 51% 15%, 55% 9%, 65% 6%, 74% 7%, 79% 12%, 83% 22%, 85% 33%, 85% 40%, 83% 44%, 82% 52%, 82% 60%, 86% 63%, 92% 65%, 98% 68%, 100% 75%, 100% 87%, 96% 90%, 92% 93%, 85% 97%, 84% 100%);
+  }
+
 }
 
 .fighters-right{
-  width: 100%;
-  height: 100%;
-  display: flex;
+  .fighter-pic:last-child{
+    clip-path: polygon(2% 99%, 4% 92%, 11% 81%, 25% 64%, 30% 59%, 40% 58%, 36% 44%, 37% 29%, 39% 23%, 45% 19%, 50% 13%, 57% 13%, 62% 17%, 69% 24%, 70% 36%, 72% 41%, 73% 49%, 77% 63%, 90% 74%, 95% 81%, 98% 94%, 99% 99%);
+  }
+
+}
+
+.fighter-pic:hover{
+  background-color: blue;
+}
+
+.fighters-right{
   align-items: flex-start;
-  align-content: flex-start;
-  flex-direction: column-reverse;
-  flex-wrap: wrap-reverse;
-  gap: 10px;
-}
-
-@media (max-width: 1300px) {
-  .poster__container {
-    padding: 5dvh 5vw;
-  }
-  .poster__container img{
-    width: 16dvh;
-  }
-}
-@media (max-width: 900px) {
-  .poster__container {
-    padding: 5dvh 30px;
-  }
-  .poster__container img{
-    width: 15dvh;
-  }
-}
-
-@media (max-width: 600px) {
-  .poster__container {
-    flex-direction: row;
-    padding: 5dvh 10px;
-  }
-  .poster__left, .poster__right{
-    width: 50%;
-    height: 100%;
-  }
-  .fighters-left, .fighters-right{
-    justify-content: center;
-  }
-  .poster__container img{
-    width: 12dvh;
-  }
 }

@@ -17,22 +17,22 @@ const Poster = () => {
         <div className="poster__container">
             <div className="poster__left">
                 <div className="fighters-left">
-                    <img src={TheNino} alt="" />
-                    <img src={Milica} alt="" />
-                    <img src={Shelao} alt="" />
-                    <img src={Karina} alt="" />
-                    <img src={JHdeLaCruz} alt="" />
-                    <img src={Yina} alt="" />
+                    <img className='fighter-pic' src={JHdeLaCruz} alt="" />
+                    <img className='fighter-pic' src={Karina} alt="" />
+                    <img className='fighter-pic' src={Shelao} alt="" />
+                    <img className='fighter-pic' src={Milica} alt="" />
+                    <img className='fighter-pic' src={TheNino} alt="" />
+                    <img className='fighter-pic' src={Yina} alt="" /> 
                 </div>
             </div>
             <div className="poster__right">
                 <div className="fighters-right">
-                    <img src={Byking} alt="" />
-                    <img src={May} alt="" />
-                    <img src={Belosmaki} alt="" />
-                    <img src={Karely} alt="" />
-                    <img src={Cristorata} alt="" />
-                    <img src={LaValdiri} alt="" />
+                    <img className='fighter-pic' src={Cristorata} alt="" /> 
+                    <img className='fighter-pic' src={Karely} alt="" />
+                    <img className='fighter-pic' src={Belosmaki} alt="" />
+                    <img className='fighter-pic' src={May} alt="" />
+                    <img className='fighter-pic' src={Byking} alt="" />
+                    <img className='fighter-pic' src={LaValdiri} alt="" />
                 </div>
             </div>
         </div>
