@@ -13,11 +13,11 @@ import Byking from '../assets/images/Byking-min.png';
 import './poster.css';
 
 const leftFighters = [
-    { name: "JH de La Cruz", img: JHdeLaCruz },
+    { name: "JHdeLaCruz", img: JHdeLaCruz },
     { name: "Karina", img: Karina },
     { name: "Shelao", img: Shelao },
     { name: "Milica", img: Milica },
-    { name: "The Nino", img: TheNino },
+    { name: "TheNino", img: TheNino },
     { name: "Yina", img: Yina }
 ];
 
