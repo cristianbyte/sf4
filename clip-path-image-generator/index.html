@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clip Path Generator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f0f0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .upload-area {
+            border: 2px dashed #ccc;
+            border-radius: 8px;
+            padding: 40px;
+            text-align: center;
+            margin-bottom: 20px;
+            cursor: pointer;
+            transition: border-color 0.3s;
+        }
+
+        .upload-area:hover {
+            border-color: #007bff;
+        }
+
+        .upload-area.dragover {
+            border-color: #007bff;
+            background: #f8f9fa;
+        }
+
+        #imageInput {
+            display: none;
+        }
+
+        .workspace {
+            display: none;
+            grid-template-columns: 1fr 300px;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .image-container {
+            position: relative;
+            border: 1px solid #ddd;
+            overflow: hidden;
+        }
+
+        #workingImage {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            cursor: crosshair;
+        }
+
+        .preview-container {
+            position: relative;
+            margin-top: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        #previewImage {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .controls {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+
+        .btn-primary {
+            background: #007bff;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #0056b3;
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #545b62;
+        }
+
+        .btn-danger {
+            background: #dc3545;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #c82333;
+        }
+
+        .points-list {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 10px 0;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .points-list h3 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .point-item {
+            padding: 5px;
+            font-family: monospace;
+            font-size: 12px;
+            color: #666;
+        }
+
+        .css-output {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            margin: 10px 0;
+        }
+
+        .css-output h3 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .css-code {
+            background: #272822;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            white-space: pre-wrap;
+            word-break: break-all;
+            min-height: 60px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .point {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: #007bff;
+            border: 2px solid white;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            z-index: 10;
+        }
+
+        .polygon-line {
+            position: absolute;
+            height: 1px;
+            background: #28a745;
+            transform-origin: left center;
+            z-index: 5;
+        }
+
+        .status {
+            text-align: center;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 4px;
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+
+        @media (max-width: 768px) {
+            .workspace {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Clip Path Generator</h1>
+        
+        <div class="upload-area" onclick="document.getElementById('imageInput').click()">
+            <p>Click here or drag and drop an image to start</p>
+            <input type="file" id="imageInput" accept="image/*">
+        </div>
+
+        <div class="workspace" id="workspace">
+            <div>
+                <div class="image-container" id="imageContainer">
+                    <img id="workingImage" alt="Working image">
+                </div>
+                
+                <div class="preview-container">
+                    <h3>Preview with Clip Path:</h3>
+                    <img id="previewImage" alt="Preview">
+                </div>
+            </div>
+
+            <div class="controls">
+                <div class="status" id="status">
+                    Click on the image to add points
+                </div>
+
+                
+                <div class="css-output">
+                    <h3>Generated CSS:</h3>
+                    <div class="css-code" id="cssOutput">
+                        Click on the image to start creating points...
+                    </div>
+                </div>
+                
+                <button class="btn-primary" onclick="copyCSS()">Copy CSS</button>
+                <button class="btn-secondary" onclick="simplifyPoints()">Simplify (Round)</button>
+                <button class="btn-secondary" onclick="removeLastPoint()">Remove Last Point</button>
+                <button class="btn-danger" onclick="resetPoints()">Reset All Points</button>
+                <div class="points-list">
+                    <h3>Points (<span id="pointCount">0</span>):</h3>
+                    <div id="pointsList"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let points = [];
+        let imageContainer, workingImage, previewImage;
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const imageInput = document.getElementById('imageInput');
+            const uploadArea = document.querySelector('.upload-area');
+            const workspace = document.getElementById('workspace');
+            
+            imageContainer = document.getElementById('imageContainer');
+            workingImage = document.getElementById('workingImage');
+            previewImage = document.getElementById('previewImage');
+
+            // File input change
+            imageInput.addEventListener('change', handleImageUpload);
+
+            // Drag and drop
+            uploadArea.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                uploadArea.classList.add('dragover');
+            });
+
+            uploadArea.addEventListener('dragleave', () => {
+                uploadArea.classList.remove('dragover');
+            });
+
+            uploadArea.addEventListener('drop', (e) => {
+                e.preventDefault();
+                uploadArea.classList.remove('dragover');
+                const files = e.dataTransfer.files;
+                if (files.length > 0) {
+                    handleImageFile(files[0]);
+                }
+            });
+
+            // Click on image to add points
+            workingImage.addEventListener('click', addPoint);
+        });
+
+        function handleImageUpload(event) {
+            const file = event.target.files[0];
+            if (file) {
+                handleImageFile(file);
+            }
+        }
+
+        function handleImageFile(file) {
+            if (!file.type.startsWith('image/')) {
+                alert('Please select a valid image file');
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                workingImage.src = e.target.result;
+                previewImage.src = e.target.result;
+                document.getElementById('workspace').style.display = 'grid';
+                resetPoints();
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function addPoint(event) {
+            const rect = workingImage.getBoundingClientRect();
+            const x = event.clientX - rect.left;
+            const y = event.clientY - rect.top;
+            
+            const percentX = (x / rect.width) * 100;
+            const percentY = (y / rect.height) * 100;
+
+            points.push({ x: percentX, y: percentY });
+            updateDisplay();
+        }
+
+        function removeLastPoint() {
+            if (points.length > 0) {
+                points.pop();
+                updateDisplay();
+            }
+        }
+
+        function resetPoints() {
+            points = [];
+            updateDisplay();
+        }
+
+        function updateDisplay() {
+            // Clear existing visual elements
+            const existingPoints = imageContainer.querySelectorAll('.point');
+            const existingLines = imageContainer.querySelectorAll('.polygon-line');
+            existingPoints.forEach(point => point.remove());
+            existingLines.forEach(line => line.remove());
+
+            // Add visual points
+            const rect = workingImage.getBoundingClientRect();
+            const containerRect = imageContainer.getBoundingClientRect();
+            
+            points.forEach((point, index) => {
+                const pointElement = document.createElement('div');
+                pointElement.className = 'point';
+                pointElement.style.left = (point.x * rect.width / 100) + 'px';
+                pointElement.style.top = (point.y * rect.height / 100) + 'px';
+                imageContainer.appendChild(pointElement);
+
+                // Add lines between consecutive points
+                if (index > 0) {
+                    const prevPoint = points[index - 1];
+                    const line = createLine(prevPoint, point, rect);
+                    imageContainer.appendChild(line);
+                }
+            });
+
+            // Update points list
+            updatePointsList();
+            
+            // Update CSS output
+            updateCSSOutput();
+            
+            // Update preview
+            updatePreview();
+            
+            // Update status
+            updateStatus();
+        }
+
+        function createLine(point1, point2, rect) {
+            const line = document.createElement('div');
+            line.className = 'polygon-line';
+            
+            const x1 = (point1.x * rect.width / 100);
+            const y1 = (point1.y * rect.height / 100);
+            const x2 = (point2.x * rect.width / 100);
+            const y2 = (point2.y * rect.height / 100);
+            
+            const length = Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2);
+            const angle = Math.atan2(y2 - y1, x2 - x1) * 180 / Math.PI;
+            
+            line.style.left = x1 + 'px';
+            line.style.top = y1 + 'px';
+            line.style.width = length + 'px';
+            line.style.transform = `rotate(${angle}deg)`;
+            
+            return line;
+        }
+
+        function updatePointsList() {
+            const pointsList = document.getElementById('pointsList');
+            const pointCount = document.getElementById('pointCount');
+            
+            pointCount.textContent = points.length;
+            
+            if (points.length === 0) {
+                pointsList.innerHTML = '<div class="point-item">No points added yet</div>';
+            } else {
+                pointsList.innerHTML = points.map((point, index) => {
+                    const xFormatted = point.x % 1 === 0 ? `${point.x.toFixed(0)}%` : `${point.x.toFixed(1)}%`;
+                    const yFormatted = point.y % 1 === 0 ? `${point.y.toFixed(0)}%` : `${point.y.toFixed(1)}%`;
+                    return `<div class="point-item">${index + 1}: ${xFormatted} ${yFormatted}</div>`;
+                }).join('');
+            }
+        }
+
+        function updateCSSOutput() {
+            const cssOutput = document.getElementById('cssOutput');
+            
+            if (points.length < 3) {
+                cssOutput.textContent = 'Add at least 3 points to generate CSS...';
+            } else {
+                const polygonPoints = points.map(point => {
+                    const x = point.x % 1 === 0 ? `${point.x.toFixed(0)}%` : `${point.x.toFixed(1)}%`;
+                    const y = point.y % 1 === 0 ? `${point.y.toFixed(0)}%` : `${point.y.toFixed(1)}%`;
+                    return `${x} ${y}`;
+                }).join(', ');
+                
+                cssOutput.textContent = `clip-path: polygon(${polygonPoints});`;
+            }
+        }
+
+        function updatePreview() {
+            if (points.length >= 3) {
+                const polygonPoints = points.map(point => {
+                    const x = point.x % 1 === 0 ? `${point.x.toFixed(0)}%` : `${point.x.toFixed(1)}%`;
+                    const y = point.y % 1 === 0 ? `${point.y.toFixed(0)}%` : `${point.y.toFixed(1)}%`;
+                    return `${x} ${y}`;
+                }).join(', ');
+                
+                previewImage.style.clipPath = `polygon(${polygonPoints})`;
+            } else {
+                previewImage.style.clipPath = 'none';
+            }
+        }
+
+        function updateStatus() {
+            const status = document.getElementById('status');
+            
+            if (points.length === 0) {
+                status.textContent = 'Click on the image to add points';
+            } else if (points.length < 3) {
+                status.textContent = `Add ${3 - points.length} more point(s) to create a valid polygon`;
+            } else {
+                status.textContent = `Polygon created with ${points.length} points. Click to add more or copy the CSS!`;
+            }
+        }
+
+        function simplifyPoints() {
+            if (points.length === 0) return;
+            
+            points = points.map(point => ({
+                x: Math.round(point.x),
+                y: Math.round(point.y)
+            }));
+            
+            updateDisplay();
+            
+            // Show temporary feedback
+            const status = document.getElementById('status');
+            const originalText = status.textContent;
+            status.textContent = 'Points simplified! All coordinates rounded to nearest integer.';
+            status.style.background = '#d4edda';
+            status.style.color = '#155724';
+            
+            setTimeout(() => {
+                status.textContent = originalText;
+                status.style.background = '#d1ecf1';
+                status.style.color = '#0c5460';
+            }, 3000);
+        }
+
+        function copyCSS() {
+            const cssOutput = document.getElementById('cssOutput');
+            const cssText = cssOutput.textContent;
+            
+            if (cssText.includes('clip-path:')) {
+                navigator.clipboard.writeText(cssText).then(() => {
+                    // Temporary feedback
+                    const originalText = cssOutput.textContent;
+                    cssOutput.textContent = 'CSS copied to clipboard!';
+                    setTimeout(() => {
+                        cssOutput.textContent = originalText;
+                    }, 2000);
+                });
+            } else {
+                alert('Create at least 3 points first!');
+            }
+        }
+    </script>
+</body>
+</html>

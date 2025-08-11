@@ -5,11 +5,12 @@ span{
 .header__container, .content-overlay {
   position: relative;
   display: flex;
-  justify-content: space-between;
+  justify-content: start;
   flex-direction: column;
   align-items: center;
   width: 100dvw;
   height: 100dvh;
+  gap: 7vh;
   overflow: hidden;
 }
 
@@ -28,6 +29,7 @@ span{
 }
 
 .event-info-top{
+  transform: scale(.8);
   line-height: calc(var(--sizeL));
   text-align: center;
   .event-date {
@@ -36,12 +38,12 @@ span{
     text-align: center;
   }
   .event-info {
-    font-size: var(--sizeS);
+    font-size: calc(var(--sizeS));
   }
 }
 
 .logo {
-  width: min(60vw, 600px);
+  width: clamp(350px, 60vw, 600px);
   filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
   animation: glitch 4s .4s step-end infinite;
 }
@@ -50,12 +52,17 @@ span{
   letter-spacing: 2px;
 }
 
-.event-info-bottom{
+.event-streaming:hover{
+  color: var(--color-kick);
+}
+
+.event-info-partners{
   display: flex;
   align-items: center;
   flex-direction: row;
   justify-content: center;
   gap: 10px;
+  margin-bottom: 2vh;
   font-style: normal;
   font-weight: 600;
   img{
