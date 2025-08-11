@@ -39,7 +39,7 @@
     left: 0;
     width: 10px;
     height: 10px;
-    background-color: red;
+    background-color: var(--color-punch);
     clip-path: polygon(0% 0%, 100% 0%, 100% 50%, 50% 50%, 50% 100%, 0% 100%);
 }
 
@@ -56,7 +56,7 @@
     left: 0;
     width: 10px;
     height: 10px;
-    background-color: red;
+    background-color: var(--color-punch);
     clip-path: polygon(0% 0%, 50% 0%, 50% 50%, 100% 50%, 100% 100%, 0% 100%);
 }
 

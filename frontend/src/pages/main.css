@@ -1,0 +1,5 @@
+.main__container{
+    height: 105dvh;
+    width: calc(100% - 10px);
+    margin-right: 10px;
+}

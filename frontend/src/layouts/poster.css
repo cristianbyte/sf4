@@ -1,9 +1,10 @@
 .poster__container {
   position: absolute;
-  width: 100dvw;
-  height: 100dvh;
-  padding: 5dvh 5dvh 0dvh;
   overflow: hidden;
+  width: calc(100% - 0px);
+  height: 100dvh;
+  /* padding-right: 10px; */
+  padding: 5dvh 5dvh 0dvh;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
