@@ -85,7 +85,7 @@ const Countdown = ({
     return (
       <div className={containerClass}>
         <div className="countdown__complete">
-          <div className="countdown__complete-text">Event Started!</div>
+          <div className="countdown__complete-text">¡El evento ha comenzado!</div>
         </div>
       </div>
     );
