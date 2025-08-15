@@ -11,19 +11,24 @@ span{
   width: 100dvw;
   height: 105dvh;
   gap: 7vh;
-  overflow: hidden;
 }
 
 .content-overlay {
-  padding: 10vh 0;
+  padding: 8vh 0;
+  overflow: hidden;
+}
+
+.header__container{
+  height: calc(100dvh + 2vw);
+  overflow-y: hidden;
+  overflow-x: hidden;
 }
 
 .video-bg {
   position: absolute;
-  min-width: 100%;
-  min-height: 100%;
-  width: auto;
-  height: auto;
+  overflow: hidden;
+  width: 100dvw;
+  height: 105dvh;
   z-index: -1;
   object-fit: cover;
 }
@@ -45,7 +50,15 @@ span{
 .logo {
   width: clamp(350px, 60vw, 600px);
   filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
-  animation: glitch 4s .4s step-end infinite;
+  /* animation: glitch 4s .4s step-end infinite; */
+}
+
+.logo-section{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2vh;
 }
 
 .event-streaming{

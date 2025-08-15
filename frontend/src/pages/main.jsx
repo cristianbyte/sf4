@@ -3,16 +3,20 @@ import Menu from "../layouts/Menu";
 import Poster from "../layouts/Poster";
 import Info from "../layouts/Info";
 import Videos from "../layouts/Videos";
+import { useState } from 'react';
 import './main.css';
 
 const main = () => {
+    const [slide, setSlide] = useState(0);
     return (
     <>
         <div className="main__container">
             <Menu />
-            <Poster />
+            <Poster                 slide={slide}
+                setSlide={setSlide} />
             <Header />
-            <Info />
+            <Info   slide={slide}
+                setSlide={setSlide}/>
             <Videos />
         </div>
     </>

@@ -39,21 +39,21 @@ const Header = () => {
             </a>
           </div>
           <img src={SF4} alt="Event Logo" className="logo" />
+          <Countdown targetDate="2025-10-18T16:00:00" format="full" />
         </div>
 
-        <Countdown targetDate="2025-10-18T16:00:00" format="full" /> 
 
         <div className="event-streaming">
           <a href="https://kick.com/westcol" target="_blank" rel="noopener">
-            kick.com<br/> westcol
+            kick.com<br /> westcol
           </a>
         </div>
 
 
-
+        {/* 
         <div className="event-info-left">
 
-        </div>
+        </div> */}
 
         {/*<div className="event-info-right"></div> */}
 

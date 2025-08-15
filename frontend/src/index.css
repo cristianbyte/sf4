@@ -4,8 +4,8 @@
   --color-kick: #53fc18;
   --color-punch: #fe0a09;
   --color-back: #000000;
-  --color-font: #ffffff;
-  --color-metal: #a08c8e;
+  --color-font: #EEEEEE;
+  --color-metal: #9f9f9f;
   --sizeXL: calc((50vw + 100vh) / 40);
   --sizeL: calc((50vw + 100vh) / 50); 
   --sizeM: calc((50vw + 100vh) / 60);
@@ -26,10 +26,17 @@
 }
 
 html {
-  width: 100%;
+  width: 100dvw;
   height: 100%;
   overflow-x: hidden;
+  overflow-y: visible ;
   scroll-behavior: smooth;
+}
+
+body{
+  width: 100dvw;
+  overflow-x: hidden;
+  background-color: var(--color-back);
 }
 
 button, a, a > img {

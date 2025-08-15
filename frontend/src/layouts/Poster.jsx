@@ -31,7 +31,7 @@ const rightFighters = [
 ];
 
 
-const Poster = () => {
+const Poster = ({slide, setSlide}) => {
     const handleFighterHover = (index, isEntering) => {
         const leftFighter = document.querySelector(`.fighters-left .fighter-pic:nth-child(${index + 1})`);
         const rightFighter = document.querySelector(`.fighters-right .fighter-pic:nth-child(${index + 1})`);
@@ -46,18 +46,23 @@ const Poster = () => {
     };
     return (
         <div className="poster__container">
+            
             <div className="poster__left">
                 <div className="fighters-left">
                     {leftFighters.map((fighter, index) => (
-                        <div
-                            key={index}
-                            className="fighter-pic"
-                            onMouseEnter={() => handleFighterHover(index, true)}
-                            onMouseLeave={() => handleFighterHover(index, false)}
-                        >
-                            <p className='fighter-name'>{fighter.name}</p>
-                            <img src={fighter.img} alt={fighter.name} />
-                        </div>
+                        <a onClick={() => {
+                            setSlide(((index)*2)+1);
+                            document.getElementById('carousel').scrollIntoView({ behavior: 'smooth' });
+                        }} className="fighter-pic">
+                            <div
+                                key={index}
+                                onMouseEnter={() => handleFighterHover(index, true)}
+                                onMouseLeave={() => handleFighterHover(index, false)}
+                            >
+                                <p className='fighter-name'>{fighter.name}</p>
+                                <img src={fighter.img} alt={fighter.name} />
+                            </div>
+                        </a>
                     ))}
                 </div>
             </div>
@@ -65,15 +70,19 @@ const Poster = () => {
             <div className="poster__right">
                 <div className="fighters-right">
                     {rightFighters.map((fighter, index) => (
-                        <div
-                            key={index}
-                            className="fighter-pic"
-                            onMouseEnter={() => handleFighterHover(index, true)}
-                            onMouseLeave={() => handleFighterHover(index, false)}
-                        >
-                            <p className='fighter-name'>{fighter.name}</p>
-                            <img src={fighter.img} alt={fighter.name} />
-                        </div>
+                        <a onClick={() => {
+                            setSlide((index)*2);
+                            document.getElementById('carousel').scrollIntoView({ behavior: 'smooth' });
+                        }} className="fighter-pic">
+                            <div
+                                key={index}
+                                onMouseEnter={() => handleFighterHover(index, true)}
+                                onMouseLeave={() => handleFighterHover(index, false)}
+                            >
+                                <p className='fighter-name'>{fighter.name}</p>
+                                <img src={fighter.img} alt={fighter.name} />
+                            </div>
+                        </a>
                     ))}
                 </div>
             </div>
