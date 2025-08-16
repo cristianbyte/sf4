@@ -11,7 +11,7 @@
     "team": "Cristorata",
     "src": "/src/assets/images/Cristorata-min.png",
     "stats": {
-      "wins": 0,
+      "wins": 1,
       "losses": 0,
       "draws": 0
     },
@@ -20,7 +20,8 @@
       "twitch": "null",
       "youtube": "https://www.youtube.com/@cristorata.7",
       "instagram": "https://www.instagram.com/cristorata7/",
-      "x": "https://x.com/Cristorata7"
+      "x": "https://x.com/Cristorata7",
+      "tiktok" : "https://www.tiktok.com/@cristorata7"
     },
     "bio": "Streamer y creador de contenido peruano. Con presencia en plataformas como TikTok y Kick."
   },
@@ -44,8 +45,9 @@
       "kick": "null",
       "twitch": "null",
       "youtube": "null",
-      "instagram": "https://www.instagram.com/jhdelac.ruz777",
-      "x": "null"
+      "instagram": "https://www.instagram.com/jhde.la.cruz777/",
+      "x": "null",
+      "tiktok":"https://www.tiktok.com/@jhlives777"
     },
     "bio": "Jhon Harrison de la Cruz Valencia, más conocido como JH de la Cruz, es un reconocido influencer y creador de contenido colombiano."
   },
@@ -70,7 +72,8 @@
       "twitch": "null",
       "youtube": "null",
       "instagram": "https://www.instagram.com/karelyiruiz_/",
-      "x": "null"
+      "x": "null",
+      "tiktok":"https://www.tiktok.com/@karelyruizoficial01"
     },
     "bio": "Reconocida influencer mexicana que ha logrado alcanzar los 10 millones de seguidores en Instagram, teniendo una gran trayectoria en redes sociales."
   },
@@ -95,7 +98,8 @@
       "twitch": "null",
       "youtube": "null",
       "instagram": "https://www.instagram.com/karinagarciaoficiall/",
-      "x": "null"
+      "x": "null",
+      "tiktok": "https://www.tiktok.com/@karinagarciaoficiall"
     },
     "bio": "Modelo y creadora de contenido, participante de La casa de los famosos Colombia (LCDLF)."
   },
@@ -168,9 +172,10 @@
     "social": {
       "kick": "https://kick.com/may_osorio25",
       "twitch": "null",
-      "youtube": "https://www.youtube.com/@milicaa_yb/videos",
+      "youtube": "null",
       "instagram": "https://www.instagram.com/may_osorio25",
-      "x": "https://x.com/may_osorio2?lang=en"
+      "x": "https://x.com/may_osorio2?lang=en",
+      "tiktok": "https://www.tiktok.com/@may_osorioo20"
     },
     "bio": "Estrella de TikTok colombiana conocida por su cuenta de may_osorio21, que ha conseguido 3.2 millones de seguidores."
   },
@@ -195,7 +200,8 @@
       "twitch": "https://www.twitch.tv/milica",
       "youtube": "https://www.youtube.com/@milicaa_yb/videos",
       "instagram": "https://www.instagram.com/milica_yb",
-      "x": "https://x.com/milica_yb"
+      "x": "https://x.com/milica_yb",
+      "tiktok":"https://www.tiktok.com/@milica_yb"
     },
     "bio": "Popular streamer y creadora de contenido argentina. Se ha destacado en plataformas como Twitch y YouTube, y también es reconocida en redes sociales."
   },
@@ -269,7 +275,8 @@
       "twitch": "null",
       "youtube": "https://www.youtube.com/@AndreaValdirioficial",
       "instagram": "https://www.instagram.com/andreavaldirisos/",
-      "x": "https://x.com/Andreovaldiri"
+      "x": "https://x.com/Andreovaldiri",
+      "tiktok":"https://www.tiktok.com/@andreavaldirisos1"
     },
     "bio": "Reconocida creadora de contenido digital, empresaria y bailarina colombiana.Es conocida por su carisma, su belleza y su estilo de vida extravagante, que comparte con sus seguidores en redes sociales."
   },

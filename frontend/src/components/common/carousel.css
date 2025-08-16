@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  outline: 1px dashed red;
+  outline: 5px dotted red;
   height: auto;
   width: clamp(350px, 90vw, 1200px);
   margin: 5vh auto;

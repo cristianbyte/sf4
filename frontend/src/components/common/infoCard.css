@@ -2,13 +2,21 @@
     display: flex;
     justify-content: center;
     gap: 5vw;
-    margin: 0 5vw;
-    padding: 2vh;
+    padding: 1vh 2vh;
 }
-.infoCard--name{
-    line-height: var(--sizeM);
+.infoCard--name {
+    line-height: var(--sizeXL);
     text-align: center;
-    font-size: var(--sizeL);
+    width: 100%;
+    h3{
+        font-size: var(--sizeXL);
+    }
+    h5{
+        height: 0;
+        position: relative;
+        font-size: .8rem;
+        width: 100%;
+    }
 }
 .infoCard--pic{
     display: flex;
@@ -26,13 +34,20 @@
 .infoCard--social{
     display: flex;
     flex-direction: row;
-    gap: 2vh;
+    gap: 2vW;
+
 }
 
 .infoCard--data{
     width: 50%;
+
 }
 
+.data-bio p{
+    font-size: var(--sizeS);
+    text-align: justify;
+    max-width: 80%;
+}
 
 .infoCard--img{
     width: 100%;
@@ -41,7 +56,7 @@
 }
 
 .social-links__icon{
-    width: 40px;
+    width: var(--sizeXL);
     object-fit: contain;
 }
 
