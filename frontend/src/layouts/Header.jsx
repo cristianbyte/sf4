@@ -4,12 +4,17 @@ import bgVideoAlt from '../assets/vid/playback.mp4';
 import SF4 from '../assets/svg/sf4.svg';
 import Stake from '../assets/svg/stake.svg'
 import Kick from '../assets/svg/kick-logo.svg'
+import Menu from "../layouts/Menu";
+import Poster from "../layouts/Poster";
 import './header.css';
 
-const Header = () => {
+const Header = ({slide, setSlide}) => {
 
   return (
     <header className="header__container">
+      <Menu />
+  <Poster                 slide={slide}
+      setSlide={setSlide} />
       <video className="video-bg" autoPlay muted loop playsInline >
         <source src={bgVideo} type="video/webm" />
         <source src={bgVideoAlt} type="video/mp4" />

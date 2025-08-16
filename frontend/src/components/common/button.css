@@ -1,5 +1,6 @@
 .btn__container {
   position: relative;
+  width: 100%;
 }
 
 .btn {
@@ -14,7 +15,7 @@
   transition: all 0.2s ease;
   outline: none;
   font-family: inherit;
-  z-index: 12;
+  z-index: 12000;
 }
 
 .btn__container:hover .corner-left,
@@ -130,11 +131,20 @@
   min-height: 3.25rem;
 }
 
+.btn--sizeMax{
+  width: 40%;
+  height: min-content;
+}
+
 /* States */
 .btn--disabled {
   opacity: 0.6;
   cursor: not-allowed;
   pointer-events: none;
+}
+
+.turn180{
+  transform: translate(180deg);
 }
 
 @keyframes alternat {

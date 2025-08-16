@@ -49,6 +49,10 @@ a {
   font-size: var(--sizeS);
 }
 
+svg{
+  fill: var(--color-font);
+}
+
 /* scrollbar */
 ::-webkit-scrollbar {
   width: 10px;

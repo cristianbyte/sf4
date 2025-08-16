@@ -1,46 +1,55 @@
-.fighter__carousel {
+.fighter-carousel {
   display: flex;
-  width: 100dvw;
-  align-items: center;
-  height: 50vh;
-}
-
-.fighter-carousel__btn {
-  width: 40px;
-  height: 40px;
-  border: none;
-  background: blue;
-  border-radius: 50%;
-  cursor: pointer;
-  font-size: 18px;
-  display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  outline: 1px dashed red;
+  height: auto;
+  width: clamp(350px, 90vw, 1200px);
+  margin: 5vh auto;
 }
 
-.fighter-carousel__btn:hover {
-  background: #d1d5db;
-}
-
-.fighter-carousel__viewport {
+.carousel__view {
+  position: relative;
   flex: 1;
+  width: 100%;
   height: 100%;
+  padding: 10px;
+  flex-direction: column;
   overflow: hidden;
-  padding: 5vw;
 }
 
-.fighter-carousel__track {
+.carousel__btns {
+  display: flex;
+  position: relative;
+  gap: 10vw;
+  padding: 0 5vw;
+  width: 100%;
+  height: 7vh;
+}
+
+.turn180{
+  transform: translate(180deg);
+}
+
+.carousel__btn{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  font-size: 4rem;
+  color: var(--color-punch);
+}
+
+.carousel__track {
   display: flex;
   height: 100%;
   transition: transform 0.3s ease;
 }
 
-.fighter-carousel__slide {
+.carousel__slide {
   width: 100%;
-  height: 100%;
-  background-color: blue;
+  height: 90%;
   display: flex;
+  flex-direction: row;
   justify-content: center;
-  align-items: center;
   flex-shrink: 0;
 }

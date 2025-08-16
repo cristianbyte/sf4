@@ -21,6 +21,10 @@
     justify-content: flex-end;
 }
 
+.access{
+    display: flex;
+}
+
 .started{
     margin-right: auto;
 }

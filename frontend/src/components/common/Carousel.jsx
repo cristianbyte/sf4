@@ -1,11 +1,11 @@
 import React from 'react';
-import Button from './Button'; // Assuming Button is a custom component for buttons
+import Button from './Button';
 import './carousel.css';
 
-const Carousel = ({ 
-  currentSlide = 0, 
-  onSlideChange = () => {},
-  children 
+const Carousel = ({
+  currentSlide = 0,
+  onSlideChange = () => { },
+  children
 }) => {
   const slideCount = React.Children.count(children);
 
@@ -13,30 +13,38 @@ const Carousel = ({
     const newIndex = currentSlide === 0 ? slideCount - 1 : currentSlide - 1;
     onSlideChange(newIndex);
   };
-  
+
   const handleNext = () => {
     const newIndex = currentSlide === slideCount - 1 ? 0 : currentSlide + 1;
     onSlideChange(newIndex);
   };
-  
+
   return (
-    <div className="fighter__carousel">
-      <Button onClick={handlePrev} className="fighter-carousel__btn">‹</Button>
-      
-      <div className="fighter-carousel__viewport">
-        <div 
-          className="fighter-carousel__track"
+    <div className="fighter-carousel">
+      <div className="carousel__view">
+        <div
+          className="carousel__track"
           style={{ transform: `translateX(-${currentSlide * 100}%)` }}
         >
           {React.Children.map(children, (child, index) => (
-            <div key={index} className="fighter-carousel__slide">
+            <div key={index} className="carousel__slide">
               {child}
             </div>
           ))}
         </div>
+
+        <div className="carousel__btns">
+          <Button onClick={handlePrev} className="carousel__btn turn180" size='sizeXL'>
+            {`<<`}
+          </Button>
+
+          <Button onClick={handleNext} className="carousel__btn" size='sizeMax'>
+            {`>>`}
+          </Button>
+        </div>
       </div>
-      
-      <Button onClick={handleNext} className="fighter-carousel__btn">›</Button>
+
+
     </div>
   );
 };

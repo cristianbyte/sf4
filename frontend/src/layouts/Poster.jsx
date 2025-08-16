@@ -50,12 +50,13 @@ const Poster = ({slide, setSlide}) => {
             <div className="poster__left">
                 <div className="fighters-left">
                     {leftFighters.map((fighter, index) => (
-                        <a onClick={() => {
+                        <a key={index}
+                        onClick={() => {
                             setSlide(((index)*2)+1);
                             document.getElementById('carousel').scrollIntoView({ behavior: 'smooth' });
                         }} className="fighter-pic">
                             <div
-                                key={index}
+                                
                                 onMouseEnter={() => handleFighterHover(index, true)}
                                 onMouseLeave={() => handleFighterHover(index, false)}
                             >
@@ -70,12 +71,13 @@ const Poster = ({slide, setSlide}) => {
             <div className="poster__right">
                 <div className="fighters-right">
                     {rightFighters.map((fighter, index) => (
-                        <a onClick={() => {
+                        <a key={index} 
+                        onClick={() => {
                             setSlide((index)*2);
                             document.getElementById('carousel').scrollIntoView({ behavior: 'smooth' });
                         }} className="fighter-pic">
                             <div
-                                key={index}
+                                
                                 onMouseEnter={() => handleFighterHover(index, true)}
                                 onMouseLeave={() => handleFighterHover(index, false)}
                             >

@@ -1,0 +1,301 @@
+[
+  {
+    "id": "cristorata7",
+    "name": "Cristopher Puente",
+    "nickname": "cristorata7",
+    "age": 21,
+    "weight_kg": 64.7,
+    "height_cm": 170,
+    "category": "Streamer y Youtuber",
+    "country": "CL",
+    "team": "Cristorata",
+    "src": "/src/assets/images/Cristorata-min.png",
+    "stats": {
+      "wins": 0,
+      "losses": 0,
+      "draws": 0
+    },
+    "social": {
+      "kick": "https://kick.com/cristorata7",
+      "twitch": "null",
+      "youtube": "https://www.youtube.com/@cristorata.7",
+      "instagram": "https://www.instagram.com/cristorata7/",
+      "x": "https://x.com/Cristorata7"
+    },
+    "bio": "Streamer y creador de contenido peruano. Con presencia en plataformas como TikTok y Kick."
+  },
+  {
+    "id": "jhdelac.ruz777",
+    "name": "JH de la Cruz",
+    "nickname": "JHDELACRUZ777",
+    "age": 27,
+    "weight_kg": 55.1,
+    "height_cm": 167,
+    "category": "Creador de contenido",
+    "country": "CO",
+    "team": "JH",
+    "src": "/src/assets/images/JHdeLaCruz-min.png",
+    "stats": {
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    },
+    "social": {
+      "kick": "null",
+      "twitch": "null",
+      "youtube": "null",
+      "instagram": "https://www.instagram.com/jhdelac.ruz777",
+      "x": "null"
+    },
+    "bio": "Jhon Harrison de la Cruz Valencia, más conocido como JH de la Cruz, es un reconocido influencer y creador de contenido colombiano."
+  },
+  {
+    "id": "karelyiruiz",
+    "name": "Karely Ruiz",
+    "nickname": "karelyiruiz_",
+    "age": 24,
+    "weight_kg": 55.1,
+    "height_cm": 165,
+    "category": "Creadora de contenido",
+    "country": "MX",
+    "team": "Karely Ruiz",
+    "src": "/src/assets/images/Karely-min.png",
+    "stats": {
+      "wins": 0,
+      "losses": 0,
+      "draws": 0
+    },
+    "social": {
+      "kick": "null",
+      "twitch": "null",
+      "youtube": "null",
+      "instagram": "https://www.instagram.com/karelyiruiz_/",
+      "x": "null"
+    },
+    "bio": "Reconocida influencer mexicana que ha logrado alcanzar los 10 millones de seguidores en Instagram, teniendo una gran trayectoria en redes sociales."
+  },
+  {
+    "id": "karinagarciaoficiall",
+    "name": "Karina García",
+    "nickname": "karinagarciaoficiall",
+    "age": 34,
+    "weight_kg": 59.0,
+    "height_cm": 174,
+    "category": "modelo y creadora de contenido",
+    "country": "CO",
+    "team": "karina",
+    "src": "/src/assets/images/Karina-min.png",
+    "stats": {
+      "wins": 0,
+      "losses": 0,
+      "draws": 0
+    },
+    "social": {
+      "kick": "null",
+      "twitch": "null",
+      "youtube": "null",
+      "instagram": "https://www.instagram.com/karinagarciaoficiall/",
+      "x": "null"
+    },
+    "bio": "Modelo y creadora de contenido, participante de La casa de los famosos Colombia (LCDLF)."
+  },
+  {
+    "id": "Belosmaki",
+    "name": "Belmer Ospina",
+    "nickname": "Belosmaki",
+    "age": 34,
+    "weight_kg": 86.3,
+    "height_cm": 184,
+    "category": "Creador de contenido",
+    "country": "CO",
+    "team": "BELOS",
+    "src": "/src/assets/images/Belosmaki-min.png",
+    "stats": {
+      "wins": 1,
+      "losses": 0,
+      "draws": 0
+    },
+    "social": {
+      "kick": "null",
+      "twitch": "null",
+      "youtube": "https://www.youtube.com/@belosmaki",
+      "instagram": "https://www.instagram.com/belosmaki",
+      "x": "null"
+    },
+    "bio": "Participante colombiano del reality show 'El Desafío' conocido por su participación en las versiones 'Súper Humanos' en 2018 y 'The Box' en 2021. También es reconocido como influencer en redes sociales."
+  },
+  {
+    "id": "crissalva40",
+    "name": "Cristóbal Álvarez",
+    "nickname": "shelao",
+    "age": 35,
+    "weight_kg": 95.3,
+    "height_cm": 188,
+    "category": "Streamer y modelo",
+    "country": "CL",
+    "team": "shelao",
+    "src": "/src/assets/images/Shelao-min.png",
+    "stats": {
+      "wins": 0,
+      "losses": 1,
+      "draws": 0
+    },
+    "social": {
+      "kick": "https://kick.com/shelao",
+      "twitch": "null",
+      "youtube": "https://www.youtube.com/shelao",
+      "instagram": "https://www.instagram.com/crissalva40/",
+      "x": "null"
+    },
+    "bio": "Modelo y streamer chileno. Fue el ganador del concurso de belleza masculina Míster Real Universe en 2015."
+  },
+  {
+    "id": "may_osorio25",
+    "name": "María Osorio",
+    "nickname": "may_osorio25",
+    "age": 22,
+    "weight_kg": 60.0,
+    "height_cm": 158,
+    "category": "Creador digital",
+    "country": "CO",
+    "team": "may_osorio",
+    "src": "/src/assets/images/May-min.png",
+    "stats": {
+      "wins": 0,
+      "losses": 0,
+      "draws": 0
+    },
+    "social": {
+      "kick": "https://kick.com/may_osorio25",
+      "twitch": "null",
+      "youtube": "https://www.youtube.com/@milicaa_yb/videos",
+      "instagram": "https://www.instagram.com/may_osorio25",
+      "x": "https://x.com/may_osorio2?lang=en"
+    },
+    "bio": "Estrella de TikTok colombiana conocida por su cuenta de may_osorio21, que ha conseguido 3.2 millones de seguidores."
+  },
+  {
+    "id": "milica_yb",
+    "name": "Mica Ybañez",
+    "nickname": "milica_yb",
+    "age": 24,
+    "weight_kg": 60.9,
+    "height_cm": 158,
+    "category": "Creador digital",
+    "country": "AR",
+    "team": "milica",
+    "src": "/src/assets/images/Milica-min.png",
+    "stats": {
+      "wins": 0,
+      "losses": 1,
+      "draws": 0
+    },
+    "social": {
+      "kick": "https://kick.com/milica",
+      "twitch": "https://www.twitch.tv/milica",
+      "youtube": "https://www.youtube.com/@milicaa_yb/videos",
+      "instagram": "https://www.instagram.com/milica_yb",
+      "x": "https://x.com/milica_yb"
+    },
+    "bio": "Popular streamer y creadora de contenido argentina. Se ha destacado en plataformas como Twitch y YouTube, y también es reconocida en redes sociales."
+  },
+  {
+    "id": "bykingcl",
+    "name": "Joaquin Perez",
+    "nickname": "bykingcl",
+    "age": 19,
+    "weight_kg": 90.0,
+    "height_cm": 190,
+    "category": "Creador digital",
+    "country": "CL",
+    "team": "bykingcl",
+    "src": "/src/assets/images/Byking-min.png",
+    "stats": {
+      "wins": 0,
+      "losses": 0,
+      "draws": 0
+    },
+    "social": {
+      "kick": "https://kick.com/bykingcl",
+      "twitch": "https://www.twitch.tv/bykingcl",
+      "youtube": "https://www.youtube.com/channel/UCQ_-9OUZMOY4ckNCAh_3AOg",
+      "instagram": "https://www.instagram.com/bykingcl/",
+      "x": "https://x.com/ByKingcl"
+    },
+    "bio": "Streamer chileno enfocado en entretenimiento en vivo con variedad de contenido gamer y real life."
+  },
+  {
+    "id": "thenino",
+    "name": "TheNino",
+    "nickname": "Theninoyt",
+    "age": 25,
+    "weight_kg": 79.5,
+    "height_cm": 185,
+    "category": "YouTube Star",
+    "country": "DO",
+    "team": "Team Raptor",
+    "src": "/src/assets/images/TheNino-min.png",
+    "stats": {
+      "wins": 0,
+      "losses": 0,
+      "draws": 0
+    },
+    "social": {
+      "twitch": "https://www.twitch.tv/theninotv",
+      "youtube": "https://www.youtube.com/channel/UCdsABfQjd2C9ykf2I74tFOA",
+      "instagram": "https://www.instagram.com/theninoyt/",
+      "x": "https://x.com/theninoytt"
+    },
+    "bio": "Personalidad del mundo de los videojuegos y creador de contenidos de YouTube que saltó a la fama publicando vídeos de Garena Free Fire en su canal. Cuenta con más de 12 millones de suscriptores en la plataforma."
+  },
+  {
+    "id": "andreavaldirisos",
+    "name": "Andrea Valdiri",
+    "nickname": "andreavaldirisos",
+    "age": 33,
+    "weight_kg": 68.3,
+    "height_cm": 1.79,
+    "category": "Creadora de contenido",
+    "country": "CO",
+    "team": "LaValdiri",
+    "src": "/src/assets/images/LaValdiri-min.png",
+    "stats": {
+      "wins": 0,
+      "losses": 0,
+      "draws": 0
+    },
+    "social": {
+      "kick": "https://kick.com/andreavaldiri",
+      "twitch": "null",
+      "youtube": "https://www.youtube.com/@AndreaValdirioficial",
+      "instagram": "https://www.instagram.com/andreavaldirisos/",
+      "x": "https://x.com/Andreovaldiri"
+    },
+    "bio": "Reconocida creadora de contenido digital, empresaria y bailarina colombiana.Es conocida por su carisma, su belleza y su estilo de vida extravagante, que comparte con sus seguidores en redes sociales."
+  },
+  {
+    "id": "yinacalderontv",
+    "name": "Yina Calderón",
+    "nickname": "yinacalderontv",
+    "age": 33,
+    "weight_kg": 64.0,
+    "height_cm": 1.77,
+    "category": "Creadora de contenido",
+    "country": "CO",
+    "team": "Yina",
+    "src": "/src/assets/images/Yina-min.png",
+    "stats": {
+      "wins": 0,
+      "losses": 0,
+      "draws": 0
+    },
+    "social": {
+      "kick": "null",
+      "twitch": "null",
+      "youtube": "https://www.youtube.com/@Yinacalderonartista",
+      "instagram": "https://www.instagram.com/yinacalderontv/",
+      "x": "https://x.com/yinacalderoon"
+    },
+    "bio": "Empresaria, influenciadora y DJ colombiana, conocida por su participación en el reality LCDLF Colombia y por su activa presencia en redes sociales."
+  }
+]

@@ -1,0 +1,51 @@
+.infoCard{
+    display: flex;
+    justify-content: center;
+    gap: 5vw;
+    margin: 0 5vw;
+    padding: 2vh;
+}
+.infoCard--name{
+    line-height: var(--sizeM);
+    text-align: center;
+    font-size: var(--sizeL);
+}
+.infoCard--pic{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2vh;
+    align-items: center;
+    max-width: 50%;
+
+    img{
+        mask-image: linear-gradient(to bottom, #000000 85%, transparent 100%);
+    }
+}
+
+.infoCard--social{
+    display: flex;
+    flex-direction: row;
+    gap: 2vh;
+}
+
+.infoCard--data{
+    width: 50%;
+}
+
+
+.infoCard--img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.social-links__icon{
+    width: 40px;
+    object-fit: contain;
+}
+
+.social-links__icon img{
+    width: 100%;
+    height: 100%;
+}
