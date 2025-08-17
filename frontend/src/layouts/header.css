@@ -2,26 +2,17 @@ span{
   color: var(--color-punch);
 }
 
-.header__container, .content-overlay {
-  position: relative;
-  display: flex;
-  justify-content: start;
-  flex-direction: column;
-  align-items: center;
-  width: 100dvw;
-  height: 105dvh;
-  gap: 7vh;
+.header__container{
+  height: 104vh;
 }
 
 .content-overlay {
-  padding: 8vh 0;
-  overflow: hidden;
-}
-
-.header__container{
-  height: calc(100dvh + 2vw);
-  overflow-y: hidden;
-  overflow-x: hidden;
+  display: flex;
+  position: absolute;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
 }
 
 .video-bg {
@@ -62,7 +53,9 @@ span{
 }
 
 .event-streaming{
+  margin-top: 5vh;
   letter-spacing: 2px;
+  text-align: center;
 }
 
 .event-streaming:hover{

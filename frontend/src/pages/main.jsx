@@ -1,5 +1,5 @@
 import Header from "../layouts/Header";
-
+import Partners from "../layouts/Partners"
 import Info from "../layouts/Info";
 import Videos from "../layouts/Videos";
 import { useState } from 'react';
@@ -15,7 +15,8 @@ const main = () => {
                 setSlide={setSlide}  />
             <Info   slide={slide}
                 setSlide={setSlide}/>
-            <Videos />
+            {/* <Videos /> */}
+            <Partners />
         </div>
     </>
     )

@@ -21,28 +21,35 @@ const Button = ({
 
     if (href) {
         return (
-            <a
-                href={href}
-                className={buttonClass}
-                {...props}
-            >
-                {children}
-            </a>
+            <div className="btn__container">
+                <div className="corner-left"></div>
+                <a
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={buttonClass}
+                    {...props}
+                >
+                    {children}
+                </a>
+                <div className="corner-right"></div>
+            </div>
+
         );
     }
 
     return (
         <div className="btn__container">
             <div className="corner-left"></div>
-                <button
-                    type={type}
-                    className={buttonClass}
-                    onClick={onClick}
-                    disabled={disabled}
-                    {...props}
-                >
-                    {children}
-                </button>
+            <button
+                type={type}
+                className={buttonClass}
+                onClick={onClick}
+                disabled={disabled}
+                {...props}
+            >
+                {children}
+            </button>
             <div className="corner-right"></div>
         </div>
     );

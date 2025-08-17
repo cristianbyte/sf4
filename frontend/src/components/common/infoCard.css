@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     gap: 5vw;
-    padding: 1vh 2vh;
+    padding: 0vh 2vw;
 }
 .infoCard--name {
     line-height: var(--sizeXL);
@@ -21,10 +21,10 @@
 .infoCard--pic{
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    gap: 2vh;
     align-items: center;
     max-width: 50%;
+    height: min-content;
+    gap: 2vh;
 
     img{
         mask-image: linear-gradient(to bottom, #000000 85%, transparent 100%);
@@ -46,12 +46,11 @@
 .data-bio p{
     font-size: var(--sizeS);
     text-align: justify;
-    max-width: 80%;
+    max-width: 90%;
 }
 
 .infoCard--img{
     width: 100%;
-    height: 100%;
     object-fit: contain;
 }
 

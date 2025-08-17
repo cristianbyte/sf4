@@ -8,13 +8,13 @@ import Menu from "../layouts/Menu";
 import Poster from "../layouts/Poster";
 import './header.css';
 
-const Header = ({slide, setSlide}) => {
+const Header = ({ slide, setSlide }) => {
 
   return (
     <header className="header__container">
       <Menu />
-  <Poster                 slide={slide}
-      setSlide={setSlide} />
+      <Poster slide={slide}
+        setSlide={setSlide} />
       <video className="video-bg" autoPlay muted loop playsInline >
         <source src={bgVideo} type="video/webm" />
         <source src={bgVideoAlt} type="video/mp4" />
@@ -23,15 +23,7 @@ const Header = ({slide, setSlide}) => {
 
       <div className="content-overlay">
 
-        <div className="event-info-top">
-          <div className="event-date">
-            18 OCTUBRE
-          </div>
-          <div className="event-info">
-            BOGOTÁ <span>|</span>
-            <a href="https://maps.app.goo.gl/z6PTXYKcfWGWX9y4A" target="_blank" rel="noopener">COLISEO MEDPLUS</a>
-          </div>
-        </div>
+
 
         <div className="logo-section">
           <div className="event-info-partners">
@@ -45,6 +37,16 @@ const Header = ({slide, setSlide}) => {
           </div>
           <img src={SF4} alt="Event Logo" className="logo" />
           <Countdown targetDate="2025-10-18T16:00:00" format="full" />
+        </div>
+
+        <div className="event-info-top">
+          <div className="event-date">
+            18 OCTUBRE
+          </div>
+          <div className="event-info">
+            BOGOTÁ <span>|</span>
+            <a href="https://maps.app.goo.gl/z6PTXYKcfWGWX9y4A" target="_blank" rel="noopener">COLISEO MEDPLUS</a>
+          </div>
         </div>
 
 
