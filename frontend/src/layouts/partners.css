@@ -1,20 +1,50 @@
 .partners-container{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     position: relative;
-    background-color: var(--color-back);
+    background-image: url("../assets/images/scenario-bg.webp");
+    background-position: bottom;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    gap: 2vw;
     width: 100%;
-    height: 50vh;
+    height: 70vh;
     margin-top: 5vh;
+    z-index: 1;
 }
-
 
 .partners-container::before{
     background-image: url('../assets/partners/paint-brush.png');
     background-repeat: repeat-x;
-    filter: grayscale(.1) contrast(.8);
     background-size: 100% 100%; 
     position: absolute;
     height: 100px;
+    top: -5vh;
     content: '';
     width: 150%;
     left: -10%;
+}
+.partners-section{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 1vw;
+}
+
+.partners-title{
+    text-align: center;
+    font-weight: 400;
+}
+
+.partners-logo{
+    display: flex;
+    flex-direction: row;
+    gap: 2vw;
+}
+
+.partners-pic img{
+    height: var(--sizeXL);
+    object-fit: contain;
 }
