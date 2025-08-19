@@ -6,7 +6,7 @@ const Button = ({
     href,
     type = 'button',
     variant = 'primary',
-    size = 'sizeM',
+    size = '',
     disabled = false,
     className = '',
     ...props
@@ -22,7 +22,6 @@ const Button = ({
     if (href) {
         return (
             <div className="btn__container">
-                <div className="corner-left"></div>
                 <a
                     href={href}
                     target="_blank"
@@ -32,7 +31,6 @@ const Button = ({
                 >
                     {children}
                 </a>
-                <div className="corner-right"></div>
             </div>
 
         );
@@ -40,7 +38,6 @@ const Button = ({
 
     return (
         <div className="btn__container">
-            <div className="corner-left"></div>
             <button
                 type={type}
                 className={buttonClass}
@@ -50,7 +47,6 @@ const Button = ({
             >
                 {children}
             </button>
-            <div className="corner-right"></div>
         </div>
     );
 };

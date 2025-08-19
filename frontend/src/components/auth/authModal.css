@@ -1,10 +1,10 @@
 .auth-container{
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: #000000CC;
+    background-color: #00000099;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -12,8 +12,34 @@
 }
 
 .auth{
+    position: relative;
     width: 500px;
     height: 50vh;
-    background-color: var(--color-kick);
+    background-color: var(--color-back);
+}
+
+.auth-header{
+    position: absolute;
+    width: 100%;
+    height: 20%;
+}
+
+.auth-header-img{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    padding-top: 4%;
+    object-fit: contain;
+    opacity: 0.15;
+    filter: drop-shadow(0px 0px 5px var(--color-metal));
+}
+
+.authCloseWindow-btn{
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    left: unset;
+    width: 40px;
+    height: 40px;
 }
 

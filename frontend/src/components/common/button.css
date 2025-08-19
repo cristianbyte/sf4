@@ -1,6 +1,6 @@
 .btn__container {
   position: relative;
-  width: 50%;
+  width: 100%;
 }
 
 .btn {
@@ -18,104 +18,79 @@
   z-index: 100;
 }
 
-.btn__container:hover .corner-left,
-.btn__container:hover .corner-right {
-  animation: alternat 0.4s linear forwards;
-}
-
-.corner-left, .corner-right {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0.2;
-    z-index: 11;
-}
-
-.corner-left::before, .corner-right::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 10px;
-    height: 10px;
-    background-color: var(--color-punch);
-    clip-path: polygon(0% 0%, 100% 0%, 100% 50%, 50% 50%, 50% 100%, 0% 100%);
-}
-
-.corner-right::before{
-    left: unset;
-    right: 0;
-    transform: rotate(90deg);
-}
-
-.corner-left::after, .corner-right::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 10px;
-    height: 10px;
-    background-color: var(--color-punch);
-    clip-path: polygon(0% 0%, 50% 0%, 50% 50%, 100% 50%, 100% 100%, 0% 100%);
-}
-
-.corner-left::after{
-    left: unset;
-    right: 0;
-    transform: rotate(-90deg);
-}
-
 /* Variants */
-.btn--primary {
-  color: white;
+
+.btn--primary:hover {
+  color: var(--color-punch);
 }
 
-.btn--primary:hover:not(:disabled) {
-  background: transparent;
+.btn--border {
+  background: #ffffff11;
+  border: 3px ridge var(--color-back);
+  backdrop-filter: saturate(180%) blur(2px);
 }
 
-.btn--secondary {
-  color: white;
+.btn--cancel {
+  background:
+    linear-gradient(45deg, transparent 45%, var(--color-metal) 45%, var(--color-metal) 55%, transparent 55%),
+    linear-gradient(-45deg, transparent 45%, var(--color-metal) 45%, var(--color-metal) 55%, transparent 55%);
+  background-size: 100% 100%;
+  border-radius: 4px;
 }
 
-.btn--secondary:hover:not(:disabled) {
-  background: transparent;
+.btn--border:hover {
+  animation: alternat-border .4s ease forwards;
 }
 
-.btn--outline {
-  background: transparent;
-  color: #3b82f6;
-  border: 2px solid #3b82f6;
+.chevron-right {
+  background: linear-gradient(65deg, transparent 30%, var(--color-metal) 30%, var(--color-metal) 70%, transparent 70%),
+    linear-gradient(-65deg, transparent 30%, var(--color-metal) 30%, var(--color-metal) 70%, transparent 70%);
 }
 
-.btn--outline:hover:not(:disabled) {
-  background: #3b82f6;
-  color: white;
+.chevron-right:hover {
+  background: linear-gradient(65deg, transparent 30%, var(--color-punch) 30%, var(--color-punch) 70%, transparent 70%),
+    linear-gradient(-65deg, transparent 30%, var(--color-punch) 30%, var(--color-punch) 70%, transparent 70%);
+  background-position: 0 0, 0 100%;
+  background-repeat: repeat-x;
+  background-size: 20% 50%;
+  width: 100%;
+  height: 100%;
 }
 
-.btn--ghost {
-  background: transparent;
-  color: #374151;
+.chevron-left {
+  background: linear-gradient(-65deg, transparent 30%, var(--color-metal) 30%, var(--color-metal) 70%, transparent 70%),
+    linear-gradient(65deg, transparent 30%, var(--color-metal) 30%, var(--color-metal) 70%, transparent 70%);
 }
 
-.btn--ghost:hover:not(:disabled) {
-  background: #f3f4f6;
+.chevron-left:hover {
+  background: linear-gradient(-65deg, transparent 30%, var(--color-punch) 30%, var(--color-punch) 70%, transparent 70%),
+    linear-gradient(65deg, transparent 30%, var(--color-punch) 30%, var(--color-punch) 70%, transparent 70%);
+  background-position: 0 0, 0 100%;
+  background-repeat: repeat-x;
+  background-size: 20% 50%;
+  width: 100%;
+  height: 100%;
 }
 
-.btn--danger {
-  background: #ef4444;
-  color: white;
+.chevron-left,
+.chevron-right {
+  transition: .4s ease all;
+  background-position: 0 0, 0 100%;
+  background-repeat: repeat-x;
+  background-size: 25% 50%;
+  width: 100%;
+  height: 100%;
 }
 
-.btn--danger:hover:not(:disabled) {
-  background: #dc2626;
+.chevron-left:hover,
+.chevron-right:hover {
+  animation: alternat-opacity .3s ease-in-out forwards;
 }
+
 
 /* Sizes */
 .btn--sizeS {
-  padding: 5px 10px; 
+  padding: 5px 10px;
   font-size: var(--sizeS);
 }
 
@@ -131,7 +106,7 @@
   min-height: 3.25rem;
 }
 
-.btn--sizeMax{
+.btn--sizeMax {
   width: 40%;
   height: min-content;
 }
@@ -143,17 +118,35 @@
   pointer-events: none;
 }
 
-.turn180{
-  transform: translate(180deg);
+@keyframes alternat-border {
+
+  0%,
+  40% {
+    border: 3px ridge var(--color-punch);
+  }
+
+  20%,
+  60% {
+    border: 3px ridge var(--color-back);
+  }
+
+  100% {
+    border: 3px ridge var(--color-punch);
+  }
 }
 
-@keyframes alternat {
-  0%,40% {
+@keyframes alternat-opacity {
+
+  0%,
+  40% {
     opacity: 1;
   }
-  20%,60% {
+
+  10%,
+  60% {
     opacity: 0;
   }
+
   100% {
     opacity: 1;
   }

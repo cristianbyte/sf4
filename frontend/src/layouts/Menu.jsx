@@ -17,7 +17,7 @@ const Menu = () => {
                 <a href="/combates">Combates</a>
                 <Button size="sizeS" className="started" href={"https://www.taquillalive.com/book-performance/?artist=stream-fighters&event=TCL.EVN885.PRF1"} children={"ENTRADAS"} />
                 <div className="access">
-                    <Button variant="secondary" onClick={() => setShowAuth("login")} size="sizeS">Acceder</Button>
+                    <Button variant="primary" onClick={() => setShowAuth("login")} size="sizeS">Acceder</Button>
                     <Button variant="primary" onClick={() => setShowAuth("enroll")} size="sizeS">Registrarme</Button>
                 </div>
             </div>

@@ -34,13 +34,8 @@ const Carousel = ({
         </div>
 
         <div className="carousel__btns">
-          <Button onClick={handlePrev} className="carousel__btn turn180" size='sizeXL'>
-            {`<<`}
-          </Button>
-
-          <Button onClick={handleNext} className="carousel__btn" size='sizeMax'>
-            {`>>`}
-          </Button>
+          <Button onClick={handlePrev} className="chevron-left" size='sizeXL'/>
+          <Button onClick={handleNext} className="chevron-right" size='sizeXL'/>
         </div>
       </div>
 
