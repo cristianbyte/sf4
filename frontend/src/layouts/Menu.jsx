@@ -11,6 +11,7 @@ const Menu = () => {
                 <AuthModal 
                     isOpen={showAuth} 
                     onClose={() => setShowAuth(false)} 
+                    setIsOpen={setShowAuth}
                 />
             )}
             <div className="menu">

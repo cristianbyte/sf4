@@ -6,6 +6,7 @@
   --color-back: #000000;
   --color-font: #EEEEEE;
   --color-metal: #9f9f9f;
+  --color-shadow: #373737;
   --sizeXL: calc((50vw + 100vh) / 40);
   --sizeL: calc((50vw + 100vh) / 50); 
   --sizeM: calc((50vw + 100vh) / 60);
@@ -38,6 +39,17 @@ body{
   overflow-x: hidden;
   background-color: var(--color-back);
 }
+
+input{
+  padding: calc(var(--sizeS) * 0.4);
+  caret-color: var(--color-punch);
+  border: 2px solid var(--color-shadow);
+  background-color: var(--color-back);
+}
+
+input:focus {
+  outline: none;
+} 
 
 button, a, a > img {
   cursor: url('../src/assets/generic/pointer.cur'), pointer;

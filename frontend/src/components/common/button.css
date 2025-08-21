@@ -30,12 +30,20 @@
   backdrop-filter: saturate(180%) blur(2px);
 }
 
-.btn--cancel {
+/* .btn--cancel {
   background:
     linear-gradient(45deg, transparent 45%, var(--color-metal) 45%, var(--color-metal) 55%, transparent 55%),
     linear-gradient(-45deg, transparent 45%, var(--color-metal) 45%, var(--color-metal) 55%, transparent 55%);
   background-size: 100% 100%;
   border-radius: 4px;
+} */
+
+.btn--cancel{
+  font-size: var(--sizeXL);
+}
+
+.btn--cancel:hover{
+  color: var(--color-punch);
 }
 
 .btn--border:hover {
