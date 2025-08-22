@@ -1,5 +1,7 @@
 .btn__container {
+  justify-content: center;
   position: relative;
+  display: flex;
   width: 100%;
 }
 
@@ -29,14 +31,6 @@
   border: 3px ridge var(--color-back);
   backdrop-filter: saturate(180%) blur(2px);
 }
-
-/* .btn--cancel {
-  background:
-    linear-gradient(45deg, transparent 45%, var(--color-metal) 45%, var(--color-metal) 55%, transparent 55%),
-    linear-gradient(-45deg, transparent 45%, var(--color-metal) 45%, var(--color-metal) 55%, transparent 55%);
-  background-size: 100% 100%;
-  border-radius: 4px;
-} */
 
 .btn--cancel{
   font-size: var(--sizeXL);
@@ -97,6 +91,7 @@
 
 
 /* Sizes */
+
 .btn--sizeS {
   padding: 5px 10px;
   font-size: var(--sizeS);
@@ -117,6 +112,11 @@
 .btn--sizeMax {
   width: 40%;
   height: min-content;
+}
+
+.btn--sizeMin{
+  padding: .5rem 1rem;
+  width: 100%;
 }
 
 /* States */
