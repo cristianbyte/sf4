@@ -51,7 +51,6 @@
   color: white;
   font-weight: bold;
    -webkit-text-stroke: .5px var(--color-font);
-  /* text-shadow: 0px 0px 2px var(--color-font); */
   background: linear-gradient(30deg, var(--color-metal) 35%, var(--color-font), var(--color-metal) 65%);
   -webkit-background-clip: text;
   background-clip: text;

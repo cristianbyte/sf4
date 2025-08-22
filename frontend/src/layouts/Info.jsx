@@ -16,7 +16,7 @@ const Info = ({ slide, setSlide }) => {
                 </div>
                 <Carousel currentSlide={slide} onSlideChange={setSlide} >
                     {data.map((fighter) => (
-                        <InfoCard key={fighter.id} data={fighter} />
+                        <InfoCard key={fighter.id} data={fighter} set={setSlide} />
                     ))}
                 </Carousel>
                 <div className='paper' >

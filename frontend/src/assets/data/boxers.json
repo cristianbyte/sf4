@@ -21,9 +21,16 @@
       "youtube": "https://www.youtube.com/@cristorata.7",
       "instagram": "https://www.instagram.com/cristorata7/",
       "x": "https://x.com/Cristorata7",
-      "tiktok" : "https://www.tiktok.com/@cristorata7"
+      "tiktok": "https://www.tiktok.com/@cristorata7"
     },
-    "bio": "Streamer y creador de contenido peruano. Con presencia en plataformas como TikTok y Kick."
+    "bio": "Streamer y creador de contenido peruano. Con presencia en plataformas como TikTok y Kick.",
+    "rival": {
+      "id": "jhdelac.ruz777",
+      "name": "JH de la Cruz",
+      "nickname": "JHDELACRUZ777",
+      "slide": 1,
+      "src": "/src/assets/images/JHdeLaCruz-min.png"
+    }
   },
   {
     "id": "jhdelac.ruz777",
@@ -47,9 +54,16 @@
       "youtube": "null",
       "instagram": "https://www.instagram.com/jhde.la.cruz777/",
       "x": "null",
-      "tiktok":"https://www.tiktok.com/@jhlives777"
+      "tiktok": "https://www.tiktok.com/@jhlives777"
     },
-    "bio": "Jhon Harrison de la Cruz Valencia, más conocido como JH de la Cruz, es un reconocido influencer y creador de contenido colombiano."
+    "bio": "Jhon Harrison de la Cruz Valencia, más conocido como JH de la Cruz, es un reconocido influencer y creador de contenido colombiano.",
+    "rival": {
+      "id": "cristorata7",
+      "name": "Cristopher Puente",
+      "nickname": "cristorata7",
+      "slide": 0,
+      "src": "/src/assets/images/Cristorata-min.png"
+    }
   },
   {
     "id": "karelyiruiz",
@@ -73,9 +87,16 @@
       "youtube": "null",
       "instagram": "https://www.instagram.com/karelyiruiz_/",
       "x": "null",
-      "tiktok":"https://www.tiktok.com/@karelyruizoficial01"
+      "tiktok": "https://www.tiktok.com/@karelyruizoficial01"
     },
-    "bio": "Reconocida influencer mexicana que ha logrado alcanzar los 10 millones de seguidores en Instagram, teniendo una gran trayectoria en redes sociales."
+    "bio": "Reconocida influencer mexicana que ha logrado alcanzar los 10 millones de seguidores en Instagram, teniendo una gran trayectoria en redes sociales.",
+    "rival": {
+      "id": "karinagarciaoficiall",
+      "name": "Karina García",
+      "nickname": "karinagarciaoficiall",
+      "slide": 3,
+      "src": "/src/assets/images/Karina-min.png"
+    }
   },
   {
     "id": "karinagarciaoficiall",
@@ -101,7 +122,14 @@
       "x": "null",
       "tiktok": "https://www.tiktok.com/@karinagarciaoficiall"
     },
-    "bio": "Modelo y creadora de contenido, participante de La casa de los famosos Colombia (LCDLF)."
+    "bio": "Modelo y creadora de contenido, participante de La casa de los famosos Colombia (LCDLF).",
+    "rival": {
+      "id": "karelyiruiz",
+      "name": "Karely Ruiz",
+      "nickname": "karelyiruiz_",
+      "slide": 2,
+      "src": "/src/assets/images/Karely-min.png"
+    }
   },
   {
     "id": "Belosmaki",
@@ -126,7 +154,14 @@
       "instagram": "https://www.instagram.com/belosmaki",
       "x": "null"
     },
-    "bio": "Participante colombiano del reality show 'El Desafío' conocido por su participación en las versiones 'Súper Humanos' en 2018 y 'The Box' en 2021. También es reconocido como influencer en redes sociales."
+    "bio": "Participante colombiano del reality show 'El Desafío' conocido por su participación en las versiones 'Súper Humanos' en 2018 y 'The Box' en 2021. También es reconocido como influencer en redes sociales.",
+    "rival": {
+      "id": "crissalva40",
+      "name": "Cristóbal Álvarez",
+      "nickname": "shelao",
+      "slide": 5,
+      "src": "/src/assets/images/Shelao-min.png"
+    }
   },
   {
     "id": "crissalva40",
@@ -151,7 +186,14 @@
       "instagram": "https://www.instagram.com/crissalva40/",
       "x": "null"
     },
-    "bio": "Modelo y streamer chileno. Fue el ganador del concurso de belleza masculina Míster Real Universe en 2015."
+    "bio": "Modelo y streamer chileno. Fue el ganador del concurso de belleza masculina Míster Real Universe en 2015.",
+    "rival": {
+      "id": "Belosmaki",
+      "name": "Belmer Ospina",
+      "nickname": "Belosmaki",
+      "slide": 4,
+      "src": "/src/assets/images/Belosmaki-min.png"
+    }
   },
   {
     "id": "may_osorio25",
@@ -177,7 +219,14 @@
       "x": "https://x.com/may_osorio2?lang=en",
       "tiktok": "https://www.tiktok.com/@may_osorioo20"
     },
-    "bio": "Estrella de TikTok colombiana conocida por su cuenta de may_osorio21, que ha conseguido 3.2 millones de seguidores."
+    "bio": "Estrella de TikTok colombiana conocida por su cuenta de may_osorio21, que ha conseguido 3.2 millones de seguidores.",
+    "rival": {
+      "id": "milica_yb",
+      "name": "Mica Ybañez",
+      "nickname": "milica_yb",
+      "slide": 7,
+      "src": "/src/assets/images/Milica-min.png"
+    }
   },
   {
     "id": "milica_yb",
@@ -201,9 +250,16 @@
       "youtube": "https://www.youtube.com/@milicaa_yb/videos",
       "instagram": "https://www.instagram.com/milica_yb",
       "x": "https://x.com/milica_yb",
-      "tiktok":"https://www.tiktok.com/@milica_yb"
+      "tiktok": "https://www.tiktok.com/@milica_yb"
     },
-    "bio": "Popular streamer y creadora de contenido argentina. Se ha destacado en plataformas como Twitch y YouTube, y también es reconocida en redes sociales."
+    "bio": "Popular streamer y creadora de contenido argentina. Se ha destacado en plataformas como Twitch y YouTube, y también es reconocida en redes sociales.",
+    "rival": {
+      "id": "may_osorio25",
+      "name": "María Osorio",
+      "nickname": "may_osorio25",
+      "slide": 6,
+      "src": "/src/assets/images/May-min.png"
+    }
   },
   {
     "id": "bykingcl",
@@ -228,7 +284,14 @@
       "instagram": "https://www.instagram.com/bykingcl/",
       "x": "https://x.com/ByKingcl"
     },
-    "bio": "Streamer chileno enfocado en entretenimiento en vivo con variedad de contenido gamer y real life."
+    "bio": "Streamer chileno enfocado en entretenimiento en vivo con variedad de contenido gamer y real life.",
+    "rival": {
+      "id": "thenino",
+      "name": "TheNino",
+      "nickname": "Theninoyt",
+      "slide": 9,
+      "src": "/src/assets/images/TheNino-min.png"
+    }
   },
   {
     "id": "thenino",
@@ -252,7 +315,14 @@
       "instagram": "https://www.instagram.com/theninoyt/",
       "x": "https://x.com/theninoytt"
     },
-    "bio": "Personalidad del mundo de los videojuegos y creador de contenidos de YouTube que saltó a la fama publicando vídeos de Garena Free Fire en su canal. Cuenta con más de 12 millones de suscriptores en la plataforma."
+    "bio": "Personalidad del mundo de los videojuegos y creador de contenidos de YouTube que saltó a la fama publicando vídeos de Garena Free Fire en su canal. Cuenta con más de 12 millones de suscriptores en la plataforma.",
+    "rival": {
+      "id": "bykingcl",
+      "name": "Joaquin Perez",
+      "nickname": "bykingcl",
+      "slide": 8,
+      "src": "/src/assets/images/Byking-min.png"
+    }
   },
   {
     "id": "andreavaldirisos",
@@ -276,9 +346,16 @@
       "youtube": "https://www.youtube.com/@AndreaValdirioficial",
       "instagram": "https://www.instagram.com/andreavaldirisos/",
       "x": "https://x.com/Andreovaldiri",
-      "tiktok":"https://www.tiktok.com/@andreavaldirisos1"
+      "tiktok": "https://www.tiktok.com/@andreavaldirisos1"
     },
-    "bio": "Reconocida creadora de contenido digital, empresaria y bailarina colombiana.Es conocida por su carisma, su belleza y su estilo de vida extravagante, que comparte con sus seguidores en redes sociales."
+    "bio": "Reconocida creadora de contenido digital, empresaria y bailarina colombiana.Es conocida por su carisma, su belleza y su estilo de vida extravagante, que comparte con sus seguidores en redes sociales.",
+    "rival": {
+      "id": "yinacalderontv",
+      "name": "Yina Calderón",
+      "nickname": "yinacalderontv",
+      "slide": 11,
+      "src": "/src/assets/images/Yina-min.png"
+    }
   },
   {
     "id": "yinacalderontv",
@@ -303,6 +380,13 @@
       "instagram": "https://www.instagram.com/yinacalderontv/",
       "x": "https://x.com/yinacalderoon"
     },
-    "bio": "Empresaria, influenciadora y DJ colombiana, conocida por su participación en el reality LCDLF Colombia y por su activa presencia en redes sociales."
+    "bio": "Empresaria, influenciadora y DJ colombiana, conocida por su participación en el reality LCDLF Colombia y por su activa presencia en redes sociales.",
+    "rival": {
+      "id": "andreavaldirisos",
+      "name": "Andrea Valdiri",
+      "nickname": "andreavaldirisos",
+      "slide": 10,
+      "src": "/src/assets/images/LaValdiri-min.png"
+    }
   }
 ]

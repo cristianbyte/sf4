@@ -1,65 +1,173 @@
-.infoCard{
+.infoCard {
     display: flex;
     justify-content: center;
     gap: 5vw;
     padding: 0vh 2vw;
 }
+
 .infoCard--name {
     line-height: var(--sizeXL);
     text-align: center;
     width: 100%;
-    h3{
+
+    h3 {
         font-size: var(--sizeXL);
+        font-weight: bold;
+        -webkit-text-stroke: .5px var(--color-font);
+        background: linear-gradient(30deg, var(--color-metal) 35%, var(--color-font), var(--color-metal) 65%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
     }
-    h5{
+
+    h5 {
         height: 0;
         position: relative;
         font-size: .8rem;
         width: 100%;
     }
 }
-.infoCard--pic{
+
+.infoCard--pic {
     display: flex;
     flex-direction: column;
     align-items: center;
-    max-width: 50%;
+    width: 50%;
     height: min-content;
     gap: 2vh;
 
-    img{
+    img {
+        width: 100%;
+        height: 100%;
         mask-image: linear-gradient(to bottom, #000000 85%, transparent 100%);
     }
 }
 
-.infoCard--social{
+.infoCard--social {
     display: flex;
     flex-direction: row;
     gap: 2vW;
 
 }
 
-.infoCard--data{
+.infoCard--stats {
+    position: relative;
     width: 50%;
+}
+
+.infoCard--vs {
+    position: absolute;
+    bottom: 5%;
+    right: 0;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    height: 25%;
+    transition: .3s ease;
+
+    h5 {
+        position: absolute;
+        bottom: -10px;
+        text-align: center;
+        width: 100%;
+        z-index: 100;
+        background: linear-gradient(30deg, var(--color-metal) 35%, var(--color-font), var(--color-metal) 65%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        mask-image: linear-gradient(to bottom, #000000 85%, transparent 100%);
+    }
+
+    .vs {
+        color: white;
+        font-weight: bold;
+        -webkit-text-stroke: .5px var(--color-font);
+        background: linear-gradient(30deg, var(--color-metal) 35%, var(--color-font), var(--color-metal) 65%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-size: var(--sizeL);
+        text-align: center;
+    }
+}
+
+.infoCard--vs:hover {
+    transform: scale(1.05);
+}
+
+.infoCard--vs::before {
+    position: absolute;
+    width: 100%;
+    left: -40%;
+    opacity: .9;
+    content: 'VS';
+    padding-right: 1rem;
+    color: white;
+    font-weight: bold;
+    background: linear-gradient(30deg, var(--color-metal) 35%, var(--color-font), var(--color-metal) 65%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align: center;
+    font-size: 3rem;
+    z-index: -1;
+}
+
+
+.infoCard--data {
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+    width: 100%;
 
 }
 
-.data-bio p{
-    font-size: var(--sizeS);
+.data-bio p {
+    font-size: calc(var(--sizeS) * .9);
     text-align: justify;
-    max-width: 90%;
+    max-width: 100%;
 }
 
-.infoCard--img{
+.infoCard--img {
     width: 100%;
     object-fit: contain;
 }
 
-.social-links__icon{
+.social-links__icon {
     width: var(--sizeXL);
     object-fit: contain;
 }
 
-.social-links__icon img{
+.social-links__icon img {
     width: 100%;
     height: 100%;
+}
+
+.col{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+.row{
+    display: flex;
+    flex-direction: row;
+    gap: 5vw;
+}
+
+@media (orientation: portrait) {
+    .data span, .data h3{
+        font-size: calc(var(--sizeS) * .7);
+    }
+    .data-bio p {
+    font-size: calc(var(--sizeS) * .7);
+    text-align: justify;
+    max-width: 100%;
+}
 }

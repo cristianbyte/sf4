@@ -43,7 +43,6 @@
 .carousel__track {
   display: flex;
   height: min-content;
-  align-items: center;
   height: min-content;
   transition: transform 0.3s ease;
 }

@@ -25,8 +25,8 @@ function countryCodeToFlagEmoji(code) {
         );
 }
 
-const InfoCard = ({ data }) => {
-    const countryName = countries[data.country] || data.country; 
+const InfoCard = ({ data, set = () => { } }) => {
+    const countryName = countries[data.country] || data.country;
     const countryFlag = countryCodeToFlagEmoji(data.country);
     const validSocial = Object.entries(data.social).filter(
         ([platform, url]) => url && url !== "null"
@@ -34,6 +34,7 @@ const InfoCard = ({ data }) => {
 
     return (
         <div className="infoCard">
+
             <div className="infoCard--pic">
                 <div className='infoCard--name' >
                     <h3>{data.name}</h3>
@@ -65,31 +66,44 @@ const InfoCard = ({ data }) => {
                     })}
                 </div>
             </div>
-            <div className="infoCard--data">
-                <div className="data">
-                    <h3>ORIGEN</h3>
-                    <span>
-                        {countryName} {countryFlag}
-                    </span>
+            <div className="infoCard--stats">
+                <div onClick={() => set(data.rival.slide)} className="infoCard--vs">
+                    <h5>{data.rival.name}</h5>
+                    <img src={data.rival.src} alt={data.rival.name} />
                 </div>
-                <div className="data">
-                    <h3>EDAD</h3>
-                    <span>{data.age} AÑOS</span>
-                </div>
-                <div className="data">
-                    <h3>PESO</h3>
-                    <span>{data.weight_kg} KG</span>
-                </div>
-                <div className="data">
-                    <h3>ESTATURA</h3>
-                    <span>{data.height_cm} CM</span>
-                </div>
-                <div className="data-bio">
-                    <p>
-                        {data.bio}
-                    </p>
+                <div className="infoCard--data">
+                    <div className="row">
+                        <div className="col">
+                            <div className="data">
+                                <h3>ORIGEN</h3>
+                                <span>
+                                    {countryName} {countryFlag}
+                                </span>
+                            </div>
+                            <div className="data">
+                                <h3>EDAD</h3>
+                                <span>{data.age} AÑOS</span>
+                            </div>
+                        </div>
+                        <div className="col">
+                            <div className="data">
+                                <h3 >PESO</h3>
+                                <span>{data.weight_kg} KG</span>
+                            </div>
+                            <div className="data">
+                                <h3>ESTATURA</h3>
+                                <span>{data.height_cm} CM</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="data-bio">
+                        <p>
+                            {data.bio}
+                        </p>
+                    </div>
                 </div>
             </div>
+
         </div>
     );
 };
