@@ -1,6 +1,7 @@
 CREATE EXTENSION IF NOT EXISTS "pgcrypto";
 
 DROP TABLE IF EXISTS votes;
+DROP TABLE IF EXISTS messages;
 DROP TABLE IF EXISTS users;
 
 CREATE TABLE  users (
@@ -20,8 +21,14 @@ CREATE TABLE  votes (
     location VARCHAR(6) NOT NULL,
     is_foreign boolean NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
-
     CONSTRAINT unique_user_fighter_vote UNIQUE (user_id, fighter)
+);
+
+CREATE TABLE messages (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  user_id UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  content VARCHAR(280) NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
 );
 
 
