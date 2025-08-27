@@ -18,14 +18,14 @@ const getAcceptedOrigins = () => {
     : DEV_ORIGINS;
 };
 
-export const corsMiddleware = cors({
+export const corsConfig = {
   origin: (origin, callback) => {
     const allowedOrigins = getAcceptedOrigins();
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
-      callback(new Error('Not allowed by CORS'));
+      callback(new Error("Not allowed by CORS"));
     }
   },
   credentials: true
-});
+};

@@ -4,10 +4,12 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import registerSchema from '../../schema/registerSchema'
 import loginSchema from '../../schema/loginSchema'
 import Button from "../common/Button";
+import { apiRequest } from '../../services/post';
+import { useUser } from '../../context/userCotext';
 import './authModal.css'
 
 const AuthModal = ({ isOpen, setIsOpen, onClose }) => {
-
+    const { setUser } = useUser();
     const currentSchema = isOpen === "login" ? loginSchema : registerSchema;
 
     const {
@@ -23,8 +25,18 @@ const AuthModal = ({ isOpen, setIsOpen, onClose }) => {
         console.log('Datos válidos:', data);
 
         if (isOpen === "login") {
-            // Lógica de login
-            console.log('Intentando login con:', data);
+
+            apiRequest("/user/login", "POST", { ...data })
+                .then(response => {
+                    console.log("Login success:", response);
+                    setUser(response);
+                    reset();
+                    onClose();
+                })
+                .catch(error => {
+                    console.log("Login failed:", error);
+                });
+
         } else {
             // Lógica de registro
             console.log('Intentando registro con:', data);

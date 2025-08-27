@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useEffect, useState } from 'react'
 import Main from './pages/main';
 import io from 'socket.io-client'
+import { UserProvider } from "./context/userCotext";
 
 function App() {
   const [socket, setSocket] = useState(null)
@@ -9,6 +10,7 @@ function App() {
 
   useEffect(() => {
     const newSocket = io('http://localhost:3000', {
+      withCredentials: true,
       transports: ['websocket', 'polling']
     })
 
@@ -31,11 +33,13 @@ function App() {
 
   return (
     <Router>
-      <div className="App">
-        <Routes>
-          <Route index element={<Main />} />
-        </Routes>
-      </div>
+      <UserProvider>
+        <div className="App">
+          <Routes>
+            <Route index element={<Main />} />
+          </Routes>
+        </div>
+      </UserProvider>
     </Router>
   );
 }
