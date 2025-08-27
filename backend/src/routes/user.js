@@ -7,11 +7,12 @@ import { authenticateToken } from '../middlewares/authenticateToken.js'
 const user = express.Router()
 
 user.post('/', validateSchema({body: userSchema}), createUser) 
+//LogOut
+user.get('/logout', logOut)
 user.get('/:userId', authenticateToken, validateSchema({params: uuidSchema}), getUserById)
 user.put('/setLocation', authenticateToken, validateSchema({body: locationWithUuidSchema}), setLocation)
 // LogIn
 user.post('/login', validateSchema({body: loginSchema}), logIn)
-user.get('/logout', logOut)
 // Delete User
 user.delete('/:userId', authenticateToken, validateSchema({params: uuidSchema}), destroyUser)
 

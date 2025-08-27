@@ -1,8 +1,8 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useEffect, useState } from 'react'
+import { UserProvider } from "./context/userCotext";
 import Main from './pages/main';
 import io from 'socket.io-client'
-import { UserProvider } from "./context/userCotext";
 
 function App() {
   const [socket, setSocket] = useState(null)

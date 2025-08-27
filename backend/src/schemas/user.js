@@ -35,10 +35,10 @@ export const locationWithUuidSchema = locationSchema.merge(uuidSchema).strict();
 export const passSchema = z.object({
   password: z
     .string()
-    .min(8, 'Wrong Password')
+    .min(8, 'Invalid credentials')
     .regex(
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/,
-      'Wrong Password'
+      'Invalid credentials'
     )
 })
 export const loginSchema = mailSchema.merge(passSchema).strict();

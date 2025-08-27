@@ -1,15 +1,18 @@
 import { createPortal } from 'react-dom';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useState } from 'react';
 import registerSchema from '../../schema/registerSchema'
 import loginSchema from '../../schema/loginSchema'
 import Button from "../common/Button";
-import { apiRequest } from '../../services/post';
+import { apiRequest } from '../../services/request';
 import { useUser } from '../../context/userCotext';
 import './authModal.css'
 
 const AuthModal = ({ isOpen, setIsOpen, onClose }) => {
-    const { setUser } = useUser();
+    const { setUser, setIsLoading } = useUser();
+    const [serverResponse, setServerResponse] = useState('');
+
     const currentSchema = isOpen === "login" ? loginSchema : registerSchema;
 
     const {
@@ -22,31 +25,51 @@ const AuthModal = ({ isOpen, setIsOpen, onClose }) => {
     });
 
     const onSubmit = (data) => {
-        console.log('Datos válidos:', data);
-
+        setServerResponse('');
+        setIsLoading(true);
+        
         if (isOpen === "login") {
-
             apiRequest("/user/login", "POST", { ...data })
                 .then(response => {
-                    console.log("Login success:", response);
                     setUser(response);
                     reset();
                     onClose();
                 })
                 .catch(error => {
-                    console.log("Login failed:", error);
-                });
+                    const errorData = error.response?.data;
+                    if (errorData?.details && errorData.details.length > 0) {
+                        setServerResponse(errorData.details[0].message );
+                    } else {
+                        setServerResponse(error.response?.data.message || 'Error desconocido');
+                    }
+                })
+                .finally(() => setIsLoading(false));
 
         } else {
-            // Lógica de registro
-            console.log('Intentando registro con:', data);
+            apiRequest("/user", "POST", { ...data })
+                .then(response => {
+                    console.log("Register success:", response);
+                    const message = response?.message || 'Registro exitoso';
+                    reset();
+                    setServerResponse(message);
+                })
+                .catch(error => {
+                    const errorData = error.response?.data;
+                    console.log(error);
+                    if (errorData?.details && errorData.details.length > 0) {
+                        setServerResponse(errorData.details[0].message );
+                    } else {
+                        setServerResponse(error.response?.data.message || 'Error desconocido');
+                    }
+                })
+                .finally(() => setIsLoading(false));
         }
     };
 
-    // Cambiar entre login/register y resetear errores
     const switchMode = (mode) => {
         setIsOpen(mode);
-        reset(); // Limpia errores y valores del form anterior
+        reset();
+        setServerResponse('');
     };
 
     return createPortal(
@@ -79,12 +102,10 @@ const AuthModal = ({ isOpen, setIsOpen, onClose }) => {
 
                     <div className="auth-inputs">
                         <div className="input-group">
-                            <label htmlFor="email">Email</label>
+                            <label htmlFor="email" onClick={()=>setIsLoading(true)} >Email</label>
                             <input
                                 {...register('email')}
-                                type="email"
                                 id="email"
-                                autoComplete="off"
                                 className={errors.email ? 'error-input' : ''}
                             />
                             {errors.email && <span className="error-message">{errors.email.message}</span>}
@@ -92,21 +113,20 @@ const AuthModal = ({ isOpen, setIsOpen, onClose }) => {
 
                         {isOpen === "enroll" && (
                             <div className="input-group">
-                                <label htmlFor="username">Username</label>
+                                <label htmlFor="name" >Nombre</label>
                                 <input
-                                    {...register('username')}
+                                    {...register('name')}
                                     type="text"
                                     autoComplete="off"
-
-                                    id="username"
-                                    className={errors.username ? 'error-input' : ''}
+                                    id="name"
+                                    className={errors.name ? 'error-input' : ''}
                                 />
-                                {errors.username && <span className="error-message">{errors.username.message}</span>}
+                                {errors.name && <span className="error-message">{errors.name.message}</span>}
                             </div>
                         )}
 
                         <div className="input-group">
-                            <label htmlFor="password">Password</label>
+                            <label htmlFor="password">Contraseña</label>
                             <input
                                 {...register('password')}
                                 type="password"
@@ -120,6 +140,12 @@ const AuthModal = ({ isOpen, setIsOpen, onClose }) => {
                             {isOpen === "login" ? "Entrar" : "Registrarme"}
                         </button>
                     </div>
+
+                    {serverResponse && (
+                        <div className="server-response">
+                            {serverResponse}
+                        </div>
+                    )}
 
                 </form>
             </div>

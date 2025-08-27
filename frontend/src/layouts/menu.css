@@ -23,7 +23,6 @@
     }
 }
 
-
 .menu .btn__container:nth-of-type(1){
     margin-right: auto;
 }
@@ -31,4 +30,15 @@
 .access{
     display: flex;
     gap: 2vw;
+}
+
+.user-menu{
+    display: flex;
+}
+
+.user-logOut{
+    fill: none;
+    stroke: var(--color-font);
+    width: 2rem;
+    height: 100%;
 }
