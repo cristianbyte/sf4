@@ -13,21 +13,21 @@ import Byking from '../assets/images/Byking-min.png';
 import './poster.css';
 
 const leftFighters = [
+    { name: "Yina", img: Yina },
     { name: "JHdeLaCruz", img: JHdeLaCruz },
     { name: "Karina", img: Karina },
     { name: "Shelao", img: Shelao },
     { name: "Milica", img: Milica },
-    { name: "TheNino", img: TheNino },
-    { name: "Yina", img: Yina }
+    { name: "TheNino", img: TheNino }
 ];
 
 const rightFighters = [
+    { name: "La Valdiri", img: LaValdiri },
     { name: "Cristorata", img: Cristorata },
     { name: "Karely", img: Karely },
     { name: "Belosmaki", img: Belosmaki },
     { name: "May", img: May },
-    { name: "Byking", img: Byking },
-    { name: "La Valdiri", img: LaValdiri }
+    { name: "Byking", img: Byking }
 ];
 
 
@@ -52,11 +52,10 @@ const Poster = ({slide, setSlide}) => {
                     {leftFighters.map((fighter, index) => (
                         <a key={index}
                         onClick={() => {
-                            setSlide(((index)*2)+1);
+                            setSlide((index*2) + 1);
                             document.getElementById('carousel').scrollIntoView({ behavior: 'smooth' });
                         }} className="fighter-pic">
                             <div
-                                
                                 onMouseEnter={() => handleFighterHover(index, true)}
                                 onMouseLeave={() => handleFighterHover(index, false)}
                             >
@@ -73,7 +72,7 @@ const Poster = ({slide, setSlide}) => {
                     {rightFighters.map((fighter, index) => (
                         <a key={index} 
                         onClick={() => {
-                            setSlide((index)*2);
+                            setSlide(index*2);
                             document.getElementById('carousel').scrollIntoView({ behavior: 'smooth' });
                         }} className="fighter-pic">
                             <div

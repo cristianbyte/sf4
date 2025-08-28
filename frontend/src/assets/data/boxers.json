@@ -1,4 +1,69 @@
 [
+    {
+    "id": "andreavaldirisos",
+    "name": "Andrea Valdiri",
+    "nickname": "andreavaldirisos",
+    "age": 33,
+    "weight_kg": 68.3,
+    "height_cm": 1.79,
+    "category": "Creadora de contenido",
+    "country": "CO",
+    "team": "LaValdiri",
+    "src": "/src/assets/images/LaValdiri-min.png",
+    "stats": {
+      "wins": 0,
+      "losses": 0,
+      "draws": 0
+    },
+    "social": {
+      "kick": "https://kick.com/andreavaldiri",
+      "twitch": "null",
+      "youtube": "https://www.youtube.com/@AndreaValdirioficial",
+      "instagram": "https://www.instagram.com/andreavaldirisos/",
+      "x": "https://x.com/Andreovaldiri",
+      "tiktok": "https://www.tiktok.com/@andreavaldirisos1"
+    },
+    "bio": "Reconocida creadora de contenido digital, empresaria y bailarina colombiana.Es conocida por su carisma, su belleza y su estilo de vida extravagante, que comparte con sus seguidores en redes sociales.",
+    "rival": {
+      "id": "yinacalderontv",
+      "name": "Yina Calderón",
+      "nickname": "yinacalderontv",
+      "slide": 1,
+      "src": "/src/assets/images/Yina-min.png"
+    }
+  },
+  {
+    "id": "yinacalderontv",
+    "name": "Yina Calderón",
+    "nickname": "yinacalderontv",
+    "age": 33,
+    "weight_kg": 64.0,
+    "height_cm": 1.77,
+    "category": "Creadora de contenido",
+    "country": "CO",
+    "team": "Yina",
+    "src": "/src/assets/images/Yina-min.png",
+    "stats": {
+      "wins": 0,
+      "losses": 0,
+      "draws": 0
+    },
+    "social": {
+      "kick": "null",
+      "twitch": "null",
+      "youtube": "https://www.youtube.com/@Yinacalderonartista",
+      "instagram": "https://www.instagram.com/yinacalderontv/",
+      "x": "https://x.com/yinacalderoon"
+    },
+    "bio": "Empresaria, influenciadora y DJ colombiana, conocida por su participación en el reality LCDLF Colombia y por su activa presencia en redes sociales.",
+    "rival": {
+      "id": "andreavaldirisos",
+      "name": "Andrea Valdiri",
+      "nickname": "andreavaldirisos",
+      "slide": 0,
+      "src": "/src/assets/images/LaValdiri-min.png"
+    }
+  },
   {
     "id": "cristorata7",
     "name": "Cristopher Puente",
@@ -28,7 +93,7 @@
       "id": "jhdelac.ruz777",
       "name": "JH de la Cruz",
       "nickname": "JHDELACRUZ777",
-      "slide": 1,
+      "slide": 3,
       "src": "/src/assets/images/JHdeLaCruz-min.png"
     }
   },
@@ -61,7 +126,7 @@
       "id": "cristorata7",
       "name": "Cristopher Puente",
       "nickname": "cristorata7",
-      "slide": 0,
+      "slide": 2,
       "src": "/src/assets/images/Cristorata-min.png"
     }
   },
@@ -94,7 +159,7 @@
       "id": "karinagarciaoficiall",
       "name": "Karina García",
       "nickname": "karinagarciaoficiall",
-      "slide": 3,
+      "slide": 5,
       "src": "/src/assets/images/Karina-min.png"
     }
   },
@@ -127,7 +192,7 @@
       "id": "karelyiruiz",
       "name": "Karely Ruiz",
       "nickname": "karelyiruiz_",
-      "slide": 2,
+      "slide": 4,
       "src": "/src/assets/images/Karely-min.png"
     }
   },
@@ -159,7 +224,7 @@
       "id": "crissalva40",
       "name": "Cristóbal Álvarez",
       "nickname": "shelao",
-      "slide": 5,
+      "slide": 7,
       "src": "/src/assets/images/Shelao-min.png"
     }
   },
@@ -191,7 +256,7 @@
       "id": "Belosmaki",
       "name": "Belmer Ospina",
       "nickname": "Belosmaki",
-      "slide": 4,
+      "slide": 6,
       "src": "/src/assets/images/Belosmaki-min.png"
     }
   },
@@ -224,7 +289,7 @@
       "id": "milica_yb",
       "name": "Mica Ybañez",
       "nickname": "milica_yb",
-      "slide": 7,
+      "slide": 9,
       "src": "/src/assets/images/Milica-min.png"
     }
   },
@@ -257,7 +322,7 @@
       "id": "may_osorio25",
       "name": "María Osorio",
       "nickname": "may_osorio25",
-      "slide": 6,
+      "slide": 8,
       "src": "/src/assets/images/May-min.png"
     }
   },
@@ -289,7 +354,7 @@
       "id": "thenino",
       "name": "TheNino",
       "nickname": "Theninoyt",
-      "slide": 9,
+      "slide": 11,
       "src": "/src/assets/images/TheNino-min.png"
     }
   },
@@ -320,73 +385,8 @@
       "id": "bykingcl",
       "name": "Joaquin Perez",
       "nickname": "bykingcl",
-      "slide": 8,
-      "src": "/src/assets/images/Byking-min.png"
-    }
-  },
-  {
-    "id": "andreavaldirisos",
-    "name": "Andrea Valdiri",
-    "nickname": "andreavaldirisos",
-    "age": 33,
-    "weight_kg": 68.3,
-    "height_cm": 1.79,
-    "category": "Creadora de contenido",
-    "country": "CO",
-    "team": "LaValdiri",
-    "src": "/src/assets/images/LaValdiri-min.png",
-    "stats": {
-      "wins": 0,
-      "losses": 0,
-      "draws": 0
-    },
-    "social": {
-      "kick": "https://kick.com/andreavaldiri",
-      "twitch": "null",
-      "youtube": "https://www.youtube.com/@AndreaValdirioficial",
-      "instagram": "https://www.instagram.com/andreavaldirisos/",
-      "x": "https://x.com/Andreovaldiri",
-      "tiktok": "https://www.tiktok.com/@andreavaldirisos1"
-    },
-    "bio": "Reconocida creadora de contenido digital, empresaria y bailarina colombiana.Es conocida por su carisma, su belleza y su estilo de vida extravagante, que comparte con sus seguidores en redes sociales.",
-    "rival": {
-      "id": "yinacalderontv",
-      "name": "Yina Calderón",
-      "nickname": "yinacalderontv",
-      "slide": 11,
-      "src": "/src/assets/images/Yina-min.png"
-    }
-  },
-  {
-    "id": "yinacalderontv",
-    "name": "Yina Calderón",
-    "nickname": "yinacalderontv",
-    "age": 33,
-    "weight_kg": 64.0,
-    "height_cm": 1.77,
-    "category": "Creadora de contenido",
-    "country": "CO",
-    "team": "Yina",
-    "src": "/src/assets/images/Yina-min.png",
-    "stats": {
-      "wins": 0,
-      "losses": 0,
-      "draws": 0
-    },
-    "social": {
-      "kick": "null",
-      "twitch": "null",
-      "youtube": "https://www.youtube.com/@Yinacalderonartista",
-      "instagram": "https://www.instagram.com/yinacalderontv/",
-      "x": "https://x.com/yinacalderoon"
-    },
-    "bio": "Empresaria, influenciadora y DJ colombiana, conocida por su participación en el reality LCDLF Colombia y por su activa presencia en redes sociales.",
-    "rival": {
-      "id": "andreavaldirisos",
-      "name": "Andrea Valdiri",
-      "nickname": "andreavaldirisos",
       "slide": 10,
-      "src": "/src/assets/images/LaValdiri-min.png"
+      "src": "/src/assets/images/Byking-min.png"
     }
   }
 ]
