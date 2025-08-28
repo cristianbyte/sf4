@@ -1,4 +1,4 @@
-
+import './voteCard.css'
 
 const VoteCard = ({ fighter1, fighter2 }) => {
 
