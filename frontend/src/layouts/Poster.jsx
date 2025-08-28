@@ -12,7 +12,7 @@ import TheNino from '../assets/images/TheNino-min.png';
 import Byking from '../assets/images/Byking-min.png';
 import './poster.css';
 
-const leftFighters = [
+export const leftFighters = [
     { name: "Yina", img: Yina },
     { name: "JHdeLaCruz", img: JHdeLaCruz },
     { name: "Karina", img: Karina },
@@ -21,7 +21,7 @@ const leftFighters = [
     { name: "TheNino", img: TheNino }
 ];
 
-const rightFighters = [
+export const rightFighters = [
     { name: "La Valdiri", img: LaValdiri },
     { name: "Cristorata", img: Cristorata },
     { name: "Karely", img: Karely },

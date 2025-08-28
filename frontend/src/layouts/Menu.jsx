@@ -18,7 +18,7 @@ const Menu = () => {
                 />
             )}
             <div className="menu">
-                <a href="/combates">Combates</a>
+                <a href="#vote">votar</a>
                 <Button
                     size="sizeS"
                     className="started"
