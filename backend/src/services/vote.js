@@ -1,6 +1,15 @@
 import Vote from '../models/Vote.js';
 import { HttpError } from '../error/HttpError.js'
 import { findOpponent } from '../utils/fights.js';
+import { readFileSync } from 'fs';
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+const fighterList = JSON.parse(readFileSync(join(__dirname, '../docs/fighters.json'), 'utf8'));
+const fighters = fighterList.fighters;
 
 export const getAllVotes = async () => {
     try {
@@ -10,15 +19,34 @@ export const getAllVotes = async () => {
         }
         const colVotes = votes
             .filter(vote => vote.isForeign == false)
-            .map(({ isForeign, ...rest }) => rest);
+            .map(({ isForeign, voteCount, ...rest }) => ({
+                ...rest,
+                voteCount: Number(voteCount)
+            }));
 
         const foreignVotes = votes
             .filter(vote => vote.isForeign == true)
-            .map(({ isForeign, ...rest }) => rest);
+            .map(({ isForeign, voteCount, ...rest }) => ({
+                ...rest,
+                voteCount: Number(voteCount)
+            }));
+
+        const totalVotes = {};
+        fighters.forEach(f => {
+            totalVotes[f] = 0;
+        })
+
+        colVotes.forEach(v => {
+            totalVotes[v.fighterName] += v.voteCount;
+        })
+        foreignVotes.forEach(v => {
+            totalVotes[v.fighterName] += v.voteCount;
+        })
 
         const formattedVotes = {
             col: colVotes,
-            foreign: foreignVotes
+            foreign: foreignVotes,
+            total: totalVotes
         }
 
         return formattedVotes;
