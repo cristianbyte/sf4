@@ -37,9 +37,13 @@
     gap: 2vh;
 
     img {
+        transition: .2s ease all;
         width: 100%;
         height: 100%;
         mask-image: linear-gradient(to bottom, #000000 85%, transparent 100%);
+    }
+    img:hover{
+        filter: drop-shadow(0 0 1rem var(--color-punch));
     }
 }
 
@@ -129,7 +133,7 @@
 }
 
 .data-bio p {
-    font-size: calc(var(--sizeS) * .9);
+    font-size: calc(var(--sizeS) * 1);
     text-align: justify;
     max-width: 100%;
 }
@@ -163,10 +167,10 @@
 
 @media (orientation: portrait) {
     .data span, .data h3{
-        font-size: calc(var(--sizeS) * .7);
+        font-size: var(--sizeS);
     }
     .data-bio p {
-    font-size: calc(var(--sizeS) * .7);
+    font-size: calc(var(--sizeS) * .9);
     text-align: justify;
     max-width: 100%;
 }
