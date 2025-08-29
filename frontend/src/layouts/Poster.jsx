@@ -14,7 +14,7 @@ import './poster.css';
 
 export const leftFighters = [
     { name: "Yina", img: Yina },
-    { name: "JHdeLaCruz", img: JHdeLaCruz },
+    { name: "JHdelaCruz", img: JHdeLaCruz },
     { name: "Karina", img: Karina },
     { name: "Shelao", img: Shelao },
     { name: "Milica", img: Milica },
@@ -22,14 +22,13 @@ export const leftFighters = [
 ];
 
 export const rightFighters = [
-    { name: "La Valdiri", img: LaValdiri },
+    { name: "LaValdiri", img: LaValdiri },
     { name: "Cristorata", img: Cristorata },
     { name: "Karely", img: Karely },
     { name: "Belosmaki", img: Belosmaki },
     { name: "May", img: May },
     { name: "Byking", img: Byking }
 ];
-
 
 const Poster = ({slide, setSlide}) => {
     const handleFighterHover = (index, isEntering) => {
@@ -76,7 +75,6 @@ const Poster = ({slide, setSlide}) => {
                             document.getElementById('carousel').scrollIntoView({ behavior: 'smooth' });
                         }} className="fighter-pic">
                             <div
-                                
                                 onMouseEnter={() => handleFighterHover(index, true)}
                                 onMouseLeave={() => handleFighterHover(index, false)}
                             >
