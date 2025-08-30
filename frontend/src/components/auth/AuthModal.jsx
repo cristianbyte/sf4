@@ -32,6 +32,7 @@ const AuthModal = ({ isOpen, setIsOpen, onClose }) => {
             apiRequest("/user/login", "POST", { ...data })
                 .then(response => {
                     setUser(response);
+                    console.log(response);
                     reset();
                     onClose();
                 })

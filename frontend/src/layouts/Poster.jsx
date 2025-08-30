@@ -12,24 +12,23 @@ import TheNino from '../assets/images/TheNino-min.png';
 import Byking from '../assets/images/Byking-min.png';
 import './poster.css';
 
-const leftFighters = [
+export const leftFighters = [
     { name: "Yina", img: Yina },
-    { name: "JHdeLaCruz", img: JHdeLaCruz },
+    { name: "JHdelaCruz", img: JHdeLaCruz },
     { name: "Karina", img: Karina },
     { name: "Shelao", img: Shelao },
     { name: "Milica", img: Milica },
     { name: "TheNino", img: TheNino }
 ];
 
-const rightFighters = [
-    { name: "La Valdiri", img: LaValdiri },
+export const rightFighters = [
+    { name: "LaValdiri", img: LaValdiri },
     { name: "Cristorata", img: Cristorata },
     { name: "Karely", img: Karely },
     { name: "Belosmaki", img: Belosmaki },
     { name: "May", img: May },
     { name: "Byking", img: Byking }
 ];
-
 
 const Poster = ({slide, setSlide}) => {
     const handleFighterHover = (index, isEntering) => {
@@ -76,7 +75,6 @@ const Poster = ({slide, setSlide}) => {
                             document.getElementById('carousel').scrollIntoView({ behavior: 'smooth' });
                         }} className="fighter-pic">
                             <div
-                                
                                 onMouseEnter={() => handleFighterHover(index, true)}
                                 onMouseLeave={() => handleFighterHover(index, false)}
                             >
