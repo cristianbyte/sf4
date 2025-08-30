@@ -2,9 +2,14 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin: 5vh 0 20vh 0;
     h2{
         font-size: var(--sizeXL);
         padding: 0 1rem;
         text-align: center;
     }
+}
+
+.voteCard:nth-of-type(3){
+    background-color: red;
 }

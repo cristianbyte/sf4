@@ -1,6 +1,62 @@
+import { apiRequest } from '../../services/request';
+import { useState } from 'react';
+import { useUser } from '../../context/userCotext'
 import './voteCard.css'
 
 const VoteCard = ({ fighter1, fighter2 }) => {
+    const { user, setUser } = useUser();
+    const [locationError, setLocationError] = useState(false);
+
+    const getLocation = async () => {
+        const response = await fetch('http://ip-api.com/json/?fields=status,countryCode,region');
+        const data = await response.json();
+        
+        if (data.status !== 'success') {
+            throw new Error('Failed to get location');
+        }
+        
+        const locationData = {
+            location: data.countryCode === "CO" ? `${data.countryCode}-${data.region}` : data.countryCode,
+            countryCode: data.countryCode,
+        };
+
+        setUser(prev => ({
+            ...prev,
+            ...locationData,
+            hasLocation: true
+        }));
+
+        return locationData;
+    };
+
+    const voteFor = async (fighterName) => {
+        try {
+            let locationData;
+            
+            if (!user?.hasLocation) {
+                locationData = await getLocation();
+            } else {
+                locationData = {
+                    location: user.location,
+                    countryCode: user.countryCode
+                };
+            }
+
+            await apiRequest('/vote', 'POST', {
+                fighterName: fighterName,
+                isForeign: locationData.countryCode !== 'CO',
+                location: locationData.location,
+                userId: user.userId
+            }).then((res)=>{
+                console.log(res);
+            }
+            );
+
+        } catch (error) {
+            console.error('Error voting:', error);
+            setLocationError(true);
+        }
+    };
 
     const totalVotes = fighter1.votes + fighter2.votes;
     const fighter1Percentage = totalVotes > 0 ? (fighter1.votes / totalVotes) * 100 : 50;
@@ -9,8 +65,8 @@ const VoteCard = ({ fighter1, fighter2 }) => {
     return (
         <div className="voteCard">
             <div className="voteCard-pics">
-                <img src={fighter1.img} alt={fighter1.name} />
-                <img src={fighter2.img} alt={fighter2.name} />
+                <img onClick={() => voteFor(fighter1.name)} src={fighter1.img} alt={fighter1.name} />
+                <img onClick={() => voteFor(fighter2.name)} src={fighter2.img} alt={fighter2.name} />
                 <div className="voteCard--names">
                     <h3 className='shine-high'>{fighter1.name}</h3>
                     <h3 className='shine-high'>{fighter2.name}</h3>

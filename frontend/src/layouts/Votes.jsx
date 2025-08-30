@@ -12,7 +12,6 @@ const Votes = () => {
         const fetchVotes = async () => {
             try {
                 const votes = await apiRequest('/vote', 'GET');
-                console.log(votes);
                 setLeftFightersList(leftFighters.map(f => ({
                     ...f,
                     votes: (votes?.total && votes.total[f.name]) || 0
@@ -35,27 +34,33 @@ const Votes = () => {
         <div className='votes'>
             <h2 className='shine-low' >Vota por tu favorito</h2>
             <div className="votes-container">
+            <div className="votes-principal">
                 <VoteCard
                     fighter1={leftFightersList[0]}
                     fighter2={rightFightersList[0]}
                 />
-                                <VoteCard
+            </div>
+            <div className="votes-secondary">
+                <VoteCard
                     fighter1={leftFightersList[1]}
                     fighter2={rightFightersList[1]}
                 />
-                                <VoteCard
+                <VoteCard
                     fighter1={leftFightersList[2]}
                     fighter2={rightFightersList[2]}
                 />
-                                <VoteCard
+            </div>
+            <div className="votes-secondary">
+                <VoteCard
                     fighter1={leftFightersList[3]}
                     fighter2={rightFightersList[3]}
                 />
-                                <VoteCard
+                <VoteCard
                     fighter1={leftFightersList[4]}
                     fighter2={rightFightersList[4]}
                 />
-                                <VoteCard
+            </div>
+                <VoteCard
                     fighter1={leftFightersList[5]}
                     fighter2={rightFightersList[5]}
                 />
