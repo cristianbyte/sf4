@@ -20,11 +20,11 @@ const VoteCard = ({ fighter1, fighter2 }) => {
             countryCode: data.countryCode,
         };
 
-        setUser(prev => ({
-            ...prev,
+        setUser({
+            ...user,
             ...locationData,
             hasLocation: true
-        }));
+        });
 
         return locationData;
     };
