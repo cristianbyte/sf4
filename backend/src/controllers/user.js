@@ -2,7 +2,7 @@ import * as userService from '../services/user.js'
 
 export const getUserById = async (req, res, next) => {
   try {
-    const user = await userService.getById(req.params.userId);
+    const user = await userService.getById(req.user.userId);
     res.status(200).json(user);
   } catch (err) {
     next(err);
