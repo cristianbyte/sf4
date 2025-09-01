@@ -1,5 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Oswald:wght@200..700&display=swap');
 
+@view-transition{
+  navigation: auto;
+}
+
+::view-transition-group(*){
+  animation-duration: .4s;
+}
+
+::view-transition-old(root){
+  animation: slide-out-left .4s forwards;
+}
+
+::view-transition-new(rott){
+  animation: slide-out-left .4s forwards;
+}
+
 :root {
   --color-kick: #53fc18;
   --color-punch: #fe0a09;
@@ -144,5 +160,13 @@ svg {
 
   100% {
     transform: rotate(360deg);
+  }
+}
+
+@keyframes slide-out-left {
+  0%{
+    transform: translateX(0);
+  }100%{
+    transform: translateX(-100%);
   }
 }
