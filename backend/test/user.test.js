@@ -78,9 +78,9 @@ describe('User login and deletion tests', () => {
     assert.ok(cookie, 'Cookie should be returned');
   });
 
-  test('GET user by ID (200)', async () => {
+  test('GET user session (200)', async () => {
     const response = await request(app)
-      .get(`/api/user/${userIdTest}`)
+      .get(`/api/user/me`)
       .set('Cookie', cookie);
 
     assert.strictEqual(response.statusCode, 200);

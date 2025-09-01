@@ -2,14 +2,14 @@ import express from 'express'
 import { validateSchema } from '../middlewares/validateSchema.js'
 import { userSchema, loginSchema, uuidSchema, locationWithUuidSchema } from '../schemas/user.js'
 import { createUser, destroyUser, logIn, logOut, getUserById, setLocation } from '../controllers/user.js'
-import { authenticateToken } from '../middlewares/authenticateToken.js'
+import { authenticateToken, authenticateUser } from '../middlewares/authenticateToken.js'
 
 const user = express.Router()
 
 user.post('/', validateSchema({body: userSchema}), createUser) 
 //LogOut
 user.get('/logout', logOut)
-user.get('/:userId', authenticateToken, validateSchema({params: uuidSchema}), getUserById)
+user.get('/me', authenticateUser, getUserById)
 user.put('/setLocation', authenticateToken, validateSchema({body: locationWithUuidSchema}), setLocation)
 // LogIn
 user.post('/login', validateSchema({body: loginSchema}), logIn)

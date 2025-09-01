@@ -7,16 +7,27 @@ export function UserProvider({ children }) {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  useEffect(() => {
-    const savedUser = localStorage.getItem(USER_STORAGE_KEY);
-    if (savedUser) {
-      try {
-        setUser(JSON.parse(savedUser));
-      } catch (error) {
-        localStorage.removeItem(USER_STORAGE_KEY);
+useEffect(() => {
+  const fetchUser = async () => {
+    setIsLoading(true);
+    try {
+      const getUser = await apiRequest('/user/me', "GET");
+      if (getUser) {
+        setUser(getUser);
       }
+    } catch (error) {
+      if (error.status === 401) {
+        setUser(null);
+      } else {
+        console.error("Unexpected error fetching user:", error);
+      }
+    } finally {
+      setIsLoading(false);
     }
-  }, []);
+  };
+
+  fetchUser();
+}, []);
 
   const updateUser = (userData) => {
     setUser(userData);
