@@ -4,10 +4,19 @@ import { sanitizeRes } from '../utils/sanitazeRes.js';
 
 class User {
   static async create(userData) {
-    const saltRounds = 12;
     const data = { ...userData };
+    const saltRounds = 12;
+
+    if (data.role === 'GUEST') {
+      data.password = null;
+      data.email = null;
+    } else {
+      data.role = 'USER';
+      data.password = await bcrypt.hash(data.password, saltRounds);
+      data.email = data.email.toLowerCase();
+    }
+
     const keys = Object.keys(data);
-    data.password = await bcrypt.hash(data.password, saltRounds);
     const values = Object.values(data);
     const placeholders = keys.map((_, i) => `$${i + 1}`);
 
@@ -33,6 +42,10 @@ class User {
   }
 
   static async login({ email, password }) {
+    if (!email) {
+      return false;
+    }
+    email = email.toLowerCase();
     const query = `SELECT id as "userId", name, email, password FROM users WHERE email = $1`;
     const result = await pool.query(query, [email]);
 

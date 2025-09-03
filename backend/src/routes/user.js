@@ -1,12 +1,13 @@
 import express from 'express'
 import { validateSchema } from '../middlewares/validateSchema.js'
-import { userSchema, loginSchema, uuidSchema, locationWithUuidSchema } from '../schemas/user.js'
+import { userSchema, guestSchema, loginSchema, uuidSchema, locationWithUuidSchema } from '../schemas/user.js'
 import { createUser, destroyUser, logIn, logOut, getUserById, setLocation } from '../controllers/user.js'
 import { authenticateToken, authenticateUser } from '../middlewares/authenticateToken.js'
 
 const user = express.Router()
 
-user.post('/', validateSchema({body: userSchema}), createUser) 
+user.post('/', validateSchema({body: userSchema}), createUser)
+user.post('/guest', validateSchema({body: guestSchema}), createUser) 
 //LogOut
 user.get('/logout', logOut)
 user.get('/me', authenticateUser, getUserById)

@@ -18,7 +18,21 @@ export const userSchema = z.object({
     .regex(
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/,
       'Password must include at least one uppercase letter, one lowercase letter, and one number'
-    )
+    ),
+    role: z.literal("USER")
+}).strict();
+
+export const guestSchema = z.object({
+  name: z
+    .string()
+    .min(3, 'Name must be at least 3 characters')
+    .max(15, 'Name is too long, max: 15 characters')
+    .regex(/^[\p{L}\d]+$/u, { message: 'Only letters and numbers are allowed' })
+    .refine((val) => !containsBadWords(val), {
+      message: 'Name contains inappropriate language'
+    }),
+
+  role: z.literal("GUEST")
 }).strict();
 
 export const uuidSchema = z.object({

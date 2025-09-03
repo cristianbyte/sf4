@@ -11,7 +11,16 @@ export const getUserById = async (req, res, next) => {
 
 export const createUser = async (req, res, next) => {
   try {
-    const newUser = await userService.create(req.body);
+    const { newUser, token } = await userService.create(req.body);
+    if (token) {
+      const cookieOptions = {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: process.env.NODE_ENV === 'production' ? 'strict' : 'lax',
+        maxAge: 1000 * 60 * 60 * 24 * 30, // 30 days  
+      }
+      res.cookie('access_token', token, cookieOptions);
+    }
     res.status(201).json(newUser);
   } catch (err) {
     next(err)
@@ -55,8 +64,8 @@ export const logOut = (req, res) => {
     path: '/'
   });
 
-  res.status(200).json({ 
-    message: 'Successfully logged out' 
+  res.status(200).json({
+    message: 'Successfully logged out'
   });
 };
 

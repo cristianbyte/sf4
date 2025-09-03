@@ -14,9 +14,25 @@ export const getById = async (id) => {
 
 export const create = async (userData) => {
   try {
+
     const newUser = await User.create(userData)
     console.log(`[+]: [${newUser.name}] ${new Date().toLocaleString()}`);
-    return newUser
+
+    if(newUser.role === 'GUEST'){
+      const token = jwt.sign(
+        {
+          userId: newUser.userId,
+          name: newUser.name,
+          role: newUser.role
+        },
+        SECRET_JWT_KEY,
+        { expiresIn: "30d" }
+      );
+  
+      return { newUser, token };
+    }
+    return { newUser, token: null};
+
   } catch (error) {
     if (error.code === '23505' && error.constraint === 'users_email_key') {
       throw new HttpError('Email already exists', 409);
@@ -39,7 +55,17 @@ export const login = async (userData) => {
   if (!user) {
     throw new HttpError('Invalid credentials', 400);
   }
-  const token = jwt.sign({ userId: user.userId, name: user.name, email: user.email }, SECRET_JWT_KEY, { expiresIn: '12h' })
+
+  const token = jwt.sign(
+    {
+      userId: user.userId,
+      name: user.name,
+      email: user.email,
+      role: user.role
+    },
+    SECRET_JWT_KEY,
+    { expiresIn: "30d" }
+  );
 
   return { user, token };
 };

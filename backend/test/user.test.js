@@ -10,11 +10,13 @@ let userTest = {
   name: 'Camile',
   email: 'camile@example.com',
   password: 'passStrong67',
+  role : 'USER'
 }
 let fakeUserName = {
   name: '<br>alert("x")</br>',
   email: 'fake@email.com',
   password: 'passStrong67',
+  role : 'USER'
 }
 
 describe('User login and deletion tests', () => {
@@ -27,7 +29,7 @@ describe('User login and deletion tests', () => {
     assert.strictEqual(response.statusCode, 201);
     assert.deepStrictEqual(
       Object.keys(response.body).sort(),
-      ['userId', 'name', 'email', 'created_at'].sort()
+      ['userId', 'name', 'email', 'created_at', 'role'].sort()
     );
 
     userIdTest = response.body.userId;
@@ -109,5 +111,43 @@ describe('User login and deletion tests', () => {
       .set('Cookie', cookie);
 
     assert.strictEqual(response.status, 204);
+  });
+});
+
+describe('Guest user creation tests', () => {
+  test('Should create a guest user and return JWT cookie (200)', async () => {
+    const response = await request(app)
+      .post('/api/user/guest')
+      .send({ name: 'guest123', role: 'GUEST' });
+
+    assert.strictEqual(response.statusCode, 201);
+
+    const cookie = response.headers['set-cookie']?.[0];
+    console.log(response.body);
+    assert.ok(cookie, 'JWT cookie should be returned');
+    assert.ok(response.body.userId, 'Guest userId should exist');
+    assert.strictEqual(response.body.role, 'GUEST');
+  });
+
+  test('Should fail if role is not GUEST (400)', async () => {
+    const response = await request(app)
+      .post('/api/user/guest')
+      .send({ name: 'notAGuest', role: 'USER' });
+
+    assert.strictEqual(response.statusCode, 400);
+
+    const cookie = response.headers['set-cookie']?.[0];
+    assert.ok(!cookie, 'Cookie should NOT be returned on invalid role');
+  });
+
+  test('Should fail validation if schema fields are invalid (400)', async () => {
+    const response = await request(app)
+      .post('/api/user/guest')
+      .send({ name: '', role: 'GUEST' }); // nombre vacío rompe el schema
+
+    assert.strictEqual(response.statusCode, 400);
+
+    const cookie = response.headers['set-cookie']?.[0];
+    assert.ok(!cookie, 'Cookie should NOT be returned on schema validation error');
   });
 });
