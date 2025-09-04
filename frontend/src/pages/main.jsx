@@ -3,6 +3,7 @@ import Header from "../layouts/Header";
 import Partners from "../layouts/Partners"
 import Info from "../layouts/Info";
 import Videos from "../layouts/Videos";
+import Menu from "../layouts/Menu";
 import Votes from "../layouts/Votes";
 import './main.css';
 
@@ -11,11 +12,11 @@ const main = () => {
     return (
     <>
         <div className="main__container">
-
+            <Menu />
             <Header slide={slide}
                 setSlide={setSlide}  />
-            <Info   slide={slide}
-                setSlide={setSlide}/>
+            {/* <Info   slide={slide}
+                setSlide={setSlide}/> */}
             <Votes />
             {/* <Videos /> */}
             <Partners />

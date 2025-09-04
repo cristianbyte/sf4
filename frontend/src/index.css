@@ -1,19 +1,40 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Oswald:wght@200..700&display=swap');
 
-@view-transition{
-  navigation: auto;
+@view-transition {
+    navigation: auto;
 }
 
-::view-transition-group(*){
-  animation-duration: .4s;
+::view-transition-old(root),
+::view-transition-new(root) {
+    animation: ease-in .4s forwards;
 }
 
-::view-transition-old(root){
-  animation: slide-out-left .4s forwards;
+::view-transition-old(root) {
+    animation-name: paint-brush-out;
+    z-index: 2;
 }
 
-::view-transition-new(rott){
-  animation: slide-out-left .4s forwards;
+::view-transition-new(root) {
+    animation-name: paint-brush-in;
+    z-index: 1;
+}
+
+@keyframes paint-brush-out {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes paint-brush-in {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }
 
 :root {
@@ -50,6 +71,7 @@ html {
   overflow-x: hidden;
   overflow-y: visible;
   scroll-behavior: smooth;
+  background-color: var(--color-back);
 }
 
 body {

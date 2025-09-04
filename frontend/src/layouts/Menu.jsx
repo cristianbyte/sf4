@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useUser } from '../context/userCotext';
+import { useViewTransitionNavigate } from "../hooks/useViewTransitionNav";
 import Button from "../components/common/Button";
 import AuthModal from "../components/auth/AuthModal";
 import './menu.css';
@@ -7,6 +8,8 @@ import './menu.css';
 const Menu = () => {
     const [showAuth, setShowAuth] = useState(false);
     const { user, logout } = useUser();
+    const transitionNavigate = useViewTransitionNavigate();
+
 
     return (
         <div className="menu__container">
@@ -20,12 +23,14 @@ const Menu = () => {
             <div className="menu">
                 <Button
                     size="sizeS"
-                    onClick={() => { }}
+                    onClick={() => {
+                        document.getElementById('votes').scrollIntoView({ behavior: 'smooth' });
+                    }}
                     children={"VOTOS"}
                 />
                 <Button
                     size="sizeS"
-                    onClick={() => { }}
+                    onClick={(e) => { transitionNavigate(e, '/') }}
                     children={"COMBATES"}
                 />
                 <Button

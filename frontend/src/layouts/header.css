@@ -20,7 +20,7 @@ span{
   overflow: hidden;
   width: 100dvw;
   height: 105dvh;
-  z-index: -1;
+  z-index: 0;
   object-fit: cover;
 }
 
