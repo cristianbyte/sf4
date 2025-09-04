@@ -2,7 +2,7 @@ import pool from '../../config/database.js';
 
 class Vote {
   static async getVotesByUserId(userId) {
-    const query = `SELECT votes.fighter as voted_for, votes.id as id 
+    const query = `SELECT votes.fighter as fighter, votes.id as id 
         FROM users
         JOIN votes ON users.id = votes.user_id
         WHERE users.id = $1;`;

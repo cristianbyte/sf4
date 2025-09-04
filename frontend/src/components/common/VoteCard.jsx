@@ -1,20 +1,22 @@
 import { apiRequest } from '../../services/request';
 import { useState } from 'react';
 import { useUser } from '../../context/userCotext'
+import ModalVote from './ModalVote';
 import './voteCard.css'
 
 const VoteCard = ({ fighter1, fighter2 }) => {
     const { user, setUser } = useUser();
     const [locationError, setLocationError] = useState(false);
+    const [showModal, setShowModal] = useState(false);
 
     const getLocation = async () => {
         const response = await fetch('http://ip-api.com/json/?fields=status,countryCode,region');
         const data = await response.json();
-        
+
         if (data.status !== 'success') {
             throw new Error('Failed to get location');
         }
-        
+
         const locationData = {
             location: data.countryCode === "CO" ? `${data.countryCode}-${data.region}` : data.countryCode,
             countryCode: data.countryCode,
@@ -32,7 +34,7 @@ const VoteCard = ({ fighter1, fighter2 }) => {
     const voteFor = async (fighterName) => {
         try {
             let locationData;
-            
+
             if (!user?.hasLocation) {
                 locationData = await getLocation();
             } else {
@@ -47,8 +49,8 @@ const VoteCard = ({ fighter1, fighter2 }) => {
                 isForeign: locationData.countryCode !== 'CO',
                 location: locationData.location,
                 userId: user.userId
-            }).then((res)=>{
-                console.log(res);
+            }).then((res) => {
+                setUser({res});
             }
             );
 
@@ -64,9 +66,14 @@ const VoteCard = ({ fighter1, fighter2 }) => {
 
     return (
         <div className="voteCard">
+            {showModal && <ModalVote onClose={() => setShowModal(false)} figther1={fighter1} figther2={fighter2} func={voteFor} />}
             <div className="voteCard-pics">
-                <img onClick={() => voteFor(fighter1.name)} src={fighter1.img} alt={fighter1.name} />
-                <img onClick={() => voteFor(fighter2.name)} src={fighter2.img} alt={fighter2.name} />
+                <div className={user?.votes?.some(f => f.fighter == fighter1.name ) ? `isFavorite` : ""}>
+                    <img onClick={() => setShowModal(true)} src={fighter1.img} alt={fighter1.name} />
+                </div>
+                <div className={user?.votes?.some(f => f.fighter == fighter2.name ) ? `isFavorite` : ""}>
+                    <img onClick={() => setShowModal(true)} src={fighter2.img} alt={fighter2.name} />
+                </div>
                 <div className="voteCard--names">
                     <h3 className='shine-high'>{fighter1.name}</h3>
                     <h3 className='shine-high'>{fighter2.name}</h3>

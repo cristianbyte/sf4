@@ -1,6 +1,7 @@
 export const sanitizeRes = (user) => {
-    const { password, ...safeUser } = user;
-    return safeUser;
+  if (!user) return null;
+  const { password, ...safeUser } = user;
+  return safeUser;
 };
 
 export const sanitizeLogin = (data) => {

@@ -1,0 +1,63 @@
+.modal-vote {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #000000AA;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+}
+
+.modal-vote-content {
+    width: min(90vw, 600px);
+    height: min(50vh, 500px);
+    background-color: var(--color-back);
+    box-shadow: 0 0 1rem .3rem var(--color-punch);
+    display: flex;
+    border-radius: 4px;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.modal-title {
+    position: absolute;
+    font-size: var(--sizeM) !important;
+}
+
+.modal-vote-options {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+}
+
+.modal-vote-option {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.modal-vote-option img {
+    mask-image: linear-gradient(to bottom, #000000 85%, transparent 100%);
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    transition: .2s ease all;
+}
+
+.modal-vote-option img:hover {
+    transform: scale(1.05);
+    filter: drop-shadow(0 0 1rem var(--color-punch));
+}
