@@ -1,40 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Oswald:wght@200..700&display=swap');
 
 @view-transition {
-    navigation: auto;
-}
-
-::view-transition-old(root),
-::view-transition-new(root) {
-    animation: ease-in .4s forwards;
+  navigation: auto;
 }
 
 ::view-transition-old(root) {
-    animation-name: paint-brush-out;
-    z-index: 2;
+  animation: fadeOut 1s ease-out forwards;
 }
 
 ::view-transition-new(root) {
-    animation-name: paint-brush-in;
-    z-index: 1;
+  animation: fadeIn 1s ease-in forwards;
 }
 
-@keyframes paint-brush-out {
-    0% {
-        opacity: 1;
-    }
-    100% {
-        opacity: 0;
-    }
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
 }
 
-@keyframes paint-brush-in {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 :root {
@@ -189,9 +174,11 @@ svg {
 }
 
 @keyframes slide-out-left {
-  0%{
+  0% {
     transform: translateX(0);
-  }100%{
+  }
+
+  100% {
     transform: translateX(-100%);
   }
 }

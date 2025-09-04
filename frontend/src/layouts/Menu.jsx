@@ -10,7 +10,6 @@ const Menu = () => {
     const { user, logout } = useUser();
     const transitionNavigate = useViewTransitionNavigate();
 
-
     return (
         <div className="menu__container">
             {showAuth && (

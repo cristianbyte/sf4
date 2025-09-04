@@ -1,4 +1,5 @@
 import { useViewTransitionNavigate } from '../hooks/useViewTransitionNav';
+import {useNavigate} from 'react-router-dom';
 import Yina from '../assets/images/Yina-min.png';
 import LaValdiri from '../assets/images/LaValdiri-min.png';
 import JHdeLaCruz from '../assets/images/JHdeLaCruz-min.png';
@@ -33,7 +34,18 @@ export const rightFighters = [
 
 const Poster = ({ slide, setSlide }) => {
 
-    const transitionNavigate = useViewTransitionNavigate();
+    // const transitionNavigate = useViewTransitionNavigate();
+      const navigate = useNavigate();
+
+  const handleClick = ( to) => {
+    if (document.startViewTransition) {
+      document.startViewTransition(() => {
+        navigate(to);
+      });
+    } else {
+      navigate(to);
+    }
+  };
 
     const handleFighterHover = (index, isEntering) => {
         const leftFighter = document.querySelector(`.fighters-left .fighter-pic:nth-child(${index + 1})`);
@@ -53,17 +65,17 @@ const Poster = ({ slide, setSlide }) => {
             <div className="poster__left">
                 <div className="fighters-left">
                     {leftFighters.map((fighter, index) => (
-                        <a key={index}
-                            onClick={(e) => { transitionNavigate(e,fighter.url) }}
+                        <div key={index}
+                            onClick={() => handleClick( fighter.url)}
                             className="fighter-pic">
                             <div
                                 onMouseEnter={() => handleFighterHover(index, true)}
                                 onMouseLeave={() => handleFighterHover(index, false)}
                             >
                                 <p className='fighter-name'>{fighter.name}</p>
-                                <img src={fighter.img} alt={fighter.name} />
+                                <img src={fighter.img} alt={fighter.name} style={{ viewTransitionName: `image-${fighter.name}` }} />
                             </div>
-                        </a>
+                        </div>
                     ))}
                 </div>
             </div>
@@ -71,17 +83,17 @@ const Poster = ({ slide, setSlide }) => {
             <div className="poster__right">
                 <div className="fighters-right">
                     {rightFighters.map((fighter, index) => (
-                        <a key={index}
-                            onClick={(e) => { transitionNavigate(e,fighter.url) }}
+                        <div key={index}
+                            onClick={() => transitionNavigate(null, fighter.url)}
                             className="fighter-pic">
                             <div
                                 onMouseEnter={() => handleFighterHover(index, true)}
                                 onMouseLeave={() => handleFighterHover(index, false)}
                             >
                                 <p className='fighter-name'>{fighter.name}</p>
-                                <img src={fighter.img} alt={fighter.name} />
+                                <img src={fighter.img} alt={fighter.name} style={{ viewTransitionName: `img-${fighter.name}` }} />
                             </div>
-                        </a>
+                        </div>
                     ))}
                 </div>
             </div>

@@ -1,12 +1,12 @@
-import { useViewTransitionNavigate } from "../../hooks/useViewTransitionNav"
+import { leftFighters, rightFighters } from "../../layouts/Poster";
 import countries from "../../assets/data/ISO3166-1.json";
+import boxers from '../../assets/data/boxers.json'
 import X from '../../assets/icons/X-min.png';
 import Kick from '../../assets/icons/Kick-min.png';
 import Instagram from '../../assets/icons/instagram-min.png';
 import Youtube from '../../assets/icons/Youtube-min.png';
 import Twitch from '../../assets/icons/Twitch-min.png';
 import Tiktok from '../../assets/icons/Tiktok-min.png'
-import boxers from '../../assets/data/boxers.json'
 import Menu from "../../layouts/Menu"
 import Partners from "../../layouts/Partners"
 import './luchador.css'
@@ -21,9 +21,10 @@ function countryCodeToFlagEmoji(code) {
 }
 
 const Luchador = ({name}) => {
+
+    const images = [...leftFighters, ...rightFighters];
+
     const data = boxers.filter(boxer => boxer.id === name)[0];
-    console.log(data);
-    const transitionNavigate = useViewTransitionNavigate();
     const countryName = countries[data.country] || data.country;
     const countryFlag = countryCodeToFlagEmoji(data.country);
     const socialIcons = {
@@ -37,6 +38,7 @@ const Luchador = ({name}) => {
     const validSocial = Object.entries(data.social).filter(
         ([platform, url]) => url && url !== "null"
     );
+    const myphoto = images.find(e =>e.name == data.id);
     return (
         <>
             <Menu />
@@ -44,7 +46,7 @@ const Luchador = ({name}) => {
 
 
                 <div className="luchador__fighter">
-                    <img src={data.src} alt={data.name} />
+                    <img src={myphoto.img} alt={data.name} style={{ viewTransitionName: `image-${data.id}` }} />
                 </div>
 
                 <div className="luchador-data">
