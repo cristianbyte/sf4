@@ -30,7 +30,25 @@ class User {
   }
 
   static async getById(userId) {
-    const query = `SELECT id as "userId", name, email, created_at FROM users WHERE id = $1`;
+    const query = `SELECT 
+    u.id AS "userId",
+    u.name,
+    u.email,
+    u.location,
+    u.created_at,
+    COALESCE(
+      json_agg(
+        json_build_object(
+          'voteId', v.id,
+          'fighter', v.fighter,
+          'createdAt', v.created_at
+        )
+      ) FILTER (WHERE v.id IS NOT NULL), '[]'
+    ) AS votes
+FROM users u
+LEFT JOIN votes v ON u.id = v.user_id
+WHERE u.id = $1
+GROUP BY u.id, u.name, u.email, u.created_at;`;
     const result = await pool.query(query, [userId]);
     return sanitizeRes(result.rows[0]);
   }

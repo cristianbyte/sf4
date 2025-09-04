@@ -1,28 +1,51 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Oswald:wght@200..700&display=swap');
 
-@view-transition{
-  navigation: auto;
+@view-transition {
+    navigation: auto;
 }
 
-::view-transition-group(*){
-  animation-duration: .4s;
+::view-transition-old(root),
+::view-transition-new(root) {
+    animation: ease-in .4s forwards;
 }
 
-::view-transition-old(root){
-  animation: slide-out-left .4s forwards;
+::view-transition-old(root) {
+    animation-name: paint-brush-out;
+    z-index: 2;
 }
 
-::view-transition-new(rott){
-  animation: slide-out-left .4s forwards;
+::view-transition-new(root) {
+    animation-name: paint-brush-in;
+    z-index: 1;
+}
+
+@keyframes paint-brush-out {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes paint-brush-in {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }
 
 :root {
   --color-kick: #53fc18;
   --color-punch: #fe0a09;
+  --color-blood: #780606;
   --color-back: #000000;
-  --color-font: #EEEEEE;
+  --color-font: #ffffff;
   --color-metal: #9f9f9f;
-  --color-shadow: #373737;
+  --color-shadow: #4b4b4b;
+  --color-silver: #d1d1d1;
   --sizeXL: calc((50vw + 100vh) / 40);
   --sizeL: calc((50vw + 100vh) / 50);
   --sizeM: calc((50vw + 100vh) / 60);
@@ -48,6 +71,7 @@ html {
   overflow-x: hidden;
   overflow-y: visible;
   scroll-behavior: smooth;
+  background-color: var(--color-back);
 }
 
 body {
@@ -103,6 +127,7 @@ svg {
   font-weight: bold;
   background: linear-gradient(30deg, var(--color-metal) 35%, var(--color-font), var(--color-metal) 65%);
   background-clip: text;
+  padding-right: 10px;
   -webkit-text-fill-color: transparent;
 }
 

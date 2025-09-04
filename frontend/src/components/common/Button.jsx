@@ -25,7 +25,7 @@ const Button = ({
                 <a
                     href={href}
                     target="_blank"
-                    rel="noopener noreferrer"
+                    rel="noopener"
                     className={buttonClass}
                     {...props}
                 >

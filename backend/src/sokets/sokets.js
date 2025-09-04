@@ -15,7 +15,6 @@ export default function registerSocketHandlers(io) {
         console.log("Authenticated user:", payload.email);
       } else {
         socket.user = null;
-        console.log("Anonymous user connected:", socket.id);
       }
 
       next();

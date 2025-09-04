@@ -1,3 +1,4 @@
+import { useViewTransitionNavigate } from '../hooks/useViewTransitionNav';
 import Yina from '../assets/images/Yina-min.png';
 import LaValdiri from '../assets/images/LaValdiri-min.png';
 import JHdeLaCruz from '../assets/images/JHdeLaCruz-min.png';
@@ -13,24 +14,27 @@ import Byking from '../assets/images/Byking-min.png';
 import './poster.css';
 
 export const leftFighters = [
-    { name: "Yina", img: Yina },
-    { name: "JHdelaCruz", img: JHdeLaCruz },
-    { name: "Karina", img: Karina },
-    { name: "Shelao", img: Shelao },
-    { name: "Milica", img: Milica },
-    { name: "TheNino", img: TheNino }
+    { name: "Yina", img: Yina, url: "/luchador/yina" },
+    { name: "JHdelaCruz", img: JHdeLaCruz, url: "/luchador/jhdelacruz"  },
+    { name: "Karina", img: Karina, url: "/luchador/karina"  },
+    { name: "Shelao", img: Shelao, url: "/luchador/shelao"  },
+    { name: "Milica", img: Milica, url: "/luchador/milica"  },
+    { name: "TheNino", img: TheNino, url: "/luchador/thenino"  },
 ];
 
 export const rightFighters = [
-    { name: "LaValdiri", img: LaValdiri },
-    { name: "Cristorata", img: Cristorata },
-    { name: "Karely", img: Karely },
-    { name: "Belosmaki", img: Belosmaki },
-    { name: "May", img: May },
-    { name: "Byking", img: Byking }
+    { name: "LaValdiri", img: LaValdiri, url: "luchador/lavaldiri" },
+    { name: "Cristorata", img: Cristorata, url: "/luchador/cristorata"  },
+    { name: "Karely", img: Karely, url: "/luchador/karely"  },
+    { name: "Belosmaki", img: Belosmaki, url: "/luchador/belosmaki"  },
+    { name: "May", img: May, url: "/luchador/may"  },
+    { name: "Byking", img: Byking, url: "/luchador/byking"  }
 ];
 
-const Poster = ({slide, setSlide}) => {
+const Poster = ({ slide, setSlide }) => {
+
+    const transitionNavigate = useViewTransitionNavigate();
+
     const handleFighterHover = (index, isEntering) => {
         const leftFighter = document.querySelector(`.fighters-left .fighter-pic:nth-child(${index + 1})`);
         const rightFighter = document.querySelector(`.fighters-right .fighter-pic:nth-child(${index + 1})`);
@@ -45,15 +49,13 @@ const Poster = ({slide, setSlide}) => {
     };
     return (
         <div className="poster__container">
-            
+
             <div className="poster__left">
                 <div className="fighters-left">
                     {leftFighters.map((fighter, index) => (
                         <a key={index}
-                        onClick={() => {
-                            setSlide((index*2) + 1);
-                            document.getElementById('carousel').scrollIntoView({ behavior: 'smooth' });
-                        }} className="fighter-pic">
+                            onClick={(e) => { transitionNavigate(e,fighter.url) }}
+                            className="fighter-pic">
                             <div
                                 onMouseEnter={() => handleFighterHover(index, true)}
                                 onMouseLeave={() => handleFighterHover(index, false)}
@@ -69,11 +71,9 @@ const Poster = ({slide, setSlide}) => {
             <div className="poster__right">
                 <div className="fighters-right">
                     {rightFighters.map((fighter, index) => (
-                        <a key={index} 
-                        onClick={() => {
-                            setSlide(index*2);
-                            document.getElementById('carousel').scrollIntoView({ behavior: 'smooth' });
-                        }} className="fighter-pic">
+                        <a key={index}
+                            onClick={(e) => { transitionNavigate(e,fighter.url) }}
+                            className="fighter-pic">
                             <div
                                 onMouseEnter={() => handleFighterHover(index, true)}
                                 onMouseLeave={() => handleFighterHover(index, false)}

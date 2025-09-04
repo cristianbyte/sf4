@@ -57,13 +57,13 @@ export const getAllVotes = async () => {
 
 export const getVotes = async (userId) => {
     try {
-        const voted_for = await Vote.getVotesByUserId(userId);
+        const fighter = await Vote.getVotesByUserId(userId);
 
-        if (!voted_for || voted_for.length === 0) {
+        if (!fighter || fighter.length === 0) {
             return [];
         }
 
-        const convert = voted_for.map(v => v.voted_for);
+        const convert = fighter.map(v => v.fighter);
         return convert;
     } catch (err) {
         throw new HttpError('Unexpected error at: GetVotes', 400);
@@ -74,11 +74,11 @@ export const registryVote = async (data) => {
     const existingVotes = await Vote.getVotesByUserId(data.userId);
     const opponent = await findOpponent(data.fighterName);
 
-    if (existingVotes.some(vote => vote.voted_for === data.fighterName)) {
+    if (existingVotes.some(vote => vote.fighter === data.fighterName)) {
         throw new HttpError('You have already voted for this fighter', 409);
     }
 
-    const actualVote = existingVotes.find(vote => vote.voted_for == opponent);
+    const actualVote = existingVotes.find(vote => vote.fighter == opponent);
     if (actualVote) {
         try {
             const response = await Vote.updateVote({

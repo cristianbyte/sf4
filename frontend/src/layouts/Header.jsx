@@ -12,10 +12,17 @@ const Header = ({ slide, setSlide }) => {
 
   return (
     <header className="header__container">
-      <Menu />
       <Poster slide={slide}
         setSlide={setSlide} />
-      <video className="video-bg" autoPlay muted loop playsInline >
+      <video
+        className="video-bg"
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="auto"
+        onError={(e) => console.error('Error loading video:', e)}
+      >
         <source src={bgVideo} type="video/webm" />
         <source src={bgVideoAlt} type="video/mp4" />
         Your browser does not support video playback.

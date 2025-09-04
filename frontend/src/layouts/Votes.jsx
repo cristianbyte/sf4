@@ -31,7 +31,7 @@ const Votes = () => {
     }, []);
 
     return (
-        <div className='votes'>
+        <div className='votes' id='votes'>
             <h2 className='shine-low' >Vota por tu favorito</h2>
             <div className="votes-container">
             <div className="votes-principal">
