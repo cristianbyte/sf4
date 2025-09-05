@@ -46,7 +46,7 @@ const Luchador = ({name}) => {
 
 
                 <div className="luchador__fighter">
-                    <img src={myphoto.img} alt={data.name} style={{ viewTransitionName: `image-${data.id}` }} />
+                    <img src={myphoto.img} alt={data.name} />
                 </div>
 
                 <div className="luchador-data">
