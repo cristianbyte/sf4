@@ -9,7 +9,9 @@ const DEV_ORIGINS = [
 
 const PROD_ORIGINS = [
   'https://coder.red',
-  'https://sf4.coder.red'
+  'https://sf4.coder.red',
+  'https://sf4.vercel.app/',
+  'https://streamfighters.lat/'
 ];
 
 const getAcceptedOrigins = () => {

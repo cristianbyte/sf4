@@ -30,6 +30,7 @@
     "zod": "3.25.74"
   },
   "devDependencies": {
+    "@flydotio/dockerfile": "^0.7.10",
     "standard": "17.1.2",
     "supertest": "^7.1.3"
   },
