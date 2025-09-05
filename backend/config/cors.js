@@ -11,7 +11,8 @@ const PROD_ORIGINS = [
   'https://coder.red',
   'https://sf4.coder.red',
   'https://sf4.vercel.app/',
-  'https://streamfighters.lat/'
+  'https://streamfighters.lat/',
+  'sf4-n6rhgb23o-cristianbytes-projects.vercel.app'
 ];
 
 const getAcceptedOrigins = () => {
