@@ -1,4 +1,4 @@
-export const API_URL = "https://sf4-backend.fly.dev/";
+export const API_URL = "https://sf4-backend.fly.dev/api";
 
 export async function apiRequest(endpoint, method, body) {
   const config = {
