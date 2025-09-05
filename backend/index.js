@@ -1,6 +1,6 @@
 import { jsonSyntaxErrorHandler, errorHandler } from './src/middlewares/errorHandler.js'
 import { methodNotAllowedHandler, notFoundHandler } from './src/middlewares/badRequest.js'
-import initDatabase, { PORT } from './config/config.js'
+import initDatabase from './config/config.js'
 import { corsConfig } from './config/cors.js'
 import { createServer } from 'node:http'
 import { Server } from 'socket.io'
@@ -46,8 +46,9 @@ app.use(errorHandler)
 
 await initDatabase()
 
-server.listen(PORT, () => {
-  console.log(`Server is running on: http://localhost:${PORT}`)
-})
+const PORT = process.env.PORT || 8080;
+server.listen(PORT, '0.0.0.0', () => {
+  console.log(`Server is running on: http://0.0.0.0:${PORT}`);
+});
 
 export default app

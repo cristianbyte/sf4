@@ -10,7 +10,7 @@ const VoteCard = ({ fighter1, fighter2 }) => {
     const [showModal, setShowModal] = useState(false);
 
     const getLocation = async () => {
-        const response = await fetch('http://ip-api.com/json/?fields=status,countryCode,region');
+        const response = await fetch('https://ipapi.co/json/');
         const data = await response.json();
 
         if (data.status !== 'success') {
@@ -18,8 +18,8 @@ const VoteCard = ({ fighter1, fighter2 }) => {
         }
 
         const locationData = {
-            location: data.countryCode === "CO" ? `${data.countryCode}-${data.region}` : data.countryCode,
-            countryCode: data.countryCode,
+            location: data.country_code === "CO" ? `${data.country_code}-${data.region_code}` : data.country_code,
+            countryCode: data.country_code,
         };
 
         setUser({
@@ -50,7 +50,7 @@ const VoteCard = ({ fighter1, fighter2 }) => {
                 location: locationData.location,
                 userId: user.userId
             }).then((res) => {
-                setUser({res});
+                setUser({ res });
             }
             );
 
@@ -68,10 +68,10 @@ const VoteCard = ({ fighter1, fighter2 }) => {
         <div className="voteCard">
             {showModal && <ModalVote onClose={() => setShowModal(false)} figther1={fighter1} figther2={fighter2} func={voteFor} />}
             <div className="voteCard-pics">
-                <div className={user?.votes?.some(f => f.fighter == fighter1.name ) ? `isFavorite` : ""}>
+                <div className={user?.votes?.some(f => f.fighter == fighter1.name) ? `isFavorite` : ""}>
                     <img onClick={() => setShowModal(true)} src={fighter1.img} alt={fighter1.name} />
                 </div>
-                <div className={user?.votes?.some(f => f.fighter == fighter2.name ) ? `isFavorite` : ""}>
+                <div className={user?.votes?.some(f => f.fighter == fighter2.name) ? `isFavorite` : ""}>
                     <img onClick={() => setShowModal(true)} src={fighter2.img} alt={fighter2.name} />
                 </div>
                 <div className="voteCard--names">

@@ -1,4 +1,3 @@
-import cors from 'cors';
 
 const DEV_ORIGINS = [
   'http://localhost:5173',
@@ -10,9 +9,9 @@ const DEV_ORIGINS = [
 const PROD_ORIGINS = [
   'https://coder.red',
   'https://sf4.coder.red',
-  'https://sf4.vercel.app/',
-  'https://streamfighters.lat/',
-  'sf4-n6rhgb23o-cristianbytes-projects.vercel.app'
+  'https://sf4.vercel.app',
+  'https://streamfighters.lat',
+  'https://sf4-n6rhgb23o-cristianbytes-projects.vercel.app'
 ];
 
 const getAcceptedOrigins = () => {
@@ -27,8 +26,10 @@ export const corsConfig = {
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
-      callback(new Error("Not allowed by CORS"));
+      callback(null, false);
     }
   },
-  credentials: true
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"]
 };
