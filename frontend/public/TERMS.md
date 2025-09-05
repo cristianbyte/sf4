@@ -55,7 +55,7 @@ Al acceder y utilizar esta plataforma, aceptas los presentes Términos y Condici
 ---
 
 ## 9. Contacto
-Para dudas, sugerencias o solicitudes relacionadas con tus datos, puedes escribir a: **https://coder.red/contact**
+Para dudas, sugerencias o solicitudes relacionadas con tus datos, puedes escribir a: _____________
 
 ---
 

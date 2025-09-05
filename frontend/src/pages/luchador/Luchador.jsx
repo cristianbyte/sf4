@@ -11,22 +11,12 @@ import Menu from "../../layouts/Menu"
 import Partners from "../../layouts/Partners"
 import './luchador.css'
 
-function countryCodeToFlagEmoji(code) {
-    if (!code) return "🏳️";
-    return code
-        .toUpperCase()
-        .replace(/./g, char =>
-            String.fromCodePoint(char.charCodeAt(0) + 127397)
-        );
-}
-
-const Luchador = ({name}) => {
+const Luchador = ({ name }) => {
 
     const images = [...leftFighters, ...rightFighters];
 
     const data = boxers.filter(boxer => boxer.id === name)[0];
     const countryName = countries[data.country] || data.country;
-    const countryFlag = countryCodeToFlagEmoji(data.country);
     const socialIcons = {
         x: X,
         kick: Kick,
@@ -38,7 +28,7 @@ const Luchador = ({name}) => {
     const validSocial = Object.entries(data.social).filter(
         ([platform, url]) => url && url !== "null"
     );
-    const myphoto = images.find(e =>e.name == data.id);
+    const myphoto = images.find(e => e.name == data.id);
     return (
         <>
             <Menu />
@@ -55,7 +45,7 @@ const Luchador = ({name}) => {
                             <div className="data">
                                 <h3>ORIGEN</h3>
                                 <span>
-                                    {countryName} {countryFlag}
+                                    {countryName}
                                 </span>
                             </div>
                             <div className="data">
@@ -74,13 +64,14 @@ const Luchador = ({name}) => {
                             </div>
                         </div>
                     </div>
+                    <div className="luchador__info">
+                        <p>
+                            {data.bio}
+                        </p>
+                    </div>
                 </div>
 
-                <div className="luchador__info">
-                    <p>
-                        {data.bio}
-                    </p>
-                </div>
+
 
                 <div className="luchador__social">
                     {validSocial.map(([platform, url]) => {

@@ -36,12 +36,7 @@ export default function registerSocketHandlers(io) {
         return; // ignore
       }
 
-      console.log(`Message from ${socket.user.email}:`, msg);
       io.emit("chat_message", { user: socket.user.email, msg });
-    });
-
-    socket.on("disconnect", () => {
-      console.log("User disconnected:", socket.id);
     });
   });
 }

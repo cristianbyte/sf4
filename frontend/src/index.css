@@ -11,13 +11,11 @@
   animation-fill-mode: forwards;
 }
 
-/* El contenido viejo sale hacia la izquierda difuminándose */
 ::view-transition-old(root) {
   animation-name: slideOutLeft;
   z-index: 1;
 }
 
-/* El contenido nuevo entra desde la derecha */
 ::view-transition-new(root) {
   animation-name: slideInLeft;
   z-index: 2;

@@ -7,8 +7,7 @@ Esta Política de Privacidad explica cómo se recopilan, utilizan y protegen los
 ---
 
 ## 1. Datos que recopilamos
-- Nombre y correo electrónico
-- Edad y género
+- Nombre y correo electrónico * nOT yET
 - Ubicación (si es proporcionada)
 - Mensajes enviados en el chat
 - Preferencias dentro del sitio
@@ -59,7 +58,7 @@ Cualquier modificación será informada mediante correo electrónico y reflejada
 ---
 
 ## 8. Contacto
-Para cualquier duda o solicitud sobre tus datos, puedes escribir a: **https://coder.red/contact**
+Para cualquier duda o solicitud sobre tus datos, puedes escribir a: _____________
 
 ---
 

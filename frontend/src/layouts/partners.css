@@ -1,3 +1,7 @@
+.partners{
+    position: relative;
+    height: 100%;
+}
 .partners-container{
     display: flex;
     justify-content: center;
@@ -10,7 +14,8 @@
     background-repeat: no-repeat;
     gap: 2vw;
     width: 100%;
-    height: 70vh;
+    height: auto;
+    padding: 15vh 0 40vh 0;
     margin-top: 5vh;
     z-index: 1;
 }
@@ -30,6 +35,7 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
+    height: 50%;
     gap: 1vw;
 }
 
@@ -45,6 +51,100 @@
 }
 
 .partners-pic img{
+    transition: all .2s ease-out;
     height: var(--sizeXL);
     object-fit: contain;
+}
+
+.partners-pic img:hover{
+    transform: scale(1.2);
+}
+
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    background: linear-gradient(-35deg, var(--color-back) 30%, var(--color-shadow), var(--color-back) 70%);
+    color: var(--color-punch);
+    width: 100%;
+    height: auto;
+    padding: 2rem 1rem;
+    margin-top: auto;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.footer-disclaimer {
+    padding: 0 1rem;
+    strong{
+        color: var(--color-punch);
+    }
+}
+
+.footer-disclaimer p {
+    margin: 0;
+    color: var(--color-metal);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.footer-main {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.footer-main p {
+    display: flex;
+    margin: 0;
+    opacity: 0.8;
+}
+
+.footer-social .social-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 0rem 1rem;
+    transition: all 0.3s ease;
+}
+
+.footer-social .social-link:hover {
+    color: var(--color-punch);
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-links a {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: #ffffff;
+}
+
+@media (max-width: 768px) {
+    .footer-main {
+        flex-direction: column;
+        text-align: center;
+    }
 }
