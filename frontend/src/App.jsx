@@ -1,4 +1,3 @@
-import { Analytics } from "@vercel/analytics/next"
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { UserProvider } from "./context/userCotext";
 import Main from './pages/main';
@@ -10,7 +9,6 @@ function App() {
     <Router>
       <UserProvider>
         <div className="App">
-          <Analytics />
           <Routes>
             <Route index element={<Main />} />
             <Route path="/luchador/lavaldiri" element={<Luchador name={'LaValdiri'} />} />
