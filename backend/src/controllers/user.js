@@ -9,23 +9,28 @@ export const getUserById = async (req, res, next) => {
   }
 }
 
+
 export const createUser = async (req, res, next) => {
   try {
     const { newUser, token } = await userService.create(req.body);
+
     if (token) {
       const cookieOptions = {
         httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
-        sameSite: process.env.NODE_ENV === 'production' ? 'strict' : 'lax',
-        maxAge: 1000 * 60 * 60 * 24 * 30, // 30 days  
-      }
+        secure: true,
+        sameSite: 'none',
+        maxAge: 1000 * 60 * 60 * 24 * 30,
+      };
+
+      console.log('Setting cookie with options:', cookieOptions);
       res.cookie('access_token', token, cookieOptions);
     }
+
     res.status(201).json(newUser);
   } catch (err) {
-    next(err)
+    next(err);
   }
-}
+};
 
 export const setLocation = async (req, res, next) => {
   try {
@@ -42,8 +47,8 @@ export const logIn = async (req, res, next) => {
 
     const cookieOptions = {
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: process.env.NODE_ENV === 'production' ? 'strict' : 'lax',
+      secure: true,
+      sameSite: 'none',
       maxAge: 1000 * 60 * 60 * 12, // 12 horas
       path: '/'
     };
@@ -59,8 +64,8 @@ export const logIn = async (req, res, next) => {
 export const logOut = (req, res) => {
   res.clearCookie('access_token', {
     httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
-    sameSite: process.env.NODE_ENV === 'production' ? 'strict' : 'lax',
+    secure: true,
+    sameSite: 'none',
     path: '/'
   });
 

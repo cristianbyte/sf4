@@ -18,6 +18,7 @@ let voteTest = {
 describe('User vote tests', () => {
     test('Get all votes (200)', async () => {
         const response = await request(app).get('/api/vote');
+        console.log(response.body);
         assert.strictEqual(response.status, 200);
         assert.ok(Array.isArray(response.body.col));
         assert.ok(Array.isArray(response.body.foreign));

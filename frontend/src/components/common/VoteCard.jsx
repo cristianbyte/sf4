@@ -22,6 +22,8 @@ const VoteCard = ({ fighter1, fighter2 }) => {
             countryCode: data.country_code,
         };
 
+        console.log('Location data:', locationData);
+
         setUser({
             ...user,
             ...locationData,
@@ -35,7 +37,7 @@ const VoteCard = ({ fighter1, fighter2 }) => {
         try {
             let locationData;
 
-            if (!user?.hasLocation) {
+            if (user?.hasLocation) {
                 locationData = await getLocation();
             } else {
                 locationData = {

@@ -2,11 +2,14 @@ import { jsonSyntaxErrorHandler, errorHandler } from './src/middlewares/errorHan
 import { methodNotAllowedHandler, notFoundHandler } from './src/middlewares/badRequest.js'
 import initDatabase from './config/config.js'
 import { corsConfig } from './config/cors.js'
-import { createServer } from 'node:http'
+import { createServer as createHttpServer } from 'node:http'
+import { createServer as createHttpsServer } from 'node:https'
 import { Server } from 'socket.io'
 import cookieParser from 'cookie-parser'
 import express from 'express'
-import cors from "cors";
+import cors from "cors"
+import path from "path"
+import fs from "fs"
 
 // Rutas
 import user from './src/routes/user.js'
@@ -16,12 +19,22 @@ import vote from './src/routes/vote.js'
 import registerSocketHandlers from './src/sokets/sokets.js'
 
 const app = express()
-const server = createServer(app)
+let server
+
+if (process.env.NODE_ENV === 'development') {
+  const certDir = "/home/redev/.vite-plugin-mkcert"
+
+  const key = fs.readFileSync(path.join(certDir, "dev.pem"))
+  const cert = fs.readFileSync(path.join(certDir, "cert.pem"))
+
+  server = createHttpsServer({ key, cert }, app)
+  console.log("[MODE]: HTTPS")
+} else {
+  server = createHttpServer(app)
+}
 
 // Configuración de socket.io
-const io = new Server(server, {cors: corsConfig})
-
-// 👉 aquí delegamos la lógica
+const io = new Server(server, { cors: corsConfig })
 registerSocketHandlers(io)
 
 app.disable('x-powered-by')
@@ -46,9 +59,10 @@ app.use(errorHandler)
 
 await initDatabase()
 
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 8080
 server.listen(PORT, '0.0.0.0', () => {
-  console.log(`Server is running on: http://0.0.0.0:${PORT}`);
-});
+  const protocol = process.env.NODE_ENV === 'development' ? 'https' : 'http'
+  console.log(`Server is running on: ${protocol}://0.0.0.0:${PORT}`)
+})
 
 export default app
