@@ -1,13 +1,12 @@
 import './modalVote.css';
-import { useUser } from '../../context/userCotext';
+// import { useUser } from '../../context/userCotext';
 
 const ModalVote = ({ onClose, figther1, figther2, func }) => {
-    const { reloadUser } = useUser();
+    //const { reloadUser } = useUser();
 
     const handleVote = async (fighterName) => {
         try {
             await func(fighterName);
-            reloadUser(1);
             onClose();
         } catch (error) {
             console.error("Error registering vote:", error);

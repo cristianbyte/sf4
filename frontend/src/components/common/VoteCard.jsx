@@ -10,51 +10,66 @@ const VoteCard = ({ fighter1, fighter2 }) => {
     const [showModal, setShowModal] = useState(false);
 
     const getLocation = async () => {
-        const response = await fetch('https://ipapi.co/json/');
+        const cached = localStorage.getItem("locationData");
+        if (cached) {
+            return JSON.parse(cached);
+        }
+
+        const response = await fetch("https://ipapi.co/json/");
         const data = await response.json();
 
-        if (data.status !== 'success') {
-            throw new Error('Failed to get location');
+        if (!data.country_code) {
+            throw new Error("Failed to get location");
         }
 
         const locationData = {
-            location: data.country_code === "CO" ? `${data.country_code}-${data.region_code}` : data.country_code,
+            location: data.country_code === "CO"
+                ? `${data.country_code}-${data.region_code}`
+                : data.country_code,
             countryCode: data.country_code,
+            hasLocation: true
         };
 
-        console.log('Location data:', locationData);
-
-        setUser({
-            ...user,
-            ...locationData,
-            hasLocation: true
-        });
-
+        localStorage.setItem("locationData", JSON.stringify(locationData));
+        setUser(prev => ({ ...prev, ...locationData }));
         return locationData;
     };
 
     const voteFor = async (fighterName) => {
+        let currentUser = user;
+        // valitade if user has already voted for this fighter
+        if (user?.votes?.some(f => f.fighter == fighterName)) {
+            return;
+        }
         try {
-            let locationData;
 
-            if (user?.hasLocation) {
-                locationData = await getLocation();
+            if (!user?.hasLocation) {
+                const locationData = await getLocation();
+                currentUser = { ...user, ...locationData, hasLocation: true };
+            }
+
+            const payload = {
+                fighterName,
+                isForeign: currentUser.countryCode !== 'CO',
+                location: currentUser.location,
+                userId: currentUser.userId,
+            };
+
+            const res = await apiRequest('/vote', 'POST', payload);
+            let updatedVotes;
+
+            if (res.message === 'Vote updated') {
+                updatedVotes = (currentUser.votes || []).map(v =>
+                    v.voteId === res.id ? { ...v, fighter: res.fighterName } : v
+                );
             } else {
-                locationData = {
-                    location: user.location,
-                    countryCode: user.countryCode
-                };
+                updatedVotes = [...(currentUser.votes || []), { voteId: res.id, fighter: res.fighterName }];
             }
 
-            await apiRequest('/vote', 'POST', {
-                fighterName: fighterName,
-                isForeign: locationData.countryCode !== 'CO',
-                location: locationData.location,
-                userId: user.userId
-            }).then((res) => {
-                setUser({ res });
-            }
-            );
+            setUser({
+                ...currentUser,
+                votes: updatedVotes
+            });
 
         } catch (error) {
             console.error('Error voting:', error);

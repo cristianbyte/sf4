@@ -13,7 +13,10 @@ export function UserProvider({ children }) {
     try {
       const getUser = await apiRequest('/user/me', "GET");
       if (getUser) {
-        setUser(getUser);
+        setUser({
+          ...getUser,
+          votes: getUser.votes || []
+        });
         return;
       }
     } catch (error) {

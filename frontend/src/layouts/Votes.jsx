@@ -2,9 +2,11 @@ import { useState, useEffect } from 'react'
 import { leftFighters, rightFighters } from '../layouts/Poster'
 import { apiRequest } from '../services/request'
 import VoteCard from '../components/common/VoteCard'
+import { useUser } from '../context/userCotext'
 import './votes.css'
 
 const Votes = () => {
+    const { user } = useUser();
     const [leftFightersList, setLeftFightersList] = useState(leftFighters.map(f => ({ ...f, votes: 0 })));
     const [rightFightersList, setRightFightersList] = useState(rightFighters.map(f => ({ ...f, votes: 0 })));
 
@@ -28,7 +30,7 @@ const Votes = () => {
         };
 
         fetchVotes();
-    }, []);
+    }, [user]);
 
     return (
         <div className='votes' id='votes'>

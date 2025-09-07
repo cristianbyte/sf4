@@ -28,7 +28,6 @@ export const create = async (userData) => {
         SECRET_JWT_KEY,
         { expiresIn: "30d" }
       );
-  
       return { newUser, token };
     }
     return { newUser, token: null};

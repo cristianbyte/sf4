@@ -1,5 +1,5 @@
-// export const API_URL = "https://sf4-backend.fly.dev/api";
-export const API_URL = "https://localhost:3000/api";
+export const API_URL = "https://sf4-backend.fly.dev/api";
+// export const API_URL = "https://localhost:3000/api";
 
 export async function apiRequest(endpoint, method, body) {
   const config = {
@@ -13,7 +13,6 @@ export async function apiRequest(endpoint, method, body) {
   if (body && method !== 'GET' && method !== 'HEAD') {
     config.body = JSON.stringify(body);
   }
-  console.log('Request headers:', config);
   const response = await fetch(`${API_URL}${endpoint}`, config);
 
   if (!response.ok) {

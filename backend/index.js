@@ -34,8 +34,8 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 // Configuración de socket.io
-const io = new Server(server, { cors: corsConfig })
-registerSocketHandlers(io)
+//const io = new Server(server, { cors: corsConfig })
+//registerSocketHandlers(io)
 
 app.disable('x-powered-by')
 
