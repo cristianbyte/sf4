@@ -39,6 +39,7 @@ const Menu = () => {
                 />
             )}
             <div className="menu">
+                {onPrincipalPage && (
                 <Button
                     size="sizeS"
                     onClick={() => {
@@ -46,11 +47,14 @@ const Menu = () => {
                     }}
                     children={"VOTOS"}
                 />
+                )}
+                {!onPrincipalPage && (
                 <Button
                     size="sizeS"
                     onClick={(e) => { transitionNavigate(e, '/') }}
                     children={"COMBATES"}
                 />
+                )}
                 {!onPrincipalPage && (<div
                     onClick={(e) => { transitionNavigate(e, '/') }}
                     className="menu__logo-container"
