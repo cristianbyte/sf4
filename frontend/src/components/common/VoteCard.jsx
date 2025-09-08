@@ -15,20 +15,52 @@ const VoteCard = ({ fighter1, fighter2 }) => {
             return JSON.parse(cached);
         }
 
-        const response = await fetch("https://ipapi.co/json/");
-        const data = await response.json();
+        let locationData = null;
 
-        if (!data.country_code) {
-            throw new Error("Failed to get location");
+        try {
+            const response1 = await fetch("https://ipapi.co/json/");
+            const data1 = await response1.json();
+
+            if (data1.country_code) {
+                locationData = {
+                    location: data1.country_code === "CO"
+                        ? `${data1.country_code}-${data1.region_code}`
+                        : data1.country_code,
+                    countryCode: data1.country_code,
+                    hasLocation: true
+                };
+            }
+        } catch (error) {
+            console.warn("ipapi.co failed:", error.message);
         }
 
-        const locationData = {
-            location: data.country_code === "CO"
-                ? `${data.country_code}-${data.region_code}`
-                : data.country_code,
-            countryCode: data.country_code,
-            hasLocation: true
-        };
+        if (!locationData) {
+            try {
+                const response2 = await fetch("https://ipwho.is/");
+                const data2 = await response2.json();
+
+                if (data2.country_code) {
+                    locationData = {
+                        location: data2.country_code === "CO"
+                            ? `${data2.country_code}-${data2.region_code}`
+                            : data2.country_code,
+                        countryCode: data2.country_code,
+                        hasLocation: true
+                    };
+                }
+            } catch (error) {
+                console.warn("ipwho.is failed:", error.message);
+            }
+        }
+
+        if (!locationData) {
+            console.warn("All location APIs failed, using fallback values");
+            locationData = {
+                location: "NN",
+                countryCode: "NN",
+                hasLocation: true
+            };
+        }
 
         localStorage.setItem("locationData", JSON.stringify(locationData));
         setUser(prev => ({ ...prev, ...locationData }));
