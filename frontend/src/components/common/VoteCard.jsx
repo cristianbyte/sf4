@@ -116,12 +116,12 @@ const VoteCard = ({ fighter1, fighter2 }) => {
     return (
         <div className="voteCard">
             {showModal && <ModalVote onClose={() => setShowModal(false)} figther1={fighter1} figther2={fighter2} func={voteFor} />}
-            <div className="voteCard-pics">
+            <div className="voteCard-pics" onClick={() => setShowModal(true)}>
                 <div className={user?.votes?.some(f => f.fighter == fighter1.name) ? `isFavorite` : ""}>
-                    <img onClick={() => setShowModal(true)} src={fighter1.img} alt={fighter1.name} />
+                    <img  src={fighter1.img} alt={fighter1.name} />
                 </div>
                 <div className={user?.votes?.some(f => f.fighter == fighter2.name) ? `isFavorite` : ""}>
-                    <img onClick={() => setShowModal(true)} src={fighter2.img} alt={fighter2.name} />
+                    <img src={fighter2.img} alt={fighter2.name} />
                 </div>
                 <div className="voteCard--names">
                     <h3 className='shine-high'>{fighter1.name}</h3>
