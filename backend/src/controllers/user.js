@@ -18,8 +18,10 @@ export const createUser = async (req, res, next) => {
       const cookieOptions = {
         httpOnly: true,
         secure: true,
-        sameSite: 'none',
+        sameSite: 'lax',
         maxAge: 1000 * 60 * 60 * 24 * 30,
+        path: '/',
+        domain: '.streamfighters.lat',
       };
 
       res.cookie('access_token', token, cookieOptions);

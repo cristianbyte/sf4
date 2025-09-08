@@ -1,4 +1,4 @@
-export const API_URL = "https://sf4-backend.fly.dev/api";
+export const API_URL = "https://api.streamfighters.lat";
 // export const API_URL = "https://localhost:3000/api";
 
 export async function apiRequest(endpoint, method, body) {
