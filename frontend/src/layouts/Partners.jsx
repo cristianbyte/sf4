@@ -27,7 +27,7 @@ const Partners = () => {
                 <div className="partners-section">
                     <h4 className='partners-title'>PATROCINADOR OFICIAL</h4>
                     <div className="partners-logo">
-                        <a className='partners-pic' href="https://stake.com.co/es/bienvenida?btag=westcol" target="_blank" rel="noopener ">
+                        <a className='partners-pic' href="https://stake.com.co/es/promociones/sf4?btag=westcol" target="_blank" rel="noopener ">
                             <img src={Stake} alt="" />
                         </a>
                         <a className='partners-pic' href="https://kick.com/" target="_blank" rel="noopener ">

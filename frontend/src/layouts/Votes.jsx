@@ -30,7 +30,7 @@ const Votes = () => {
         };
 
         fetchVotes();
-    }, [user]);
+    }, []);
 
     return (
         <div className='votes' id='votes'>

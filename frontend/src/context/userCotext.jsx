@@ -8,15 +8,53 @@ export function UserProvider({ children }) {
   const [reloadFlag, setReloadFlag] = useState(0);
   const randomNames = ["Invitado", "Visitante", "Participante", "Luchador", "Retador", "Espectador", "Explorador", "Aliado", "Observador", "Curioso", "Anonimo"];
 
+  const saveUserToStorage = (userData) => {
+    try {
+      const userString = JSON.stringify(userData);
+      localStorage.setItem('user', userString);
+      sessionStorage.setItem('user', userString);
+    } catch (error) {
+      console.error('Error saving user to storage:', error);
+    }
+  };
+
+  const getUserFromStorage = () => {
+    try {
+      const localUser = localStorage.getItem('user');
+      const sessionUser = sessionStorage.getItem('user');
+
+      if (localUser) {
+        return JSON.parse(localUser);
+      } else if (sessionUser) {
+        return JSON.parse(sessionUser);
+      }
+      return null;
+    } catch (error) {
+      console.error('Error getting user from storage:', error);
+      return null;
+    }
+  };
+
+
   const fetchUser = useCallback(async () => {
     setIsLoading(true);
+
+    const storedUser = getUserFromStorage();
+    if (storedUser) {
+      setUser(storedUser);
+      setIsLoading(false);
+      return;
+    }
+
     try {
       const getUser = await apiRequest('/user/me', "GET");
       if (getUser) {
-        setUser({
+        const updatedUser = {
           ...getUser,
           votes: getUser.votes || []
-        });
+        };
+        setUser(updatedUser);
+        saveUserToStorage(updatedUser);
         return;
       }
     } catch (error) {
@@ -31,6 +69,7 @@ export function UserProvider({ children }) {
 
           if (newGuest) {
             setUser(newGuest);
+            saveUserToStorage(newGuest);
           }
         } catch (guestError) {
           console.error("Error creating guest:", guestError);
@@ -51,6 +90,7 @@ export function UserProvider({ children }) {
 
   const updateUser = (userData) => {
     setUser(userData);
+    saveUserToStorage(userData);
   };
 
   const logout = async () => {
