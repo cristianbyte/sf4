@@ -33,15 +33,34 @@ const Luchador = ({ name }) => {
         <>
             <Menu />
             <div className="luchador__container">
-
-
                 <div className="luchador__fighter">
                     <img src={myphoto.img} alt={data.name} />
-                    <h3 className="shine-high" >{data.name}</h3>
-                </div>
-
-                <div className="luchador-data">
-                    <div className="row">
+                    <h1 className="shine-high" >{data.name}</h1>
+                    <div className="luchador__social">
+                        {validSocial.map(([platform, url]) => {
+                            const iconSrc = socialIcons[platform.toLowerCase()];
+                            return (
+                                <a
+                                    key={platform}
+                                    href={url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="social-links"
+                                    title={platform}
+                                >
+                                    <div className="social-link">
+                                        {iconSrc ? (
+                                            <img src={iconSrc} alt={platform} />
+                                        ) : (
+                                            <span>🔗</span>
+                                        )}
+                                    </div>
+                                </a>
+                            );
+                        })}
+                    </div>
+                    <div className="luchador-data">
+                    <div className="luchador__stats">
                         <div className="col">
                             <div className="data">
                                 <h3>ORIGEN</h3>
@@ -71,34 +90,9 @@ const Luchador = ({ name }) => {
                         </p>
                     </div>
                 </div>
-
-
-
-                <div className="luchador__social">
-                    {validSocial.map(([platform, url]) => {
-                        const iconSrc = socialIcons[platform.toLowerCase()];
-                        return (
-                            <a
-                                key={platform}
-                                href={url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="social-links"
-                                title={platform}
-                            >
-                                <div className="social-link">
-                                    {iconSrc ? (
-                                        <img src={iconSrc} alt={platform} />
-                                    ) : (
-                                        <span>🔗</span>
-                                    )}
-                                </div>
-                            </a>
-                        );
-                    })}
                 </div>
 
-
+                
             </div>
             <Partners />
         </>

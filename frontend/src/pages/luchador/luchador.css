@@ -2,11 +2,9 @@
     position: relative;
     height: auto;
     width: 100dvw;
-    height: 100%;
     display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
+    align-items: center;
     z-index: 1;
 }
 
@@ -27,107 +25,115 @@
     z-index: -1;
 }
 
-.luchador__fighter{
-    position: absolute;
-    padding: 5vh 0;
-    margin: 5vh 0 0 0;
+.luchador__fighter {
+    position: relative;
     height: 100vh;
-    
-    h3{
-        position: absolute;
-        top: 2%;
-        font-size: 3.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    h1 {
+        transform: translateY(-7vh);
         width: 100%;
         text-align: center;
-        background-color: red;
-        z-index: -1;
-    }
-}
-
-.luchador__fighter img {
-    transition: all .3s ease;
-    width: min(60vw, 800px);
-    object-fit: contain;
-    image-rendering: crisp-edges;
-    filter: drop-shadow(0 0 0px transparent) contrast(150%) brightness(110%) sepia(0%) hue-rotate(-10deg) saturate(100%);
-    mask-image: linear-gradient(to bottom, #000000 90%, transparent 99%);
-}
-
-
-.luchador__fighter img:hover {
-    transition: all .3s ease;
-    filter: drop-shadow(0 0 20px var(--color-punch))
-            contrast(150%) brightness(110%) sepia(0%) hue-rotate(-10deg) saturate(100%);
-}
-
-.luchador__social{
-    position: relative;
-    display: flex;
-    padding: 5vh 0;
-    flex-direction: row;
-    gap: 3vw;
-    .social-link{
-        display: flex;
-    }
-    .social-link img{
-        width: calc(var(--sizeL) * 1.5);
-    }
-}
-
-.luchador-data{
-    margin: 5vh 0;
-    height: 80vh;
-    width: min(90vw, 1400px);
-    display: flex;
-    align-items: center;
-    flex-direction: row-reverse;
-    pointer-events: none;
-    justify-content: space-between;
-    z-index: 2;
-    h3{
-        color: var(--color-metal);
-        font-size: 15px;
-    }
-    span{
-        color: var(--color-white);
-    }
-    .col{
-        gap: 1rem;
-    }
-    .row{
-        background-color: #00000099;
-        padding: 1rem 2rem;
-        border: 2px solid var(--color-punch);
-        margin: 5vh 0;
-    }
-}
-
-.social-links{
-    display: flex;
-    flex-direction: row;
-    gap: var(--sizeS);
-    margin-top: 0;
-}
-
-.social-link img{
-    width: calc(var(--sizeL) * 2);
-}
-
-.luchador__info{
-    width: min(80vw, 400px);
-}
-
-@media (orientation: portrait) {
-    .luchador__fighter{
         position: relative;
+        height: 5rem;
+        font-size: calc(var(--sizeXL) * 1.5);
+        width: 100%;
     }
-    .luchador-data{
-        margin: 0;
-        flex-direction: column-reverse;
-        .row{
-            width: 100%;
-            text-align: center;
+
+    img {
+        transition: all .3s ease;
+        width: min(80vw, 800px);
+        object-fit: contain;
+        image-rendering: crisp-edges;
+        filter: drop-shadow(0 0 0px transparent) contrast(150%) brightness(110%) sepia(0%) hue-rotate(-10deg) saturate(100%);
+        mask-image: linear-gradient(to bottom, #000000 90%, transparent 99%);
+    }
+
+    img:hover,
+    .luchador__social .social-link:hover {
+        transition: all .3s ease;
+        filter: drop-shadow(0 0 10px var(--color-punch)) contrast(150%) brightness(110%) sepia(0%) hue-rotate(-10deg) saturate(100%);
+    }
+
+    .luchador__social {
+        position: relative;
+        display: flex;
+        height: min-content;
+        flex-direction: row;
+        gap: 3vw;
+
+        .social-link {
+            display: flex;
+        }
+
+        .social-link img {
+            width: calc(var(--sizeL) * 1.5);
+            height: 5rem;
+            padding-bottom: 5vh;
         }
     }
-    
+}
+
+.luchador-data {
+    position: absolute;
+    width: min(95vw, 1300px);
+    height: 100%;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    padding: 0 5%;
+    justify-content: space-between;
+
+    .luchador__stats {
+        display: flex;
+        gap: 2rem;
+        padding: 2% 5%;
+        background-color: #00000099;
+        padding: 1rem 2rem;
+        backdrop-filter: blur(2px);
+        border: 2px solid var(--color-punch);
+    }
+
+    .luchador__info {
+        max-width: 300px;
+    }
+}
+
+@media (max-width: 700px) {
+    .luchador-data {
+        position: relative;
+        flex-direction: column;
+        justify-content: center;
+        gap: 5vh;
+
+        .luchador__stats {
+            display: flex;
+        }
+
+        .luchador__info {
+            max-width: 90%;
+        }
+    }
+
+    .luchador__fighter {
+        img {
+            transform: translateY(10vh);
+        }
+
+        h1 {
+            top: 15%;
+            position: absolute;
+            font-size: calc(var(--sizeXL) * 1.5);
+        }
+
+        .luchador__social {
+            position: absolute;
+            bottom: 12%;
+
+        }
+    }
+
 }
