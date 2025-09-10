@@ -2,7 +2,7 @@
     position: relative;
     height: auto;
     width: 100dvw;
-    height: 100vh;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -29,11 +29,23 @@
 
 .luchador__fighter{
     position: absolute;
+    padding: 5vh 0;
+    margin: 5vh 0 0 0;
+    height: 100vh;
+    
+    h3{
+        position: absolute;
+        top: 2%;
+        font-size: 3.5rem;
+        width: 100%;
+        text-align: center;
+        background-color: red;
+        z-index: -1;
+    }
 }
 
 .luchador__fighter img {
     transition: all .3s ease;
-    height: auto;
     width: min(60vw, 800px);
     object-fit: contain;
     image-rendering: crisp-edges;
@@ -49,9 +61,9 @@
 }
 
 .luchador__social{
-    position: absolute;
-    bottom: 5%;
+    position: relative;
     display: flex;
+    padding: 5vh 0;
     flex-direction: row;
     gap: 3vw;
     .social-link{
@@ -64,6 +76,7 @@
 
 .luchador-data{
     margin: 5vh 0;
+    height: 80vh;
     width: min(90vw, 1400px);
     display: flex;
     align-items: center;
@@ -93,7 +106,7 @@
     display: flex;
     flex-direction: row;
     gap: var(--sizeS);
-    margin-top: var(--sizeM);
+    margin-top: 0;
 }
 
 .social-link img{

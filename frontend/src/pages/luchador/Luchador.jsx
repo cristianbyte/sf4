@@ -37,6 +37,7 @@ const Luchador = ({ name }) => {
 
                 <div className="luchador__fighter">
                     <img src={myphoto.img} alt={data.name} />
+                    <h3 className="shine-high" >{data.name}</h3>
                 </div>
 
                 <div className="luchador-data">
