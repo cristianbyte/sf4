@@ -128,12 +128,9 @@
             position: absolute;
             font-size: calc(var(--sizeXL) * 1.5);
         }
-
         .luchador__social {
             position: absolute;
             bottom: 12%;
-
         }
     }
-
 }

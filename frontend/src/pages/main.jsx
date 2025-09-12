@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Header from "../layouts/Header";
 import Partners from "../layouts/Partners"
 import Info from "../layouts/Info";
+import Artists from '../layouts/Artists';
 import Videos from "../layouts/Videos";
 import Menu from "../layouts/Menu";
 import Votes from "../layouts/Votes";
@@ -18,6 +19,7 @@ const main = () => {
             {/* <Info   slide={slide}
                 setSlide={setSlide}/> */}
             <Votes />
+            <Artists/>
             {/* <Videos /> */}
             <Partners />
         </div>
