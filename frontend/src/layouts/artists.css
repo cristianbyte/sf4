@@ -1,10 +1,39 @@
-.artist-container{
+.artist-container {
+    position: relative;
     width: 100%;
     height: 100%;
 }
 
-.artist{
-    background: radial-gradient( var(--color-font) 0%, var(--color-back) 70%, var(--color-back) 100%);
-    width: 100%;
-    height: 90vh;
+.artist {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    background: radial-gradient(circle,
+            var(--color-punch) -100%,
+            var(--color-back) 90%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+}
+
+.artist-left{
+    width: 10%;
+}
+.artists-principal {
+    
+    img{
+        clip-path: polygon(24% 100%, 25% 77%, 23% 75%, 21% 64%, 21% 48%, 22% 44%, 30% 26%, 40% 24%, 42% 21%, 43% 16%, 40% 13%, 41% 9%, 43% 8%, 46% 4%, 50% 1%, 52% 0%, 61% 0%, 66% 7%, 67% 8%, 66% 16%, 68% 19%, 69% 24%, 70% 28%, 75% 34%, 77% 45%, 78% 47%, 79% 59%, 73% 75%, 71% 78%, 67% 84%, 69% 100%);
+        background-color: var(--color-punch);
+    }
+}
+
+.artist-right {
+    width: 10%;
+
 }
