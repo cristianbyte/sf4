@@ -1,0 +1,10 @@
+.artist-container{
+    width: 100%;
+    height: 100%;
+}
+
+.artist{
+    background: radial-gradient( var(--color-font) 0%, var(--color-back) 70%, var(--color-back) 100%);
+    width: 100%;
+    height: 90vh;
+}
