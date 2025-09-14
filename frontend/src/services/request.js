@@ -1,5 +1,5 @@
-// export const API_URL = "https://api.streamfighters.lat/api";
-export const API_URL = "https://localhost:3000/api";
+// export const API_URL = "https://localhost:3000/api";
+export const API_URL = "https://api.streamfighters.lat/api";
 
 export async function apiRequest(endpoint, method, body) {
   const config = {
